@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "editorconfig.editorconfig",
+        "laravel.vscode-laravel",
+        "shufo.vscode-blade-formatter",
+        "open-southeners.laravel-pint",
+        "devsense.phptools-vscode",
+        "mikestead.dotenv"
+    ]
+}
