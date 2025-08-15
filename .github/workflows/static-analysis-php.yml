@@ -1,0 +1,26 @@
+# Set up GitHub Actions for Laravel applications
+#   Last updated on December 26th, 2023 by Steve McDougall
+#   https://laravel-news.com/laravel-ci-with-github-action
+
+name: Static analysis of PHP code
+
+on: [push]
+
+jobs:
+  phpstan:
+    name: phpstan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+
+      - name: Install composer dependencies
+        run: composer install -n --prefer-dist
+
+      - name: Run static analysis
+        run: ./vendor/bin/phpstan --error-format=github
