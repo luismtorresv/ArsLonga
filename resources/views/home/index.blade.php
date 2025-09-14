@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
     <div class="text-center fs-4">
-        Welcome!
+        {{ __('Welcome!') }}
     </div>
 @endsection
