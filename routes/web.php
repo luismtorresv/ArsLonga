@@ -37,4 +37,7 @@ Route::middleware(['auth', 'admin'])->controller(AdminArtworkController::class)-
     Route::get('admin/artwork/edit/{id}', 'edit')->name('admin.artwork.edit');
 });
 
+// Auction routes
+Route::get('/auction', 'App\Http\Controllers\AuctionController@index')->name('auction.index');
+
 Auth::routes();
