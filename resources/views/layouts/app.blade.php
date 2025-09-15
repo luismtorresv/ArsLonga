@@ -17,13 +17,7 @@
         @yield('content')
     </div>
 
-    <div class="copyright py-4 text-center text-white">
-        <div class="container">
-            <small>
-                {{ __('Copyright — Ars Longa') }}
-            </small>
-        </div>
-    </div>
+    @include('layouts.footer')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous">
