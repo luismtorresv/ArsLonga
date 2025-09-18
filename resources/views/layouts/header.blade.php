@@ -19,7 +19,7 @@
                         class="btn btn-outline-light me-2">{{ __('Login') }}</a>
                     <a href="{{ route('register') }}" role="button" class="btn btn-warning">{{ __('Sign-up') }}</a>
                 @else
-                    <a href="{{ route('home.index') }}" role="button"
+                    <a href="{{ route('user.index') }}" role="button"
                         class="btn btn-outline-light me-2">{{ __('Profile') }}</a>
                     <form id="logout" action="{{ route('logout') }}" method="POST" class="d-inline-flex">
                         <a role="button" class="btn btn-warning"
