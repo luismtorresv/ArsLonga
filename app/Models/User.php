@@ -116,24 +116,4 @@ class User extends Authenticatable
     {
         return $this->attributes['updated_at'];
     }
-
-    public function orders(): HasMany
-    {
-        return $this->hasMany(Order::class);
-    }
-
-    public function bids(): HasMany
-    {
-        return $this->hasMany(Bid::class);
-    }
-
-    public function auctions(): HasMany
-    {
-        return $this->hasMany(Auction::class);
-    }
-
-    public function artworks(): HasMany
-    {
-        return $this->hasMany(Artwork::class);
-    }
 }
