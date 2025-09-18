@@ -45,4 +45,18 @@ class UserController extends Controller
 
         return redirect()->route('user.index')->with('success', __('Profile updated successfully!'));
     }
+
+    public function changePassword(Request $request): RedirectResponse
+    {
+        $user = auth()->user();
+
+        $validated = $request->validate([
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user->setPassword(bcrypt($validated['password']));
+        $user->save();
+
+        return redirect()->route('user.index')->with('success', __('Password updated successfully!'));
+    }
 }
