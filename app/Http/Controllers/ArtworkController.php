@@ -7,7 +7,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artwork;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class ArtworkController extends Controller
@@ -21,7 +20,7 @@ class ArtworkController extends Controller
         return view('artwork.index')->with('viewData', $viewData);
     }
 
-    public function show(string $id): View|RedirectResponse
+    public function show(string $id): View
     {
         $viewData = [];
 
