@@ -98,7 +98,7 @@ class Artwork extends Model
         return $this->attributes['image'];
     }
 
-    public function setImage($image): void
+    public function setImage(string $image): void
     {
         $this->attributes['image'] = $image;
     }
