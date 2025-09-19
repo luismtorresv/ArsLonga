@@ -39,5 +39,7 @@ Route::middleware(['auth', 'admin'])->controller(AdminArtworkController::class)-
 
 // Auction routes
 Route::get('/auction', 'App\Http\Controllers\AuctionController@index')->name('auction.index');
+Route::get('/auction/create', 'App\Http\Controllers\AuctionController@create')->name('auction.create');
+Route::post('/auction/save', 'App\Http\Controllers\AuctionController@save')->name('auction.save');
 
 Auth::routes();
