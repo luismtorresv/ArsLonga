@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 use App\Models\Auction;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class AuctionController extends Controller
 {
@@ -30,7 +30,7 @@ class AuctionController extends Controller
     public function save(Request $request): RedirectResponse
     {
         Auction::validate($request);
-        Auction::create($request->only(['price', 'winning_bidder_id']));
+        Auction::create($request->only(['original_price', 'final_price', 'winning_bidder_id']));
 
         return back();
     }

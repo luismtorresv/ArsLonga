@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\Models\User;
 
 class Auction extends Model
 {
@@ -15,19 +14,21 @@ class Auction extends Model
     $this->attributes['id'] - int - contains the product primary key (id)
     $this->attributes['created_at'] - timestamp - contains the time when the auction was created
     $this->attributes['updated_at'] - timestamp - contains the time when the auction was last updated
-    $this->attributes['price'] - int  - contains the price of the auctioned object
+    $this->attributes['original_price'] - int  - contains the original price of the auctioned object
+    $this->attributes['final_price'] - int - contains the final pice of the auctioned object
     $this->attributes['winning_bidder_id'] - bigint  - contains the id of the customer who won the auction
-    $this->attributes['artwork_id'] - bigint  - contains the id of the artwork sold in the auction   
-    $this->bids - bids[] - contains the associated bids. 
+    $this->attributes['artwork_id'] - bigint  - contains the id of the artwork sold in the auction
+    $this->bids - bids[] - contains the associated bids.
     */
 
-    protected $fillable = ['price', 'winning_bidder_id'];
+    protected $fillable = ['original_price', 'final_price', 'winning_bidder_id'];
 
     public static function validate(Request $request): void
     {
         $request->validate([
-            'price' => 'required',
-            'winning_bidder_id' => ['exists:users,id', 'required']
+            'original_price' => 'required',
+            'final_price' => 'required',
+            'winning_bidder_id' => ['exists:users,id', 'required'],
         ]);
     }
 
@@ -41,14 +42,24 @@ class Auction extends Model
         return $this->attributes['updated_at'];
     }
 
-    public function getPrice(): int
+    public function getOriginalPrice(): int
     {
-        return $this->attributes['price'];
+        return $this->attributes['original_price'];
     }
 
-    public function setPrice(int $price): void
+    public function setOriginalPrice(int $original_price): void
     {
-        $this->attributes['price'] = $price;
+        $this->attributes['original_price'] = $original_price;
+    }
+
+    public function getFinalPrice(): int
+    {
+        return $this->attributes['final_price'];
+    }
+
+    public function setFinalPrice(int $final_price): void
+    {
+        $this->attributes['final_price'] = $final_price;
     }
 
     public function getWinningBiddingUser(): User
