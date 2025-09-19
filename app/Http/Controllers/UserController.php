@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(): View
     {
         $viewData = [];
@@ -29,18 +35,10 @@ class UserController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $user = auth()->user();
-
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,'.$user->getId(),
-            'address' => 'nullable|string|max:255',
-            'balance' => 'nullable|numeric|min:0',
-        ]);
-
-        $user->setName($validated['name']);
-        $user->setEmail($validated['email']);
-        $user->setAddress($validated['address'] ?? '');
-        $user->setBalance($validated['balance'] ?? 10000000);
+        User::validate($request, $user);
+       
+        $user->setName($request->input('name'));
+        $user->setAddress($request->input('address') ?? null);
         $user->save();
 
         return redirect()->route('user.index')->with('success', __('Profile updated successfully!'));
@@ -54,7 +52,7 @@ class UserController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        $user->setPassword(bcrypt($validated['password']));
+        $user->password = $validated['password'];
         $user->save();
 
         return redirect()->route('user.index')->with('success', __('Password updated successfully!'));
