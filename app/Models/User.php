@@ -7,11 +7,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
-
 
 class User extends Authenticatable
 {
@@ -127,12 +126,12 @@ class User extends Authenticatable
     {
         $request->validate(
             [
-                'name'    => 'required|string|max:255',
+                'name' => 'required|string|max:255',
                 'address' => 'nullable|string|max:255',
             ],
             [
-                'name.required'    => __('validation.required', ['attribute' => __('User.name')]),
-                'address.max'      => __('validation.max.string', ['attribute' => __('User.address'), 'max' => 255]),
+                'name.required' => __('validation.required', ['attribute' => __('User.name')]),
+                'address.max' => __('validation.max.string', ['attribute' => __('User.address'), 'max' => 255]),
             ]
         );
     }

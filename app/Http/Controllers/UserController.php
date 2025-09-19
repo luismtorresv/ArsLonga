@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index(): View
     {
         $viewData = [];
@@ -40,7 +40,7 @@ class UserController extends Controller
     {
         $user = auth()->user();
         User::validate($request, $user);
-       
+
         $user->setName($request->input('name'));
         $user->setAddress($request->input('address') ?? null);
         $user->save();
