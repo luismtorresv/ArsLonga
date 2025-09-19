@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
@@ -13,12 +15,12 @@ class User extends Authenticatable
 
     /**
      * USER ATTRIBUTES
-     * $this->attributes['id'] - int - contains the artwork primary key (id)
-     * $this->attributes['name'] - string - contains the customers name
-     * $this->attributes['addres'] - string - contains the customers address
-     * $this->attributes['balance'] - decimal - contains the customers balance
-     * $this->attributes['created_at'] - timestamp - contains the customers creation date
-     * $this->attributes['updated_at'] - timestamp - contains the customers update date
+     * $this->attributes['id'] - int - contains the user's primary key (id)
+     * $this->attributes['name'] - string - contains the user's name
+     * $this->attributes['address'] - string - contains the user's address
+     * $this->attributes['balance'] - int - contains the user's balance
+     * $this->attributes['created_at'] - timestamp - contains the user's creation date
+     * $this->attributes['updated_at'] - timestamp - contains the user's update date
      */
 
     /**
@@ -31,7 +33,6 @@ class User extends Authenticatable
         'email',
         'password',
         'address',
-        'balance',
     ];
 
     /**
@@ -82,22 +83,22 @@ class User extends Authenticatable
         $this->attributes['email'] = $email;
     }
 
-    public function getAddress(): ?string
+    public function getAddress(): string
     {
-        return $this->attributes['address'];
+        return $this->attributes['address'] ?? '';
     }
 
-    public function setAddress(string $address): void
+    public function setAddress(?string $address): void
     {
         $this->attributes['address'] = $address;
     }
 
-    public function getBalance(): float
+    public function getBalance(): int
     {
         return $this->attributes['balance'];
     }
 
-    public function setBalance(float $balance): void
+    public function setBalance(int $balance): void
     {
         $this->attributes['balance'] = $balance;
     }
@@ -115,5 +116,19 @@ class User extends Authenticatable
     public function getUpdatedAt(): string
     {
         return $this->attributes['updated_at'];
+    }
+
+    public static function validate(Request $request, User $user): void
+    {
+        $request->validate(
+            [
+                'name' => 'required|string|max:255',
+                'address' => 'nullable|string|max:255',
+            ],
+            [
+                'name.required' => __('validation.required', ['attribute' => __('User.name')]),
+                'address.max' => __('validation.max.string', ['attribute' => __('User.address'), 'max' => 255]),
+            ]
+        );
     }
 }
