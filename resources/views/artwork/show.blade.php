@@ -15,7 +15,7 @@
             <!-- Right side - Details -->
             <div class="col-md-6">
                 <h1 class="display-4 mb-3">{{ $viewData['artwork']->getTitle() }}</h1>
-                <h4 class="text-muted mb-4">By {{ $viewData['artwork']->getAuthor() }}</h4>
+                <h4 class="text-muted mb-4">{{ __('artwork.show.by', ['author' => $viewData['artwork']->getAuthor()]) }}</h4>
 
                 <div class="artwork-details">
                     <div class="category-badge mb-4">
@@ -24,12 +24,12 @@
                     </div>
 
                     <div class="description mb-4">
-                        <h5 class="text-primary">About this piece</h5>
+                        <h5 class="text-primary">{{ __('artwork.show.about') }}</h5>
                         <p class="lead">{{ $viewData['artwork']->getDetails() }}</p>
                     </div>
 
                     <div class="artwork-meta text-muted">
-                        <small>Artwork ID: {{ $viewData['artwork']->getId() }}</small>
+                        <small>{{ __('artwork.show.artworkID', ['artworkID' => $viewData['artwork']->getId()]) }}</small>
                     </div>
                 </div>
             </div>

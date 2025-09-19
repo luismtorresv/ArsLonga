@@ -5,7 +5,7 @@
     <div class="container my-4">
         @if ($viewData['artworks']->isEmpty())
             <div class="alert alert-info" role="alert">
-                <p class="mb-0">No artworks available in the gallery yet.</p>
+                <p class="mb-0">{{ __('artwork.index.no_artworks') }}</p>
             </div>
         @endif
 

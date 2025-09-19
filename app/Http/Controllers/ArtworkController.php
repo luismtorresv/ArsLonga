@@ -15,7 +15,7 @@ class ArtworkController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = __('List of artworks');
+        $viewData['title'] = __('artwork.title.index');
         $viewData['artworks'] = Artwork::all();
 
         return view('artwork.index')->with('viewData', $viewData);
@@ -27,7 +27,7 @@ class ArtworkController extends Controller
 
         $artwork = Artwork::findOrFail($id);
 
-        $viewData['title'] = $artwork->getTitle().' - '.__('Artwork information');
+        $viewData['title'] = __('artwork.title.show', ['artworkTitle' => $artwork->getTitle()]);
         $viewData['artwork'] = $artwork;
 
         return view('artwork.show')->with('viewData', $viewData);
