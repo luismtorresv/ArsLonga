@@ -130,8 +130,8 @@ class User extends Authenticatable
                 'address' => 'nullable|string|max:255',
             ],
             [
-                'name.required' => __('validation.required', ['attribute' => __('User.name')]),
-                'address.max' => __('validation.max.string', ['attribute' => __('User.address'), 'max' => 255]),
+                'name.required' => __('validation.required', ['attribute' => __('user.name')]),
+                'address.max' => __('validation.max.string', ['attribute' => __('user.address'), 'max' => 255]),
             ]
         );
     }
