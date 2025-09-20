@@ -15,13 +15,13 @@ class Auction extends Model
     $this->attributes['created_at'] - timestamp - contains the time when the auction was created
     $this->attributes['updated_at'] - timestamp - contains the time when the auction was last updated
     $this->attributes['original_price'] - int  - contains the original price of the auctioned object
-    $this->attributes['final_price'] - int - contains the final pice of the auctioned object
+    $this->attributes['final_price'] - int - contains the final price of the auctioned object
     $this->attributes['winning_bidder_id'] - bigint  - contains the id of the customer who won the auction
     $this->attributes['artwork_id'] - bigint  - contains the id of the artwork sold in the auction
     $this->bids - bids[] - contains the associated bids.
     */
 
-    protected $fillable = ['original_price', 'final_price', 'winning_bidder_id'];
+    protected $fillable = ['original_price', 'final_price', 'winning_bidder_id', 'artwork_id'];
 
     public static function validate(Request $request): void
     {
@@ -29,6 +29,7 @@ class Auction extends Model
             'original_price' => 'required',
             'final_price' => 'required',
             'winning_bidder_id' => ['exists:users,id', 'required'],
+            'artwork_id' => ['exists:artworks,id', 'required'],
         ]);
     }
 
@@ -70,5 +71,15 @@ class Auction extends Model
     public function setWinningBiddingUser(int $winningBiddingUserId): void
     {
         $this->attributes['winning_bidder_id'] = $winningBiddingUserId;
+    }
+
+    public function getArtwork(): Artwork
+    {
+        return Artwork::find($this->attributes['artwork_id']);
+    }
+
+    public function setArtwork(int $artwork_id): void
+    {
+        $this->attributes['artwork_id'] = $artwork_id;
     }
 }

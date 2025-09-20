@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('original_price');
             $table->integer('final_price');
             $table->foreignId('winning_bidder_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('artwork_id')->constrained('artworks')->restrictOnDelete();
         });
     }
 
