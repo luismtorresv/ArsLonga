@@ -8,9 +8,9 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="{{ route('home.index') }}" class="nav-link px-2 text-secondary">{{ __('Home') }}</a>
                 </li>
-                <li><a href="{{ route('auction.index') }}" class="nav-link px-2 text-white">{{ __('Auction') }}</a></li>
                 <li><a href="{{ route('artwork.index') }}" class="nav-link px-2 text-white">{{ __('Artworks') }}</a>
                 </li>
+                <li><a href="{{ route('auction.index') }}" class="nav-link px-2 text-white">{{ __('Auction') }}</a></li>
                 <li><a href="{{ route('home.index') }}" class="nav-link px-2 text-white">{{ __('About') }}</a></li>
             </ul>
             <div class="d-flex text-end">
