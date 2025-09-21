@@ -1,17 +1,20 @@
 <?php
 
+/**
+ * @author Jeronimo Acosta
+ */
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
 
 class Auction extends Model
 {
-    use HasFactory;
     /*
     AUCTION ATTRIBUTES
-    $this->attributes['id'] - int - contains the product primary key (id)
+    $this->attributes['id'] - int - contains the auction's primary key (id)
     $this->attributes['created_at'] - timestamp - contains the time when the auction was created
     $this->attributes['updated_at'] - timestamp - contains the time when the auction was last updated
     $this->attributes['original_price'] - int  - contains the original price of the auctioned object
@@ -63,22 +66,22 @@ class Auction extends Model
         $this->attributes['final_price'] = $final_price;
     }
 
-    public function getWinningBiddingUser(): User
+    public function user(): BelongsTo
     {
-        return User::find($this->attributes['winning_bidder_id']);
+        return $this->belongsTo(User::class);
     }
 
-    public function setWinningBiddingUser(int $winningBiddingUserId): void
+    public function setWinningBiddingUserId(int $winningBiddingUserId): void
     {
         $this->attributes['winning_bidder_id'] = $winningBiddingUserId;
     }
 
-    public function getArtwork(): Artwork
+    public function artwork(): BelongsTo
     {
-        return Artwork::find($this->attributes['artwork_id']);
+        return $this->belongsTo(Artwork::class);
     }
 
-    public function setArtwork(int $artwork_id): void
+    public function setArtworkId(int $artwork_id): void
     {
         $this->attributes['artwork_id'] = $artwork_id;
     }
