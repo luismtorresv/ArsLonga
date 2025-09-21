@@ -1,5 +1,7 @@
 <?php
 
+use AppApp\Http\Controllers\Admin\AdminHomeController;
+use AppApp\Http\Controllers\Admin\AdminArtworkController;
 use App\Http\Controllers\ArtworkController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -20,5 +22,8 @@ Route::controller(UserController::class)->middleware(['auth'])->group(function (
     Route::post('/user/update', 'update')->name('user.update');
     Route::post('/user/changePassword', 'changePassword')->name('user.changePassword');
 });
+
+Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name("admin.index");
+Route::get('/admin/artwork', 'App\Http\Controllers\Admin\AdminArtworkController@index')->name('admin.artwork.index');
 
 Auth::routes();
