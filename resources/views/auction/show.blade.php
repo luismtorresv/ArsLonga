@@ -5,7 +5,7 @@
         <div class="row">
             <!-- Right side - Details -->
             <div class="col-md-6">
-                <h1 class="display-4 mb-3">Winning Bidder{{ $viewData['auction']->getWinningBiddingUser() }}</h1>
+                <h1 class="display-4 mb-3">Winning Bidder: {{ $viewData['auction']->user }}</h1>
 
                 <div class="Auction-details">
                     <div class="category-badge mb-4">
@@ -13,9 +13,8 @@
                             {{ $viewData['auction']->getOriginalPrice() }}</span>
                         <span class="badge bg-info">Final Price: {{ $viewData['auction']->getFinalPrice() }}</span>
                     </div>
-
                     <div class="description mb-4">
-                        <p>Artwork: {{ $viewData['auction']->getArtwork() }}</p>
+                        <p>Artwork: {{ $viewData['auction']->artwork->getTitle() }}</p>
                     </div>
                 </div>
             </div>
