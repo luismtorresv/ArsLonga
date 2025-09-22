@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @author Wendysauria
+ */
+
 return [
     'update' => [
         'success' => '¡Perfil actualizado con éxito!',

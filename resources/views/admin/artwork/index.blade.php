@@ -5,7 +5,7 @@
         <div class="col-md-4 mx-auto">
             <div class="card text-center shadow-sm bg-dark text-white border-warning border-2">
                 <div class="card-body">
-                    <h5 class="card-title mb-2">Total Artworks</h5>
+                    <h5 class="card-title mb-2">{{ __('admin.total') }}</h5>
                     <span class="display-6 fw-bold text-warning">{{ $viewData['artworksCount'] ?? 0 }}</span>
                 </div>
             </div>
@@ -14,10 +14,10 @@
 
     <div class="row align-items-center mb-3">
         <div class="col">
-            <h2 class="mb-0">Artworks</h2>
+            <h2 class="mb-0">{{ __('admin.artwork') }}</h2>
         </div>
         <div class="col-auto">
-            <a href="{{ route('admin.artwork.create') }}" class="btn btn-warning fw-bold">Create Artwork</a>
+            <a href="{{ route('admin.artwork.create') }}" class="btn btn-warning fw-bold">{{ __('admin.create') }}</a>
         </div>
     </div>
 
@@ -26,10 +26,10 @@
             <thead class="table-secondary text-dark">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Author</th>
-                    <th scope="col" class="text-center">Actions</th>
+                    <th scope="col">{{ __('admin.image') }}</th>
+                    <th scope="col">{{ __('admin.title') }}</th>
+                    <th scope="col">{{ __('admin.author') }}</th>
+                    <th scope="col" class="text-center">{{ __('admin.action') }}</th>
                 </tr>
             </thead>
             <tbody>

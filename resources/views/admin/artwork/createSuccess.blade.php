@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="alert alert-success text-center fs-4 fw-bold mb-0" role="alert">
-                Artwork created successfully!
+                {{ __('admin.success') }}
             </div>
         </div>
     </div>
