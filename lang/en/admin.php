@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Wendysauria
+ * @author Wendysita
  */
 
 return [
@@ -21,4 +21,6 @@ return [
     'save' => 'Save changes',
     'success' => 'Artwork created successfully!',
     'action' => 'Actions',
+    'adminH' => 'Admin Panel - Home Page',
+    'welcome' => 'Welcome to the Admin Panel, use the header to navigate between the different options.',
 ];

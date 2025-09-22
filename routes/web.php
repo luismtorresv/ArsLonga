@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminArtworkController;
+use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\ArtworkController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -23,11 +23,11 @@ Route::controller(UserController::class)->middleware(['auth'])->group(function (
     Route::post('/user/changePassword', 'changePassword')->name('user.changePassword');
 });
 
-Route::controller(AdminHomeController::class)->group(function () {
+Route::middleware(['auth', 'admin'])->controller(AdminHomeController::class)->group(function () {
     Route::get('/admin', 'index')->name('admin.index');
 });
 
-Route::controller(AdminArtworkController::class)->group(function () {
+Route::middleware(['auth', 'admin'])->controller(AdminArtworkController::class)->group(function () {
     Route::get('/admin/artwork', 'index')->name('admin.artwork.index');
     Route::post('admin/artwork/save/{id?}', 'save')->name('admin.artwork.save');
     Route::get('admin/artwork/create/success', 'createSuccess')->name('admin.artwork.createSuccess');
@@ -35,7 +35,6 @@ Route::controller(AdminArtworkController::class)->group(function () {
     Route::delete('admin/artwork/delete/{id}', 'delete')->name('admin.artwork.delete');
     Route::get('admin/artwork/{id}', 'show')->name('admin.artwork.show');
     Route::get('admin/artwork/edit/{id}', 'edit')->name('admin.artwork.edit');
-}); 
-
+});
 
 Auth::routes();

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Wendysauria
+ * @author Wendysita
  */
 
 return [
@@ -21,4 +21,6 @@ return [
     'save' => 'Guardar cambios',
     'success' => '¡Obra creada con éxito!',
     'action' => 'Acciones',
+    'adminH' => 'Panel de Administración - Página Principal',
+    'welcome' => 'Bienvenido al Panel de Administración, utiliza el encabezado para navegar entre las diferentes opciones.',
 ];

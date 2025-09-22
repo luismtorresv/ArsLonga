@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Wendysauria
+ * @author Wendysita
  */
 
 return [
