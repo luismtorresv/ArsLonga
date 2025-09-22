@@ -48,7 +48,7 @@
                                 <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM8 10a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
                             </svg>
                         </a>
-                        <a href="" class="btn btn-sm btn-outline-warning me-1" title="Edit">
+                        <a href="{{route('admin.artwork.edit', ['id' => $artwork->getId()])}}" class="btn btn-sm btn-outline-warning me-1" title="Edit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                 <path d="M12.146.854a.5.5 0 0 1 .708 0l2.292 2.292a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 12.5 5.793 10.207 3.5l1-1zm1.586 2.793-1-1L3 13.086V14h.914l8.879-8.879z"/>
                             </svg>
