@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminAuctionController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\ArtworkController;
 use App\Http\Controllers\AuctionController;
+use App\Http\Controllers\BidController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -55,6 +56,10 @@ Route::middleware(['auth'])->controller(CartController::class)->group(function (
     Route::post('/cart/add/{id}', 'add')->name('cart.add');
     Route::post('/cart/remove/{id}', 'remove')->name('cart.remove');
     Route::post('/cart/purchase', 'purchase')->name('cart.purchase');
+});
+
+Route::controller(BidController::class)->group(function () {
+    //
 });
 
 Auth::routes();

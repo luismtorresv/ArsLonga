@@ -90,7 +90,7 @@ class Item extends Model
         return $this->belongsTo(Artwork::class);
     }
 
-    public function getArtwork(): ?Artwork
+    public function getArtwork(): Artwork
     {
         // @phpstan-ignore-next-line
         return $this->artwork;
