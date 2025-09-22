@@ -15,10 +15,9 @@ class AdminArtworkController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Artwork';
-        $viewData['subtitle'] = 'List of artworks';
-        $viewData['artworks'] = Artwork::all();
-        $viewData['artworksCount'] = Artwork::all()->count();
+        $artworks = Artwork::all();
+        $viewData['artworks'] = $artworks;
+        $viewData['artworksCount'] = $artworks->count();
 
         return view('admin.artwork.index')->with('viewData', $viewData);
     }
@@ -33,16 +32,13 @@ class AdminArtworkController extends Controller
         $viewData['subtitle'] = $artwork->getTitle().' - Artwork information';
         $viewData['artwork'] = $artwork;
 
-        return view('artwork.show')->with('viewData', $viewData);
+        return view('admin.artwork.show')->with('viewData', $viewData);
     }
 
     public function create(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Create artwork';
-        $viewData['subtitle'] = 'A nice work of art';
-
-        return view('artwork.create')->with('viewData', $viewData);
+        return view('admin.artwork.create')->with('viewData', $viewData);
     }
 
     public function save(Request $request): RedirectResponse
@@ -50,7 +46,7 @@ class AdminArtworkController extends Controller
         try {
             Artwork::validate($request);
         } catch (ValidationException $e) {
-            return redirect()->route('artwork.create')
+            return redirect()->route('admin.artwork.create')
                 ->withErrors($e->validator)
                 ->withInput();
         }
@@ -74,16 +70,14 @@ class AdminArtworkController extends Controller
             $newArtwork->save();
         }
 
-        return redirect()->route('artwork.createSuccess');
+        return redirect()->route('admin.artwork.createSuccess');
     }
 
     public function createSuccess(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Artwork created';
-        $viewData['subtitle'] = 'Another one!';
 
-        return view('artwork.createSuccess')->with('viewData', $viewData);
+        return view('admin.artwork.createSuccess')->with('viewData', $viewData);
     }
 
     public function delete(int $id): RedirectResponse
@@ -95,6 +89,14 @@ class AdminArtworkController extends Controller
         }
         $artwork->delete();
 
-        return redirect()->route('artwork.index');
+        return redirect()->route('admin.artwork.index');
+    }
+
+    public function edit(int $id): View
+    {
+        $artwork = Artwork::findOrFail($id);
+        $viewData = [];
+        $viewData['artwork'] = $artwork;
+        return view('admin.artwork.edit')->with('viewData', $viewData);
     }
 }

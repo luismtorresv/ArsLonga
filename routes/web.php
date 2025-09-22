@@ -25,5 +25,11 @@ Route::controller(UserController::class)->middleware(['auth'])->group(function (
 
 Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name("admin.index");
 Route::get('/admin/artwork', 'App\Http\Controllers\Admin\AdminArtworkController@index')->name('admin.artwork.index');
+Route::post('admin/artwork/save', 'App\Http\Controllers\Admin\AdminArtworkController@save')->name('admin.artwork.save');
+Route::get('admin/artwork/create/success', 'App\Http\Controllers\Admin\AdminArtworkController@createSuccess')->name('admin.artwork.createSuccess');
+Route::get('admin/artwork/create', 'App\Http\Controllers\Admin\AdminArtworkController@create')->name('admin.artwork.create');
+
+Route::delete('admin/artwork/delete/{id}', 'App\Http\Controllers\Admin\AdminArtworkController@delete')->name('admin.artwork.delete');
+Route::get('admin/artwork/{id}', 'App\Http\Controllers\Admin\AdminArtworkController@show')->name('admin.artwork.show');
 
 Auth::routes();
