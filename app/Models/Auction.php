@@ -59,12 +59,6 @@ class Auction extends Model
         return $this->user;
     }
 
-    public function setUser(User $user): void
-    {
-        // @phpstan-ignore-next-line
-        $this->user = $user;
-    }
-
     public function getWinningBidderId(): ?int
     {
         return $this->attributes['winning_bidder_id'];
@@ -84,12 +78,6 @@ class Auction extends Model
     {
         // @phpstan-ignore-next-line
         return $this->artwork;
-    }
-
-    public function setArtwork(Artwork $artwork): void
-    {
-        // @phpstan-ignore-next-line
-        $this->artwork = $artwork;
     }
 
     public function getArtworkId(): int
