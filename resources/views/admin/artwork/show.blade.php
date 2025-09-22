@@ -10,13 +10,13 @@
                         </div>
                         <div class="col-md-6 p-4">
                             <h2 class="fw-bold text-warning mb-3">{{ $viewData['artwork']->getTitle() }}</h2>
-                            <h5 class="text-info mb-3">Author: <span class="fw-normal text-white">{{ $viewData['artwork']->getAuthor() }}</span></h5>
+                            <h5 class="text-info mb-3">{{ __('admin.author') }}: <span class="fw-normal text-white">{{ $viewData['artwork']->getAuthor() }}</span></h5>
                             <div class="mb-3">
                                 <span class="badge bg-secondary me-2">{{ $viewData['artwork']->getCategory() }}</span>
                                 <span class="badge bg-info">{{ $viewData['artwork']->getKeyword() }}</span>
                             </div>
                             <div class="mb-3">
-                                <h6 class="text-primary mb-1">Details</h6>
+                                <h6 class="text-primary mb-1">{{ __('admin.details') }}</h6>
                                 <p class="lead mb-0">{{ $viewData['artwork']->getDetails() }}</p>
                             </div>
                             <div class="mt-4">
