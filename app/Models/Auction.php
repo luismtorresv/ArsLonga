@@ -11,7 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Auction extends Model
 {
-    /**AUCTION ATTRIBUTES
+    /**
+     * AUCTION ATTRIBUTES
      * $this->attributes['id'] - int - contains the auction's primary key (id)
      * $this->attributes['created_at'] - timestamp - contains the time when the auction was created
      * $this->attributes['updated_at'] - timestamp - contains the time when the auction was last updated
