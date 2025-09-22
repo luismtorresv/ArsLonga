@@ -7,7 +7,6 @@
                 <p class="mb-0">{{ __('auction.index.no_auctions')}}</p>
             </div>
         @endif
-
         <div class="row row-cols-1 row-cols-md-3 g-4">
             @foreach ($viewData['Auctions'] as $auction)
                 <div class="col">
