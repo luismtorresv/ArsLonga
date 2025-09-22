@@ -59,7 +59,8 @@ Route::middleware(['auth'])->controller(CartController::class)->group(function (
 });
 
 Route::controller(BidController::class)->group(function () {
-    //
+    Route::get('/bid/create', 'create')->name('bid.create');
+    Route::post('/bid/save', 'save')->name('bid.save');
 });
 
 Auth::routes();
