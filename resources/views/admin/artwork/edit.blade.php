@@ -44,7 +44,7 @@
 								<input class="form-control bg-dark text-white border-warning" type="file" id="image" name="image">
 								@if ($viewData['artwork']->getImage())
 									<div class="mt-2">
-										<img src="{{ asset('/storage/' . $viewData['artwork']->getImage()) }}" alt="Current Image" class="img-thumbnail" style="max-width: 120px; max-height: 120px;">
+										<img src="{{ asset('/storage/' . $viewData['artwork']->getImage()) }}" alt="{{ __('admin.current') }}" class="img-thumbnail" style="max-width: 120px; max-height: 120px;">
 										<small class="text-muted ms-2">{{ __('admin.current') }}</small>
 									</div>
 								@endif
