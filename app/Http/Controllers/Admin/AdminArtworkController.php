@@ -32,8 +32,6 @@ class AdminArtworkController extends Controller
 
         $artwork = Artwork::findOrFail($id);
 
-        $viewData['title'] = $artwork->getTitle();
-        $viewData['subtitle'] = $artwork->getTitle().' - Artwork information';
         $viewData['artwork'] = $artwork;
 
         return view('admin.artwork.show')->with('viewData', $viewData);
