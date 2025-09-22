@@ -38,7 +38,7 @@ class ArtworkFactory extends Factory
             'category' => $this->faker->randomElement([
                 'Painting', 'Sculpture', 'Photography', 'Digital', 'Drawing',
             ]),
-            'price' => $this->faker->numberBetween(0, 37000000),
+            'price' => $this->faker->numberBetween(0, 40_000_000),
             'details' => $this->faker->text(maxNbChars: 200),
             'image' => 'default.png',
             'created_at' => now(),
