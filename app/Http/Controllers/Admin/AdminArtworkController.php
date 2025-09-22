@@ -41,37 +41,45 @@ class AdminArtworkController extends Controller
         return view('admin.artwork.create')->with('viewData', $viewData);
     }
 
-    public function save(Request $request): RedirectResponse
+    public function save(Request $request, int $id = null): RedirectResponse
     {
         try {
             Artwork::validate($request);
         } catch (ValidationException $e) {
-            return redirect()->route('admin.artwork.create')
+            return redirect()->back()
                 ->withErrors($e->validator)
                 ->withInput();
         }
 
-        $newArtwork = new Artwork;
-        $newArtwork->setTitle($request->input('title'));
-        $newArtwork->setAuthor($request->input('author'));
-        $newArtwork->setKeyword($request->input('keyword'));
-        $newArtwork->setCategory($request->input('category'));
-        $newArtwork->setDetails($request->input('details'));
-        $newArtwork->setImage('default.png');
-        $newArtwork->save();
+        $artwork = $id ? Artwork::findOrFail($id) : new Artwork;
+
+        $artwork->setTitle($request->input('title'));
+        $artwork->setAuthor($request->input('author'));
+        $artwork->setKeyword($request->input('keyword'));
+        $artwork->setCategory($request->input('category'));
+        $artwork->setDetails($request->input('details'));
+
+        if (!$id) { 
+            $artwork->setImage('default.png');
+        }
+
+        $artwork->save();
 
         if ($request->hasFile('image')) {
-            $imageName = $newArtwork->getId().'.'.$request->file('image')->extension();
+            $imageName = $artwork->getId().'.'.$request->file('image')->extension();
             Storage::disk('public')->put(
                 $imageName,
                 file_get_contents($request->file('image')->getRealPath())
             );
-            $newArtwork->setImage($imageName);
-            $newArtwork->save();
+            $artwork->setImage($imageName);
+            $artwork->save();
         }
 
-        return redirect()->route('admin.artwork.createSuccess');
+        return $id
+            ? redirect()->route('admin.artwork.show', $id)
+            : redirect()->route('admin.artwork.createSuccess');
     }
+
 
     public function createSuccess(): View
     {
