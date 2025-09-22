@@ -23,6 +23,10 @@ class User extends Authenticatable
      * $this->attributes['name'] - string - contains the user's name
      * $this->attributes['address'] - string - contains the user's address
      * $this->attributes['balance'] - int - contains the user's balance
+     * $this->attributes['email'] - string - contains the user's email
+     * $this->attributes['role'] - string - contains the user's role (admin or client)
+     * $this->attributes['email_verified_at'] - timestamp - contains the user's email verification
+     * $this->attributes['password'] - string - contains the user's password (hashed)
      * $this->attributes['created_at'] - timestamp - contains the user's creation date
      * $this->attributes['updated_at'] - timestamp - contains the user's update date
      */
@@ -85,6 +89,16 @@ class User extends Authenticatable
     public function setEmail(string $email): void
     {
         $this->attributes['email'] = $email;
+    }
+
+    public function getRole(): string
+    {
+        return $this->attributes['role'];
+    }
+
+    public function setRole(string $role): void
+    {
+        $this->attributes['role'] = $role;
     }
 
     public function getAddress(): string
