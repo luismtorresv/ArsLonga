@@ -8,32 +8,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Http\Request;
 
 class Auction extends Model
 {
-    /*
-    AUCTION ATTRIBUTES
-    $this->attributes['id'] - int - contains the auction's primary key (id)
-    $this->attributes['created_at'] - timestamp - contains the time when the auction was created
-    $this->attributes['updated_at'] - timestamp - contains the time when the auction was last updated
-    $this->attributes['original_price'] - int  - contains the original price of the auctioned object
-    $this->attributes['final_price'] - int - contains the final price of the auctioned object
-    $this->attributes['winning_bidder_id'] - bigint  - contains the id of the customer who won the auction
-    $this->attributes['artwork_id'] - bigint  - contains the id of the artwork sold in the auction
-    $this->bids - bids[] - contains the associated bids.
-    */
+    /**AUCTION ATTRIBUTES
+     * $this->attributes['id'] - int - contains the auction's primary key (id)
+     * $this->attributes['created_at'] - timestamp - contains the time when the auction was created
+     * $this->attributes['updated_at'] - timestamp - contains the time when the auction was last updated
+     * $this->attributes['price_limit'] - int  - contains the roof of the price. If a bid surpasses this number, it wins the auction.
+     * $this->attributes['winning_bidder_id'] - bigint  - contains the id of the customer who won the auction
+     * $this->attributes['artwork_id'] - bigint  - contains the id of the artwork sold in the auction
+     * $this->bids - bids[] - contains the associated bids.
+     */
+    protected $fillable = ['price_limit', 'winning_bidder_id', 'artwork_id'];
 
-    protected $fillable = ['original_price', 'final_price', 'winning_bidder_id', 'artwork_id'];
-
-    public static function validate(Request $request): void
+    public function getId(): int
     {
-        $request->validate([
-            'original_price' => 'required',
-            'final_price' => 'required',
-            'winning_bidder_id' => ['exists:users,id', 'required'],
-            'artwork_id' => ['exists:artworks,id', 'required'],
-        ]);
+        return $this->attributes['id'];
     }
 
     public function getCreatedAt(): mixed
@@ -46,24 +37,14 @@ class Auction extends Model
         return $this->attributes['updated_at'];
     }
 
-    public function getOriginalPrice(): int
+    public function getPriceLimit(): int
     {
-        return $this->attributes['original_price'];
+        return $this->attributes['price_limit'];
     }
 
-    public function setOriginalPrice(int $original_price): void
+    public function setPriceLimit(int $price_limit): void
     {
-        $this->attributes['original_price'] = $original_price;
-    }
-
-    public function getFinalPrice(): int
-    {
-        return $this->attributes['final_price'];
-    }
-
-    public function setFinalPrice(int $final_price): void
-    {
-        $this->attributes['final_price'] = $final_price;
+        $this->attributes['price_limit'] = $price_limit;
     }
 
     public function user(): BelongsTo
@@ -71,7 +52,24 @@ class Auction extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function setWinningBiddingUserId(int $winningBiddingUserId): void
+    public function getUser(): ?User
+    {
+        // @phpstan-ignore-next-line
+        return $this->user;
+    }
+
+    public function setUser(User $user): void
+    {
+        // @phpstan-ignore-next-line
+        $this->user = $user;
+    }
+
+    public function getWinningBidderId(): ?int
+    {
+        return $this->attributes['winning_bidder_id'];
+    }
+
+    public function setWinningBidderUserId(int $winningBiddingUserId): void
     {
         $this->attributes['winning_bidder_id'] = $winningBiddingUserId;
     }
@@ -79,6 +77,23 @@ class Auction extends Model
     public function artwork(): BelongsTo
     {
         return $this->belongsTo(Artwork::class);
+    }
+
+    public function getArtwork(): Artwork
+    {
+        // @phpstan-ignore-next-line
+        return $this->artwork;
+    }
+
+    public function setArtwork(Artwork $artwork): void
+    {
+        // @phpstan-ignore-next-line
+        $this->artwork = $artwork;
+    }
+
+    public function getArtworkId(): int
+    {
+        return $this->attributes['artwork_id'];
     }
 
     public function setArtworkId(int $artwork_id): void

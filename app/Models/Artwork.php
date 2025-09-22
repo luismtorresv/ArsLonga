@@ -21,6 +21,7 @@ class Artwork extends Model
      * $this->attributes['author'] - string - contains the author name
      * $this->attributes['keyword'] - string - contains the keyword
      * $this->attributes['category'] - string - contains the category
+     * $this->attributes['price'] - int - contains the artwork's price
      * $this->attributes['details'] - string - contains the artwork details
      * $this->attributes['image'] - string - contains the artwork image
      * $this->attributes['created_at'] - timestamp - contains the artwork creation date
@@ -33,6 +34,7 @@ class Artwork extends Model
             'author' => 'required|max:255',
             'keyword' => 'required|max:50',
             'category' => 'required|max:30',
+            'price' => 'required|gt:0',
             'details' => 'required|max:255',
             'image' => 'required|image',
         ]);
@@ -81,6 +83,16 @@ class Artwork extends Model
     public function setCategory(string $category): void
     {
         $this->attributes['category'] = $category;
+    }
+
+    public function getPrice(): int
+    {
+        return $this->attributes['price'];
+    }
+
+    public function setPrice(int $price): void
+    {
+        $this->attributes['price'] = $price;
     }
 
     public function getDetails(): string

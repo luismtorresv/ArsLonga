@@ -3,18 +3,43 @@
     {{-- Generated with Claude Sonnet 3.5. --}}
     <div class="container mt-5">
         <div class="row">
-            <!-- Right side - Details -->
+            <!-- Left side - Artwork Image -->
             <div class="col-md-6">
-                <h1 class="display-4 mb-3">Winning Bidder: {{ $viewData['auction']->user }}</h1>
+                <div class="artwork-image-container">
+                    <img src="{{ asset('/storage/' . $viewData['auction']->getArtwork()->getImage()) }}" 
+                         class="img-fluid rounded shadow"
+                         alt="{{ $viewData['auction']->getArtwork()->getTitle() }}">
+                </div>
+            </div>
 
-                <div class="Auction-details">
+            <!-- Right side - Auction Details -->
+            <div class="col-md-6">
+                <h1 class="display-4 mb-3">Auction #{{ $viewData['auction']->getId() }}</h1>
+                <h4 class="text-muted mb-4">{{ $viewData['auction']->getArtwork()->getTitle() }}</h4>
+
+                <div class="auction-details">
                     <div class="category-badge mb-4">
-                        <span class="badge bg-secondary">Original Price:
-                            {{ $viewData['auction']->getOriginalPrice() }}</span>
-                        <span class="badge bg-info">Final Price: {{ $viewData['auction']->getFinalPrice() }}</span>
+                        <span class="badge bg-secondary">Original Price: ${{ number_format($viewData['original_price']) }}</span>
                     </div>
+
                     <div class="description mb-4">
-                        <p>Artwork: {{ $viewData['auction']->artwork->getTitle() }}</p>
+                        <h5 class="text-primary">Artwork Details</h5>
+                        <p><strong>Title:</strong> {{ $viewData['auction']->getArtwork()->getTitle() }}</p>
+                        <p><strong>Author:</strong> {{ $viewData['auction']->getArtwork()->getAuthor() }}</p>
+                        <p><strong>Category:</strong> {{ $viewData['auction']->getArtwork()->getCategory() }}</p>
+                        <p class="lead">{{ $viewData['auction']->getArtwork()->getDetails() }}</p>
+                    </div>
+
+                    @if($viewData['auction']->getWinningBidderId())
+                        <div class="winning-bidder mb-4">
+                            <h5 class="text-success">Winning Bidder</h5>
+                            <p>User ID: {{ $viewData['auction']->getWinningBidderId() }}</p>
+                        </div>
+                    @endif
+
+                    <div class="auction-meta text-muted">
+                        <small>Auction ID: {{ $viewData['auction']->getId() }}</small><br>
+                        <small>Created: {{ $viewData['auction']->getCreatedAt() }}</small>
                     </div>
                 </div>
             </div>

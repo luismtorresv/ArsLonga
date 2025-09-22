@@ -7,8 +7,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Auction;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class AuctionController extends Controller
@@ -24,24 +22,12 @@ class AuctionController extends Controller
     public function show(string $id): View
     {
         $viewData = [];
-
         $auction = Auction::findOrFail($id);
+        $artwork_price = $auction->getArtwork()->getPrice();
 
         $viewData['auction'] = $auction;
+        $viewData['original_price'] = $artwork_price;
 
         return view('auction.show')->with('viewData', $viewData);
-    }
-
-    public function create(): View
-    {
-        return view('auction.create');
-    }
-
-    public function save(Request $request): RedirectResponse
-    {
-        Auction::validate($request);
-        Auction::create($request->only(['original_price', 'final_price', 'winning_bidder_id', 'artwork_id']));
-
-        return back();
     }
 }

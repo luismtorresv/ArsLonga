@@ -18,8 +18,7 @@ return new class extends Migration
         Schema::create('auctions', function (Blueprint $table): void {
             $table->id();
             $table->timestamps();
-            $table->integer('original_price');
-            $table->integer('final_price');
+            $table->integer('price_limit');
             $table->foreignId('winning_bidder_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('artwork_id')->constrained('artworks')->restrictOnDelete();
         });
