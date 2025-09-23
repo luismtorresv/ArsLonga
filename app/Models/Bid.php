@@ -63,12 +63,12 @@ class Bid extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function getUserId(): int
+    public function getUserId(): ?int
     {
         return $this->attributes['user_id'];
     }

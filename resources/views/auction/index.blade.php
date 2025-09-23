@@ -17,10 +17,10 @@
                                     {{__( 'auction.index.auction_number', ['id'=>$auction->getId()]) }}
                                 </h5>
                                 <p class="card-text text-muted">
-                                    {{__('auction.index.price_limit', ['amount' => number_format($auction->getPriceLimit())])}}
+                                    {{__('auction.index.price_limit')}} ${{number_format($auction->getPriceLimit())}}
                                 </p>
                                 <p class="card-text">
-                                    {{__('auction.index.artwork', ['title' => $auction->getArtwork()->getTitle()])}}
+                                    {{__('auction.index.artwork')}} {{$auction->getArtwork()->getTitle()}}
                                 </p>
                             </div>
                         </div>
