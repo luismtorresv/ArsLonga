@@ -8,7 +8,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class Order extends Model
 {
@@ -17,7 +19,7 @@ class Order extends Model
      *
      * $this->attributes['id'] - int - contains the order's primary key (id)
      * $this->attributes['total'] - int - contains the order's total price
-     * $this->attributes['user_id'] - int - contains the referenced user id 
+     * $this->attributes['user_id'] - int - contains the referenced user id
      * $this->attributes['purchase_date'] - timestamp - contains the order's purchase date
      * $this->attributes['created_at'] - timestamp - contains the order creation date
      * $this->attributes['updated_at'] - timestamp - contains the order update date
@@ -25,12 +27,10 @@ class Order extends Model
      * $this->user - User - contains the associated User
      * $this->item - Item - contains the associated Items
      */
-    
     protected $fillable = [
         'user_id',
         'purchase_date',
     ];
-
 
     public static function validate(Request $request): void
     {
@@ -63,13 +63,13 @@ class Order extends Model
     {
         $this->attributes['user_id'] = $userId;
     }
-    
+
     public function getPurchaseDate(): string
     {
         return $this->attributes['purchase_date'];
     }
 
-    public function setPurchaseDate(string $purchase_date): string
+    public function setPurchaseDate(string $purchase_date): void
     {
         $this->attributes['purchase_date'] = $purchase_date;
     }
@@ -91,6 +91,7 @@ class Order extends Model
 
     public function getUser(): User
     {
+        // @phpstan-ignore-next-line
         return $this->user;
     }
 
