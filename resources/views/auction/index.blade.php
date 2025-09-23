@@ -2,13 +2,13 @@
 @section('content')
     {{-- Generated with Claude Sonnet 3.5. --}}
     <div class="container my-4">
-        @if ($viewData['Auctions']->isEmpty())
+        @if ($viewData['auctions']->isEmpty())
             <div class="alert alert-info" role="alert">
                 <p class="mb-0">{{ __('auction.index.no_auctions')}}</p>
             </div>
         @endif
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            @foreach ($viewData['Auctions'] as $auction)
+            @foreach ($viewData['auctions'] as $auction)
                 <div class="col">
                     <a href="{{ route('auction.show', ['id' => $auction->getId()]) }}" class="text-decoration-none text-dark">
                         <div class="card h-100 shadow-sm">
