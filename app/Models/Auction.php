@@ -6,8 +6,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Auction extends Model
 {
@@ -88,5 +90,20 @@ class Auction extends Model
     public function setArtworkId(int $artwork_id): void
     {
         $this->attributes['artwork_id'] = $artwork_id;
+    }
+
+    public function bids(): HasMany
+    {
+        return $this->hasMany(Bid::class);
+    }
+
+    public function getBids(): Collection
+    {
+        return $this->bids;
+    }
+
+    public function setBids(Collection $bids): void
+    {
+        $this->bids = $bids;
     }
 }

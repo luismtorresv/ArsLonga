@@ -27,5 +27,15 @@ return [
             'won' => 'Won',
             'active' => 'Active',
         ],
+        'bids' => [
+            'title' => 'Available Bids',
+            'no_bids' => 'No bids available for this auction yet.',
+            'bid_by' => 'by :name',
+        ],
+        'bid_action' => [
+            'place_bid' => 'Place Your Bid',
+            'login_to_bid' => 'to place a bid on this auction.',
+            'login_link' => 'Login',
+        ],
     ],
 ];
