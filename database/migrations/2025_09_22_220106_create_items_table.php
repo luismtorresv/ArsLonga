@@ -16,6 +16,8 @@ return new class extends Migration
             $table->integer('price');
             $table->unsignedBigInteger('artwork_id');
             $table->foreign('artwork_id')->references('id')->on('artworks');
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('orders');
             $table->timestamps();
         });
     }
