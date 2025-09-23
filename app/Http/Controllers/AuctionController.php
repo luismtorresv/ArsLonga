@@ -14,7 +14,7 @@ class AuctionController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['Auctions'] = Auction::with('bids.user')->get();
+        $viewData['auctions'] = Auction::with('bids.user')->get();
 
         return view('auction.index')->with('viewData', $viewData);
     }
