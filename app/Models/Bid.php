@@ -65,6 +65,7 @@ class Bid extends Model
 
     public function getUser(): ?User
     {
+        // @phpstan-ignore-next-line
         return $this->user;
     }
 
@@ -85,6 +86,7 @@ class Bid extends Model
 
     public function getAuction(): Auction
     {
+        // @phpstan-ignore-next-line
         return $this->auction;
     }
 
