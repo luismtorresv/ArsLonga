@@ -16,11 +16,23 @@ use Illuminate\View\View;
 
 class AdminAuctionController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
+        $sort = $request->get('sort', '');
+        $query = Auction::query();
+
+        if ($sort === 'price_desc') {
+            $query->orderBy('price_limit', 'desc');
+        } elseif ($sort === 'price_asc') {
+            $query->orderBy('price_limit', 'asc');
+        }
+
+        $auctions = $query->get();
+
         $viewData = [];
-        $viewData['auctions'] = Auction::all();
-        $viewData['auctionsCount'] = $viewData['auctions']->count();
+        $viewData['auctions'] = $auctions;
+        $viewData['auctionsCount'] = $auctions->count();
+        $viewData['sort'] = $sort;
 
         return view('admin.auction.index')->with('viewData', $viewData);
     }
@@ -54,6 +66,16 @@ class AdminAuctionController extends Controller
                 ->withInput();
         }
 
+        $exists = Auction::where('artwork_id', $request->input('artwork_id'))
+            ->when($id, fn($q) => $q->where('id', '!=', $id)) 
+            ->exists();
+
+        if ($exists) {
+            return redirect()->back()
+                ->withErrors(['artwork_id' => __('admin.artworkAlready')])
+                ->withInput();
+        }
+
         $auction = $id ? Auction::findOrFail($id) : new Auction;
 
         $auction->setPriceLimit((int) $request->input('price_limit'));
@@ -69,6 +91,7 @@ class AdminAuctionController extends Controller
             ? redirect()->route('admin.auction.show', $id)
             : redirect()->route('admin.auction.createSuccess');
     }
+
 
     public function createSuccess(): View
     {

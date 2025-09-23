@@ -35,6 +35,10 @@
 								<label for="category" class="form-label fw-bold">{{ __('admin.category') }}</label>
 								<input type="text" class="form-control bg-dark text-white border-warning" id="category" name="category" value="{{ old('category', $viewData['artwork']->getCategory()) }}">
 							</div>
+							<div class="col-md-6">
+								<label for="price" class="form-label fw-bold">{{ __('admin.price') }}</label>
+								<input type="text" class="form-control bg-dark text-white border-warning" id="price" name="price" value="{{ old('price', $viewData['artwork']->getPrice()) }}">
+							</div>
 							<div class="col-12">
 								<label for="details" class="form-label fw-bold">{{ __('admin.details') }}</label>
 								<textarea class="form-control bg-dark text-white border-warning" id="details" name="details" rows="3">{{ old('details', $viewData['artwork']->getDetails()) }}</textarea>

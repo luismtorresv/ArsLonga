@@ -17,9 +17,25 @@
             <h2 class="mb-0">{{ __('admin.artwork') }}</h2>
         </div>
         <div class="col-auto">
-            <a href="{{ route('admin.artwork.create') }}" class="btn btn-warning fw-bold">{{ __('admin.create') }}</a>
+            <form method="GET" action="{{ route('admin.artwork.index') }}" class="d-flex">
+                <select name="sort" class="form-select me-2" onchange="this.form.submit()">
+                    <option value="">{{ __('admin.sortOptions.sortDefault') }}</option>
+                    <option value="price_desc" {{ $viewData['sort'] === 'price_desc' ? 'selected' : '' }}>
+                        {{ __('admin.sortOptions.sortPriceDesc') }}
+                    </option>
+                    <option value="price_asc" {{ $viewData['sort'] === 'price_asc' ? 'selected' : '' }}>
+                        {{ __('admin.sortOptions.sortPriceAsc') }}
+                    </option>
+                </select>
+                <noscript>
+                    <button type="submit" class="btn btn-warning">{{ __('admin.filter') }}</button>
+                </noscript>
+            </form>
         </div>
+    <div class="col-auto">
+        <a href="{{ route('admin.artwork.create') }}" class="btn btn-warning fw-bold">{{ __('admin.create') }}</a>
     </div>
+</div>
 
     <div class="table-responsive">
         <table class="table table-dark table-bordered table-hover align-middle mb-0">

@@ -16,12 +16,23 @@ use Illuminate\View\View;
 
 class AdminArtworkController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
+        $sort = $request->get('sort', '');
+        $query = Artwork::query();
+
+        if ($sort === 'price_desc') {
+            $query->orderBy('price', 'desc');
+        } elseif ($sort === 'price_asc') {
+            $query->orderBy('price', 'asc');
+        }
+
+        $artworks = $query->get();
+
         $viewData = [];
-        $artworks = Artwork::all();
         $viewData['artworks'] = $artworks;
         $viewData['artworksCount'] = $artworks->count();
+        $viewData['sort'] = $sort;
 
         return view('admin.artwork.index')->with('viewData', $viewData);
     }
@@ -60,6 +71,7 @@ class AdminArtworkController extends Controller
         $artwork->setAuthor($request->input('author'));
         $artwork->setKeyword($request->input('keyword'));
         $artwork->setCategory($request->input('category'));
+        $artwork->setPrice((int) $request->input('price'));
         $artwork->setDetails($request->input('details'));
 
         if (! $id) {
