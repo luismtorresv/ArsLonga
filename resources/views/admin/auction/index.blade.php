@@ -17,6 +17,22 @@
             <h2 class="mb-0">{{ __('admin.auctions') }}</h2>
         </div>
         <div class="col-auto">
+            <form method="GET" action="{{ route('admin.auction.index') }}" class="d-flex">
+                <select name="sort" class="form-select me-2" onchange="this.form.submit()">
+                    <option value="">{{ __('admin.sortOptions.sortDefault') }}</option>
+                    <option value="price_desc" {{ $viewData['sort'] === 'price_desc' ? 'selected' : '' }}>
+                        {{ __('admin.sortOptions.sortPriceDesc') }}
+                    </option>
+                    <option value="price_asc" {{ $viewData['sort'] === 'price_asc' ? 'selected' : '' }}>
+                        {{ __('admin.sortOptions.sortPriceAsc') }}
+                    </option>
+                </select>
+                <noscript>
+                    <button type="submit" class="btn btn-warning">{{ __('admin.filter') }}</button>
+                </noscript>
+            </form>
+        </div>
+        <div class="col-auto">
             <a href="{{ route('admin.auction.create') }}" class="btn btn-warning fw-bold">{{ __('admin.createAuc') }}</a>
         </div>
     </div>
@@ -62,7 +78,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="5" class="text-center">{{ __('auction.index.no_auctions') }}</td>
+                    <td colspan="4" class="text-center">{{ __('auction.index.no_auctions') }}</td>
                 </tr>
                 @endforelse
             </tbody>

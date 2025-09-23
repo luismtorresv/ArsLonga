@@ -43,5 +43,10 @@ return [
     'editAuction' => 'Edit Auction',
     'selectArtwork' => 'Select an artwork',
     'createAuction' => 'Create an Auction',
-
+    'sortOptions' => [
+        'sortDefault' => 'Default',
+        'sortPriceAsc' => 'Price: Low to High',
+        'sortPriceDesc' => 'Price: High to Low',
+    ],
+    'artworkAlready' => 'This artwork already has an auction associated.',
 ];
