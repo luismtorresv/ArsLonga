@@ -13,13 +13,13 @@ use Illuminate\Http\Request;
 class Bid extends Model
 {
     /**
-     * AUCTION ATTRIBUTES
+     * BID ATTRIBUTES
      * $this->attributes['id'] - int - contains the bid's primary key (id)
      * $this->attributes['created_at'] - timestamp - contains the time when the bid was created
      * $this->attributes['updated_at'] - timestamp - contains the time when the bid was last updated
      * $this->attributes['price_offering'] - int - contains the price offering of the bid made by the user
      * $this->attributes['user_id'] - int - contains the referenced user id
-     * $this->attributes['auction_id'] - int - contains the referenced user id
+     * $this->attributes['auction_id'] - int - contains the referenced auction id
      *
      * $this->user - User - contains the associated User
      * $this->auction - Auction - contains the associated Auction

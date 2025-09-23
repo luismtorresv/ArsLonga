@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('price_offering');
             $table->timestamps();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('auction_id')->references('id')->on('auctions');
+            $table->foreignId('auction_id')->constrained('auctions')->cascadeOnDelete();
         });
     }
 

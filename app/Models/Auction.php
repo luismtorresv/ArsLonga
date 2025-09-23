@@ -22,8 +22,8 @@ class Auction extends Model
      * $this->attributes['winning_bidder_id'] - bigint  - contains the id of the customer who won the auction
      * $this->attributes['artwork_id'] - bigint  - contains the id of the artwork sold in the auction
      *
-     * $this->auction - Auction - contains the associated auction
-     * $this->user - User - constains the associated user
+     * $this->artwork - Artwork - contains the associated artwork
+     * $this->user - User - contains the associated user
      * $this->bids - bids[] - contains the associated bids
      */
     protected $fillable = ['price_limit', 'winning_bidder_id', 'artwork_id'];
@@ -49,7 +49,7 @@ class Auction extends Model
             return;
         }
 
-        $this->setWinningBidderUserId($highest_bidder->getUserId());
+        $this->setWinningBidderId($highest_bidder->getUserId());
         $this->save();
     }
 
@@ -94,9 +94,9 @@ class Auction extends Model
         return $this->attributes['winning_bidder_id'];
     }
 
-    public function setWinningBidderUserId(int $winningBiddingUserId): void
+    public function setWinningBidderId(int $winningBiddingId): void
     {
-        $this->attributes['winning_bidder_id'] = $winningBiddingUserId;
+        $this->attributes['winning_bidder_id'] = $winningBiddingId;
     }
 
     public function artwork(): BelongsTo
