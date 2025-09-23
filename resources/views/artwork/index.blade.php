@@ -20,6 +20,9 @@
                                 <h5 class="card-title text-dark fw-semibold">
                                     {{ $artwork->getTitle() }}
                                 </h5>
+                                <p class="card-text">
+                                    <span class="fw-bold text-primary">${{ number_format($artwork->getPrice(), 2) }}</span>
+                                </p>
                             </div>
                         </div>
                     </a>
