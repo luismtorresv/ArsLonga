@@ -21,7 +21,10 @@ class Auction extends Model
      * $this->attributes['price_limit'] - int  - contains the roof of the price. If a bid surpasses this number, it wins the auction.
      * $this->attributes['winning_bidder_id'] - bigint  - contains the id of the customer who won the auction
      * $this->attributes['artwork_id'] - bigint  - contains the id of the artwork sold in the auction
-     * $this->bids - bids[] - contains the associated bids.
+     *
+     * $this->auction - Auction - contains the associated auction
+     * $this->user - User - constains the associated user
+     * $this->bids - bids[] - contains the associated bids
      */
     protected $fillable = ['price_limit', 'winning_bidder_id', 'artwork_id'];
 
