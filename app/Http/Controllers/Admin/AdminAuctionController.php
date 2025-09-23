@@ -7,10 +7,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Artwork;
 use App\Models\Auction;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
@@ -31,17 +31,17 @@ class AdminAuctionController extends Controller
         $auction = Auction::findOrFail($id);
 
         $viewData['auction'] = $auction;
-        $auction = $auction->getauction();
-        $viewData['original_price'] = $auction->getPrice();
+        $artwork = $auction->getArtwork();
+        $viewData['original_price'] = $artwork->getPrice();
 
         return view('admin.auction.show')->with('viewData', $viewData);
     }
 
     public function create(): View
     {
-        $viewData = [];
+        $artworks = Artwork::all();
 
-        return view('admin.auction.create')->with('viewData', $viewData);
+        return view('admin.auction.create', compact('artworks'));
     }
 
     public function save(Request $request, ?int $id = null): RedirectResponse
@@ -56,27 +56,14 @@ class AdminAuctionController extends Controller
 
         $auction = $id ? Auction::findOrFail($id) : new Auction;
 
-        $auction->setTitle($request->input('title'));
-        $auction->setAuthor($request->input('author'));
-        $auction->setKeyword($request->input('keyword'));
-        $auction->setCategory($request->input('category'));
-        $auction->setDetails($request->input('details'));
+        $auction->setPriceLimit((int) $request->input('price_limit'));
+        $auction->setArtworkId((int) $request->input('artwork_id'));
 
-        if (! $id) {
-            $auction->setImage('default.png');
+        if ($request->filled('winning_bidder_id')) {
+            $auction->setWinningBidderUserId((int) $request->input('winning_bidder_id'));
         }
 
         $auction->save();
-
-        if ($request->hasFile('image')) {
-            $imageName = $auction->getId().'.'.$request->file('image')->extension();
-            Storage::disk('public')->put(
-                $imageName,
-                file_get_contents($request->file('image')->getRealPath())
-            );
-            $auction->setImage($imageName);
-            $auction->save();
-        }
 
         return $id
             ? redirect()->route('admin.auction.show', $id)
@@ -93,10 +80,6 @@ class AdminAuctionController extends Controller
     public function delete(int $id): RedirectResponse
     {
         $auction = auction::findOrFail($id);
-
-        if ($auction->getImage() !== 'default.png') {
-            Storage::disk('public')->delete($auction->getImage());
-        }
         $auction->delete();
 
         return redirect()->route('admin.auction.index');
@@ -104,9 +87,12 @@ class AdminAuctionController extends Controller
 
     public function edit(int $id): View
     {
-        $auction = auction::findOrFail($id);
+        $auction = Auction::findOrFail($id);
+        $artworks = Artwork::all();
+
         $viewData = [];
         $viewData['auction'] = $auction;
+        $viewData['artworks'] = $artworks;
 
         return view('admin.auction.edit')->with('viewData', $viewData);
     }

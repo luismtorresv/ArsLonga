@@ -43,7 +43,12 @@ Route::middleware(['auth', 'admin'])->controller(AdminArtworkController::class)-
 
 Route::middleware(['auth', 'admin'])->controller(AdminAuctionController::class)->group(function () {
     Route::get('/admin/auction', 'index')->name('admin.auction.index');
+    Route::get('admin/auction/create', 'create')->name('admin.auction.create');
+    Route::get('admin/auction/create/success', 'createSuccess')->name('admin.auction.createSuccess');
+    Route::delete('admin/auction/delete/{id}', 'delete')->name('admin.auction.delete');
     Route::get('admin/auction/{id}', 'show')->name('admin.auction.show');
+    Route::post('admin/auction/save/{id?}', 'save')->name('admin.auction.save');
+    Route::get('admin/auction/edit/{id}', 'edit')->name('admin.auction.edit');
 });
 
 Route::controller(AuctionController::class)->group(function () {

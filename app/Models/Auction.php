@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\Request;
 
 class Auction extends Model
 {
@@ -51,6 +52,15 @@ class Auction extends Model
 
         $this->setWinningBidderId($highest_bidder->getUserId());
         $this->save();
+    }
+
+    public static function validate(Request $request): void
+    {
+        $request->validate([
+            'price_limit' => 'required|integer|min:1',
+            'artwork_id' => 'required|exists:artworks,id',
+            'winning_bidder_id' => 'nullable|exists:users,id',
+        ]);
     }
 
     public function getId(): int

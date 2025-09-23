@@ -39,4 +39,9 @@ return [
     'price' => 'Price',
     'originalPrice' => 'Original Price',
     'auction' => 'Auction',
+    'createSuccess' => 'Auction created successfully!',
+    'editAuction' => 'Edit Auction',
+    'selectArtwork' => 'Select an artwork',
+    'createAuction' => 'Create an Auction',
+
 ];
