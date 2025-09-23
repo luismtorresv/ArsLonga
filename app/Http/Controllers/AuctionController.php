@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Artwork;
 use App\Models\Auction;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class AuctionController extends Controller
@@ -20,7 +21,7 @@ class AuctionController extends Controller
         return view('auction.index')->with('viewData', $viewData);
     }
 
-    public function show(string $id): View
+    public function show(string $id): View|RedirectResponse
     {
         $viewData = [];
         $auction = Auction::findOrFail($id);
@@ -29,7 +30,11 @@ class AuctionController extends Controller
         $artwork = $auction->getArtwork();
         $viewData['original_price'] = $artwork->getPrice();
 
-        $auction->assignWinner();
+        $hasEnded = $auction->assignWinner();
+        if (! $hasEnded) {
+            return view('auction.show')->with('viewData', $viewData);
+        }
+
         $artworks = session('artworks', []);
         Artwork::findOrFail($id);
 
@@ -38,6 +43,6 @@ class AuctionController extends Controller
             session(['artworks' => $artworks]);
         }
 
-        return view('auction.show')->with('viewData', $viewData);
+        return redirect()->route('cart.index');
     }
 }

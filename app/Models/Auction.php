@@ -35,23 +35,25 @@ class Auction extends Model
         return $this->bids->sortByDesc('price_offering')->first();
     }
 
-    public function assignWinner(): void
+    public function assignWinner(): bool
     {
         $highest_bidder = $this->determineHighestBidder();
 
         if (! $highest_bidder) {
-            return;
+            return false;
         }
 
         $highest_offer = $highest_bidder->getPriceOffering();
         $price_limit = $this->getPriceLimit();
 
         if ($highest_offer < $price_limit) {
-            return;
+            return false;
         }
 
         $this->setWinningBidderId($highest_bidder->getUserId());
         $this->save();
+
+        return true;
     }
 
     public static function validate(Request $request): void
