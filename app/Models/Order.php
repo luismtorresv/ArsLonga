@@ -63,6 +63,16 @@ class Order extends Model
     {
         $this->attributes['user_id'] = $userId;
     }
+    
+    public function getPurchaseDate(): string
+    {
+        return $this->attributes['purchase_date'];
+    }
+
+    public function setPurchaseDate(string $purchase_date): string
+    {
+        $this->attributes['purchase_date'] = $purchase_date;
+    }
 
     public function getCreatedAt(): string
     {
@@ -76,7 +86,6 @@ class Order extends Model
 
     public function user(): BelongsTo
     {
-        // @phpstan-ignore-next-line
         return $this->belongsTo(User::class);
     }
 
@@ -87,13 +96,11 @@ class Order extends Model
 
     public function items(): HasMany
     {
-        // @phpstan-ignore-next-line
         return $this->hasMany(Item::class);
     }
 
     public function getItems(): Collection
     {
-        // @phpstan-ignore-next-line
         return $this->items;
     }
 }
