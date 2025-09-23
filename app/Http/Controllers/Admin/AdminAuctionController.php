@@ -67,7 +67,7 @@ class AdminAuctionController extends Controller
         }
 
         $exists = Auction::where('artwork_id', $request->input('artwork_id'))
-            ->when($id, fn($q) => $q->where('id', '!=', $id)) 
+            ->when($id, fn ($q) => $q->where('id', '!=', $id))
             ->exists();
 
         if ($exists) {
@@ -91,7 +91,6 @@ class AdminAuctionController extends Controller
             ? redirect()->route('admin.auction.show', $id)
             : redirect()->route('admin.auction.createSuccess');
     }
-
 
     public function createSuccess(): View
     {

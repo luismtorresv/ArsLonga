@@ -9,7 +9,6 @@ return [
         'no_auctions' => 'No auctions available at the moment.',
         'auction_number' => 'Auction #:id',
         'price_limit' => 'Price Limit: $:amount',
-        'artwork' => 'Artwork: :title',
     ],
     'show' => [
         'auction_title' => 'Auction #:id',

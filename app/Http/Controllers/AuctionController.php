@@ -6,6 +6,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artwork;
 use App\Models\Auction;
 use Illuminate\View\View;
 
@@ -29,6 +30,13 @@ class AuctionController extends Controller
         $viewData['original_price'] = $artwork->getPrice();
 
         $auction->assignWinner();
+        $artworks = session('artworks', []);
+        Artwork::findOrFail($id);
+
+        if (! isset($artworks[$id])) {
+            $artworks[$id] = 1;
+            session(['artworks' => $artworks]);
+        }
 
         return view('auction.show')->with('viewData', $viewData);
     }
