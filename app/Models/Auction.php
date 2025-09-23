@@ -28,6 +28,31 @@ class Auction extends Model
      */
     protected $fillable = ['price_limit', 'winning_bidder_id', 'artwork_id'];
 
+    public function determineHighestBidder(): ?Bid
+    {
+        // @phpstan-ignore-next-line
+        return $this->bids->sortByDesc('price_offering')->first();
+    }
+
+    public function assignWinner(): void
+    {
+        $highest_bidder = $this->determineHighestBidder();
+
+        if (! $highest_bidder) {
+            return;
+        }
+
+        $highest_offer = $highest_bidder->getPriceOffering();
+        $price_limit = $this->getPriceLimit();
+
+        if ($highest_offer < $price_limit) {
+            return;
+        }
+
+        $this->setWinningBidderUserId($highest_bidder->getUserId());
+        $this->save();
+    }
+
     public function getId(): int
     {
         return $this->attributes['id'];
