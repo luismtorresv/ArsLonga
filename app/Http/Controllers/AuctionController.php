@@ -28,6 +28,8 @@ class AuctionController extends Controller
         $artwork = $auction->getArtwork();
         $viewData['original_price'] = $artwork->getPrice();
 
+        $auction->assignWinner();
+
         return view('auction.show')->with('viewData', $viewData);
     }
 }
