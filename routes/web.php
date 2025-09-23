@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminArtworkController;
+use App\Http\Controllers\Admin\AdminAuctionController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\ArtworkController;
 use App\Http\Controllers\AuctionController;
@@ -36,6 +37,11 @@ Route::middleware(['auth', 'admin'])->controller(AdminArtworkController::class)-
     Route::delete('admin/artwork/delete/{id}', 'delete')->name('admin.artwork.delete');
     Route::get('admin/artwork/{id}', 'show')->name('admin.artwork.show');
     Route::get('admin/artwork/edit/{id}', 'edit')->name('admin.artwork.edit');
+});
+
+Route::middleware(['auth', 'admin'])->controller(AdminAuctionController::class)->group(function () {
+    Route::get('/admin/auction', 'index')->name('admin.auction.index');
+    Route::get('admin/auction/{id}', 'show')->name('admin.auction.show');
 });
 
 Route::controller(AuctionController::class)->group(function () {
