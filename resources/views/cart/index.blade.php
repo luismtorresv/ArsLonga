@@ -49,19 +49,6 @@
                             </table>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        @if (count($viewData['artworks']) > 0)
-                            <form method="POST" action="{{ route('cart.purchase') }}">
-                                @csrf
-                                <button type="submit" class="btn btn-primary btn-lg w-100">
-                                    {{ __('cart.checkout') }}
-                                </button>
-                            </form>
-                            <a href="{{ route('artwork.index') }}" class="btn btn-outline-secondary btn-lg w-100 mt-3">
-                                {{ __('cart.continue_shopping') }}
-                            </a>
-                        @endif
-                    </div>
                 </div>
             </div>
             <div class="col-md-3">
