@@ -82,7 +82,7 @@ class AdminAuctionController extends Controller
         $auction->setArtworkId((int) $request->input('artwork_id'));
 
         if ($request->filled('winning_bidder_id')) {
-            $auction->setWinningBidderUserId((int) $request->input('winning_bidder_id'));
+            $auction->setWinningBidderId((int) $request->input('winning_bidder_id'));
         }
 
         $auction->save();
