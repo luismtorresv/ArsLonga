@@ -141,9 +141,4 @@ class Auction extends Model
     {
         return $this->bids;
     }
-
-    public function setBids(Collection $bids): void
-    {
-        $this->bids = $bids;
-    }
 }
