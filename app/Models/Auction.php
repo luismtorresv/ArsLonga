@@ -39,7 +39,7 @@ class Auction extends Model
     {
         $highest_bidder = $this->determineHighestBidder();
 
-        if (!$highest_bidder) {
+        if (! $highest_bidder) {
             return false;
         }
 
