@@ -61,7 +61,7 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
                                                 <h6 class="mb-1 text-success fw-bold">${{ number_format($bid->getPriceOffering()) }}</h6>
-                                                <small class="text-muted">{{__('auction.show.bids.bid_by', ['name' => $bid->getUser()->getName()])}}</small>
+                                                <small class="text-muted">{{__('auction.show.bids.bid_by', ['name' => $bid->getWinningBidder()->getName()])}}</small>
                                             </div>
                                             <div class="text-end">
                                                 <small class="text-muted">{{ $bid->getCreatedAt() }}</small>

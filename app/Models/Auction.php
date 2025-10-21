@@ -24,7 +24,7 @@ class Auction extends Model
      * $this->attributes['artwork_id'] - bigint  - contains the id of the artwork sold in the auction
      *
      * $this->artwork - Artwork - contains the associated artwork
-     * $this->user - User - contains the associated user
+     * $this->winningBidder - User - contains the winning bidder's associated user
      * $this->bids - bids[] - contains the associated bids
      */
     protected $fillable = ['price_limit', 'winning_bidder_id', 'artwork_id'];
@@ -39,7 +39,7 @@ class Auction extends Model
     {
         $highest_bidder = $this->determineHighestBidder();
 
-        if (! $highest_bidder) {
+        if (!$highest_bidder) {
             return false;
         }
 
@@ -90,15 +90,15 @@ class Auction extends Model
         $this->attributes['price_limit'] = $price_limit;
     }
 
-    public function user(): BelongsTo
+    public function winningBidder(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function getUser(): ?User
+    public function getWinningBidder(): ?User
     {
         // @phpstan-ignore-next-line
-        return $this->user;
+        return $this->winningBidder;
     }
 
     public function getWinningBidderId(): ?int
