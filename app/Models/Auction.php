@@ -92,7 +92,7 @@ class Auction extends Model
 
     public function winningBidder(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'winning_bidder_id');
     }
 
     public function getWinningBidder(): ?User
