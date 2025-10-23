@@ -6,12 +6,12 @@
                 <img height="50" src="{{ asset('ArsLonga-logo-480x480.png') }}">
             </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="{{ route('admin.index') }}" class="nav-link px-2 text-secondary">{{ __('Admin Home') }}</a>
+                <li><a href="{{ route('admin.index') }}" class="nav-link px-2 text-secondary">{{ __('admin.homeTitle') }}</a>
                 </li>
-                <li><a href="{{ route('admin.auction.index') }}" class="nav-link px-2 text-white">{{ __('Auctions') }}</a></li>
-                <li><a href="{{ route('admin.artwork.index') }}" class="nav-link px-2 text-white">{{ __('Artworks') }}</a>
-                </li>
-                <li><a href="{{ route('home.index') }}" class="nav-link px-2 text-white">{{ __('About') }}</a></li>
+                <li><a href="{{ route('admin.auction.index') }}"
+                        class="nav-link px-2 text-white">{{ __('layouts.header.auctions') }}</a></li>
+                <li><a href="{{ route('admin.artwork.index') }}"
+                        class="nav-link px-2 text-white">{{ __('layouts.header.artworks') }}</a></li>
             </ul>
             <div class="d-flex text-end">
                 @guest
