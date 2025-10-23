@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
 
-    <title>{{ __('Ars Longa') }}</title>
+    <title>{{ __('layouts.app.title') }}</title>
 </head>
 
 <body>
