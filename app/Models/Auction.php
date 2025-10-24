@@ -19,7 +19,7 @@ class Auction extends Model
      * $this->attributes['id'] - int - contains the auction's primary key (id)
      * $this->attributes['created_at'] - timestamp - contains the time when the auction was created
      * $this->attributes['updated_at'] - timestamp - contains the time when the auction was last updated
-     * $this->attributes['price_limit'] - int  - contains the roof of the price. If a bid surpasses this number, it wins the auction.
+     * $this->attributes['final_date'] - int  - containts the time limit of the auction
      * $this->attributes['winning_bidder_id'] - bigint  - contains the id of the customer who won the auction
      * $this->attributes['artwork_id'] - bigint  - contains the id of the artwork sold in the auction
      *
@@ -27,7 +27,7 @@ class Auction extends Model
      * $this->winningBidder - User - contains the winning bidder's associated user
      * $this->bids - bids[] - contains the associated bids
      */
-    protected $fillable = ['price_limit', 'winning_bidder_id', 'artwork_id'];
+    protected $fillable = ['final_date', 'winning_bidder_id', 'artwork_id'];
 
     public function determineHighestBidder(): ?Bid
     {
@@ -38,20 +38,6 @@ class Auction extends Model
     public function assignWinner(): bool
     {
         $highest_bidder = $this->determineHighestBidder();
-
-        if (! $highest_bidder) {
-            return false;
-        }
-
-        $highest_offer = $highest_bidder->getPriceOffering();
-        $price_limit = $this->getPriceLimit();
-
-        if ($highest_offer < $price_limit) {
-            return false;
-        }
-
-        $this->setWinningBidderId($highest_bidder->getUserId());
-        $this->save();
 
         return true;
     }
@@ -80,14 +66,14 @@ class Auction extends Model
         return $this->attributes['updated_at'];
     }
 
-    public function getPriceLimit(): int
+    public function getFinalDate(): mixed
     {
-        return $this->attributes['price_limit'];
+        return $this->attributes['final_date'];
     }
 
-    public function setPriceLimit(int $price_limit): void
+    public function setFinalDate(mixed $final_date): void
     {
-        $this->attributes['price_limit'] = $price_limit;
+        $this->attributes['final_date'] = $final_date;
     }
 
     public function winningBidder(): BelongsTo
