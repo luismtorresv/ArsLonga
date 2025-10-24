@@ -16,9 +16,6 @@
                                 <h5 class="card-title text-dark fw-semibold">
                                     {{ __('auction.index.auction_number', ['id' => $auction->getId()]) }}
                                 </h5>
-                                <p class="card-text text-muted">
-                                    {{ __('auction.index.price_limit', ['amount' => number_format($auction->getPriceLimit())]) }}
-                                </p>
                                 <p class="card-text">
                                     {{ $auction->getArtwork()->getTitle() }}
                                 </p>
