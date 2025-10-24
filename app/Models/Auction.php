@@ -45,7 +45,7 @@ class Auction extends Model
     public static function validate(Request $request): void
     {
         $request->validate([
-            'price_limit' => 'required|integer|min:1',
+            'final_date' => 'required|date_format:Y-m-d H:i:s',
             'artwork_id' => 'required|exists:artworks,id',
             'winning_bidder_id' => 'nullable|exists:users,id',
         ]);
