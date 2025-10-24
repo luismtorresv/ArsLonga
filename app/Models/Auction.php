@@ -41,7 +41,7 @@ class Auction extends Model
         $current_time = $this->getUpdatedAt();
         $auction_final_date = $this->getFinalDate();
 
-        if (!$highest_bidder) {
+        if (! $highest_bidder) {
             return false;
         }
 
