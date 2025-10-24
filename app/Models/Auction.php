@@ -24,7 +24,7 @@ class Auction extends Model
      * $this->attributes['artwork_id'] - bigint  - contains the id of the artwork sold in the auction
      *
      * $this->artwork - Artwork - contains the associated artwork
-     * $this->winningBidder - User - contains the winning bidder's associated user
+     * $this->winning_bidder - User - contains the winning bidder's associated user
      * $this->bids - bids[] - contains the associated bids
      */
     protected $fillable = ['final_date', 'winning_bidder_id', 'artwork_id'];
@@ -76,7 +76,7 @@ class Auction extends Model
         $this->attributes['final_date'] = $final_date;
     }
 
-    public function winningBidder(): BelongsTo
+    public function winning_bidder(): BelongsTo
     {
         return $this->belongsTo(User::class, 'winning_bidder_id');
     }
@@ -84,7 +84,7 @@ class Auction extends Model
     public function getWinningBidder(): ?User
     {
         // @phpstan-ignore-next-line
-        return $this->winningBidder;
+        return $this->winning_bidder;
     }
 
     public function getWinningBidderId(): ?int
