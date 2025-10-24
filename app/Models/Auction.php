@@ -35,9 +35,20 @@ class Auction extends Model
         return $this->bids->sortByDesc('price_offering')->first();
     }
 
-    public function assignWinner(): bool
+    public function closeAuction(): bool
     {
         $highest_bidder = $this->determineHighestBidder();
+        $current_time = $this->getUpdatedAt();
+        $auction_final_date = $this->getFinalDate();
+
+        if (!$highest_bidder) {
+            return false;
+        }
+
+        if ($current_time->gte($auction_final_date)) {
+            $this->setWinningBidderId($highest_bidder->getUserId());
+            $this->save();
+        }
 
         return true;
     }
