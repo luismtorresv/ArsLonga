@@ -11,7 +11,6 @@
                             <div class="mb-3">
                                 <span class="badge bg-secondary me-2">{{__('auction.show.original_price', ['amount' => number_format($viewData['original_price'])])}}</span>
                             </div>
-                            <h5 class="text-info mb-3">{{ __('admin.priceLimit') }}: <span class="fw-normal text-white">{{number_format($viewData['auction']->getPriceLimit())}}</span></h5>
                         </div>
                     </div>
                 </div>

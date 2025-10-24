@@ -21,8 +21,6 @@
                     <div class="category-badge mb-4">
                         <span
                             class="badge bg-secondary">{{ __('auction.show.original_price', ['amount' => number_format($viewData['original_price'])]) }}</span>
-                        <span
-                            class="badge bg-primary">{{ __('auction.show.price_limit', ['amount' => number_format($viewData['auction']->getPriceLimit())]) }}</span>
                         @if ($viewData['auction']->getWinningBidderId())
                             <span class="badge bg-success">{{ __('auction.show.status.won') }}</span>
                         @else
