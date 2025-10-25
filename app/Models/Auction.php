@@ -45,7 +45,6 @@ class Auction extends Model
             return false;
         }
 
-        // if the current time is less than the final date, return false
         if ($current_time->lt($auction_final_date)) {
             return false;
         }
