@@ -45,7 +45,7 @@ class UserController extends Controller
         $user->setAddress($request->input('address') ?? null);
         $user->save();
 
-        return redirect()->route('user.index')->with('success', __('Profile updated successfully!'));
+        return redirect()->route('user.index')->with('success', __('auth.alerts.profile.updated'));
     }
 
     public function changePassword(Request $request): RedirectResponse
@@ -59,6 +59,6 @@ class UserController extends Controller
         $user->password = $validated['password'];
         $user->save();
 
-        return redirect()->route('user.index')->with('success', __('Password updated successfully!'));
+        return redirect()->route('user.index')->with('success', __('auth.alerts.password.updated'));
     }
 }
