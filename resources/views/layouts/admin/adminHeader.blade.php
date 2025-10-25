@@ -16,14 +16,14 @@
             <div class="d-flex text-end">
                 @guest
                     <a href="{{ route('login') }}" role="button"
-                        class="btn btn-outline-light me-2">{{ __('Login') }}</a>
-                    <a href="{{ route('register') }}" role="button" class="btn btn-warning">{{ __('Sign-up') }}</a>
+                        class="btn btn-outline-light me-2">{{ __('auth.flow.login') }}</a>
+                    <a href="{{ route('register') }}" role="button" class="btn btn-warning">{{ __('auth.flow.sign_up') }}</a>
                 @else
                     <a href="{{ route('user.index') }}" role="button"
-                        class="btn btn-outline-light me-2">{{ __('Profile') }}</a>
+                        class="btn btn-outline-light me-2">{{ __('auth.profile') }}</a>
                     <form id="logout" action="{{ route('logout') }}" method="POST" class="d-inline-flex">
                         <a role="button" class="btn btn-warning"
-                            onclick="document.getElementById('logout').submit();">{{ __('Logout') }}</a>
+                            onclick="document.getElementById('logout').submit();">{{ __('auth.flow.logout') }}</a>
                         @csrf
                     </form>
                 @endguest
