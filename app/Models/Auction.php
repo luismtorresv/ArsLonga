@@ -19,7 +19,7 @@ class Auction extends Model
      * $this->attributes['id'] - int - contains the auction's primary key (id)
      * $this->attributes['created_at'] - timestamp - contains the time when the auction was created
      * $this->attributes['updated_at'] - timestamp - contains the time when the auction was last updated
-     * $this->attributes['final_date'] - int  - containts the time limit of the auction
+     * $this->attributes['final_date'] - timestamp  - contains the time limit of the auction
      * $this->attributes['winning_bidder_id'] - bigint  - contains the id of the customer who won the auction
      * $this->attributes['artwork_id'] - bigint  - contains the id of the artwork sold in the auction
      *
@@ -45,10 +45,13 @@ class Auction extends Model
             return false;
         }
 
-        if ($current_time->gte($auction_final_date)) {
-            $this->setWinningBidderId($highest_bidder->getUserId());
-            $this->save();
+        // if the current time is less than the final date, return false
+        if ($current_time->lt($auction_final_date)) {
+            return false;
         }
+
+        $this->setWinningBidderId($highest_bidder->getUserId());
+        $this->save();
 
         return true;
     }

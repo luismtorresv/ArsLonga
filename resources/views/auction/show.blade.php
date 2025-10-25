@@ -38,10 +38,10 @@
                         <p class="lead">{{ $viewData['auction']->getArtwork()->getDetails() }}</p>
                     </div>
 
-                    @if ($viewData['auction']->getWinningBidderId())
+                    @if ($viewData['auction']->getWinningBidder())
                         <div class="winning-bidder mb-4">
                             <h5 class="text-success">{{ __('auction.show.winning_bidder') }}</h5>
-                            <p>{{ __('auction.show.user_id', ['id' => $viewData['auction']->getWinningBidderId()]) }}</p>
+                            <p>{{ __('auction.show.user_name', ['name' => $viewData['auction']->getWinningBidder()->getName()]) }}</p>
                         </div>
                     @endif
 
