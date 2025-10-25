@@ -23,18 +23,18 @@
             </div>
             <div class="col-lg-4 d-flex align-items-center justify-content-end" style="min-height: 600px;">
                 <div class="card shadow-lg p-3 bg-dark text-white rounded-4 d-flex flex-column align-items-center ms-auto w-100" style="max-width: 300px; min-height: 220px;">
-                    <h4 class="mb-4">{{ __('user.changePassword') }}</h4>
+                    <h4 class="mb-4">{{ __('auth.flow.password.change_password') }}</h4>
                     <form method="POST" action="{{ route('user.changePassword') }}" class="w-100">
                         @csrf
                         <div class="w-100 text-start py-3 px-3 mb-2 bg-secondary rounded-2 border border-white border-2">
-                            <label for="password" class="form-label mb-1 text-white"><strong>{{ __('user.newPassword') }}</strong></label>
+                            <label for="password" class="form-label mb-1 text-white"><strong>{{ __('auth.flow.password.new_password') }}</strong></label>
                             <input type="password" class="form-control bg-dark text-white border-0" id="password" name="password" required minlength="8" placeholder="********">
                         </div>
                         <div class="w-100 text-start py-3 px-3 mb-2 bg-secondary rounded-2 border border-white border-2">
-                            <label for="password_confirmation" class="form-label mb-1 text-white"><strong>{{ __('user.confirmPassword') }}</strong></label>
+                            <label for="password_confirmation" class="form-label mb-1 text-white"><strong>{{ __('auth.flow.password.confirm_password') }}</strong></label>
                             <input type="password" class="form-control bg-dark text-white border-0" id="password_confirmation" name="password_confirmation" required minlength="8" placeholder="********">
                         </div>
-                        <button type="submit" class="btn btn-warning w-100 mt-3 fw-bold">{{ __('user.changePassword') }}</button>
+                        <button type="submit" class="btn btn-warning w-100 mt-3 fw-bold">{{ __('auth.flow.password.change_password') }}</button>
                     </form>
                 </div>
             </div>
