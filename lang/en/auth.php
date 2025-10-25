@@ -17,6 +17,8 @@ return [
         'logout' => 'Logout',
         'sign_up' => 'Sign-up',
         'password' => [
+            'new_password' => 'New password',
+            'change_password' => 'Change password',
             'confirm_password' => 'Confirm password',
             'please_confirm_password' => 'Please confirm your password before continuing.',
             'forgot_password' => 'Forgot your password?',
