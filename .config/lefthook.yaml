@@ -1,0 +1,19 @@
+assert_lefthook_installed: true
+min_version: 2.0.0
+
+pre-commit:
+  # parallel: true
+  follow: true
+  jobs:
+    - name: static analysis
+      tags:
+        - backend
+        - static-analysis
+      run: ./vendor/bin/phpstan
+    - name: lint backend
+      tags:
+        - backend
+        - linters
+      run: ./vendor/bin/pint {staged_files}
+      stage_fixed: true
+      interactive: false
