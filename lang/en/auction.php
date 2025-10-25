@@ -19,7 +19,7 @@ return [
         'author' => 'Author: :author',
         'category' => 'Category: :category',
         'winning_bidder' => 'Winning Bidder',
-        'user_id' => 'User ID: :id',
+        'user_name' => 'Username: :name',
         'auction_id' => 'Auction ID: :id',
         'created' => 'Created: :date',
         'status' => [

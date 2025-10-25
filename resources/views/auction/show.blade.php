@@ -21,8 +21,6 @@
                     <div class="category-badge mb-4">
                         <span
                             class="badge bg-secondary">{{ __('auction.show.original_price', ['amount' => number_format($viewData['original_price'])]) }}</span>
-                        <span
-                            class="badge bg-primary">{{ __('auction.show.price_limit', ['amount' => number_format($viewData['auction']->getPriceLimit())]) }}</span>
                         @if ($viewData['auction']->getWinningBidderId())
                             <span class="badge bg-success">{{ __('auction.show.status.won') }}</span>
                         @else
@@ -40,10 +38,10 @@
                         <p class="lead">{{ $viewData['auction']->getArtwork()->getDetails() }}</p>
                     </div>
 
-                    @if ($viewData['auction']->getWinningBidderId())
+                    @if ($viewData['auction']->getWinningBidder())
                         <div class="winning-bidder mb-4">
                             <h5 class="text-success">{{ __('auction.show.winning_bidder') }}</h5>
-                            <p>{{ __('auction.show.user_id', ['id' => $viewData['auction']->getWinningBidderId()]) }}</p>
+                            <p>{{ __('auction.show.user_name', ['name' => $viewData['auction']->getWinningBidder()->getName()]) }}</p>
                         </div>
                     @endif
 

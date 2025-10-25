@@ -52,7 +52,6 @@
                 <tr>
                     <td>{{$auction->getId()}}</td>
                     <td> {{$auction->getArtwork()->getTitle()}}</td>
-                    <td>{{number_format($auction->getPriceLimit())}}</td>
                     <td class="text-center">
                         <a href="{{ route('admin.auction.show', ['id' => $auction->getId()]) }}" class="btn btn-sm btn-outline-info me-1" title="{{ __('admin.view') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">

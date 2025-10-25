@@ -19,15 +19,15 @@ class Auction extends Model
      * $this->attributes['id'] - int - contains the auction's primary key (id)
      * $this->attributes['created_at'] - timestamp - contains the time when the auction was created
      * $this->attributes['updated_at'] - timestamp - contains the time when the auction was last updated
-     * $this->attributes['price_limit'] - int  - contains the roof of the price. If a bid surpasses this number, it wins the auction.
+     * $this->attributes['final_date'] - timestamp  - contains the time limit of the auction
      * $this->attributes['winning_bidder_id'] - bigint  - contains the id of the customer who won the auction
      * $this->attributes['artwork_id'] - bigint  - contains the id of the artwork sold in the auction
      *
      * $this->artwork - Artwork - contains the associated artwork
-     * $this->winningBidder - User - contains the winning bidder's associated user
+     * $this->winning_bidder - User - contains the winning bidder's associated user
      * $this->bids - bids[] - contains the associated bids
      */
-    protected $fillable = ['price_limit', 'winning_bidder_id', 'artwork_id'];
+    protected $fillable = ['final_date', 'winning_bidder_id', 'artwork_id'];
 
     public function determineHighestBidder(): ?Bid
     {
@@ -35,18 +35,18 @@ class Auction extends Model
         return $this->bids->sortByDesc('price_offering')->first();
     }
 
-    public function assignWinner(): bool
+    public function closeAuction(): bool
     {
         $highest_bidder = $this->determineHighestBidder();
+        $current_time = $this->getUpdatedAt();
+        $auction_final_date = $this->getFinalDate();
 
         if (! $highest_bidder) {
             return false;
         }
 
-        $highest_offer = $highest_bidder->getPriceOffering();
-        $price_limit = $this->getPriceLimit();
-
-        if ($highest_offer < $price_limit) {
+        // if the current time is less than the final date, return false
+        if ($current_time->lt($auction_final_date)) {
             return false;
         }
 
@@ -59,7 +59,7 @@ class Auction extends Model
     public static function validate(Request $request): void
     {
         $request->validate([
-            'price_limit' => 'required|integer|min:1',
+            'final_date' => 'required|date_format:Y-m-d H:i:s',
             'artwork_id' => 'required|exists:artworks,id',
             'winning_bidder_id' => 'nullable|exists:users,id',
         ]);
@@ -80,17 +80,17 @@ class Auction extends Model
         return $this->attributes['updated_at'];
     }
 
-    public function getPriceLimit(): int
+    public function getFinalDate(): mixed
     {
-        return $this->attributes['price_limit'];
+        return $this->attributes['final_date'];
     }
 
-    public function setPriceLimit(int $price_limit): void
+    public function setFinalDate(mixed $final_date): void
     {
-        $this->attributes['price_limit'] = $price_limit;
+        $this->attributes['final_date'] = $final_date;
     }
 
-    public function winningBidder(): BelongsTo
+    public function winning_bidder(): BelongsTo
     {
         return $this->belongsTo(User::class, 'winning_bidder_id');
     }
@@ -98,7 +98,7 @@ class Auction extends Model
     public function getWinningBidder(): ?User
     {
         // @phpstan-ignore-next-line
-        return $this->winningBidder;
+        return $this->winning_bidder;
     }
 
     public function getWinningBidderId(): ?int

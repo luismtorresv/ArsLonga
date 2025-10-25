@@ -30,11 +30,6 @@ class AuctionController extends Controller
         $artwork = $auction->getArtwork();
         $viewData['original_price'] = $artwork->getPrice();
 
-        $hasEnded = $auction->assignWinner();
-        if (! $hasEnded) {
-            return view('auction.show')->with('viewData', $viewData);
-        }
-
         $artworks = session('artworks', []);
         Artwork::findOrFail($id);
 
@@ -43,6 +38,6 @@ class AuctionController extends Controller
             session(['artworks' => $artworks]);
         }
 
-        return redirect()->route('cart.index');
+        return view('auction.show')->with('viewData', $viewData);
     }
 }

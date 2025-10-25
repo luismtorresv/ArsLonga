@@ -20,12 +20,6 @@
 						<form method="POST" action="{{ route('admin.auction.save', ['id' => $viewData['auction']->getId()]) }}" class="row g-3">
 							@csrf
 							<div class="col-md-6">
-								<label for="price_limit" class="form-label fw-bold">{{ __('admin.priceLimit') }}</label>
-								<input type="number" class="form-control bg-dark text-white border-warning" 
-									   id="price_limit" name="price_limit" 
-									   value="{{ old('price_limit', $viewData['auction']->getPriceLimit()) }}" required>
-							</div>
-							<div class="col-md-6">
 								<label for="artwork_id" class="form-label fw-bold">{{ __('admin.artwork') }}</label>
 								<select class="form-select bg-dark text-white border-warning" id="artwork_id" name="artwork_id" required>
 									@foreach($viewData['artworks'] as $artwork)

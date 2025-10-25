@@ -78,7 +78,6 @@ class AdminAuctionController extends Controller
 
         $auction = $id ? Auction::findOrFail($id) : new Auction;
 
-        $auction->setPriceLimit((int) $request->input('price_limit'));
         $auction->setArtworkId((int) $request->input('artwork_id'));
 
         if ($request->filled('winning_bidder_id')) {
