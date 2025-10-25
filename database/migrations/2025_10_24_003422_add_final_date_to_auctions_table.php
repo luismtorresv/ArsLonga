@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('auctions', function (Blueprint $table) {
-            $table->timestamp('final_date');
+            $table->timestamp('final_date')->nullable();
         });
     }
 
