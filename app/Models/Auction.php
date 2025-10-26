@@ -29,6 +29,16 @@ class Auction extends Model
      */
     protected $fillable = ['final_date', 'winning_bidder_id', 'artwork_id'];
 
+    public static function validate(Request $request): void
+    {
+        $request->validate([
+            'start_date' => 'required|date|date_format:Y-m-d\\TH:i',
+            'final_date' => 'required|date|date_format:Y-m-d\\TH:i|after:start_date',
+            'artwork_id' => 'required|exists:artworks,id',
+            'winning_bidder_id' => 'nullable|exists:users,id',
+        ]);
+    }
+
     public function determineHighestBidder(): ?Bid
     {
         // @phpstan-ignore-next-line
@@ -52,15 +62,6 @@ class Auction extends Model
         $this->save();
 
         return true;
-    }
-
-    public static function validate(Request $request): void
-    {
-        $request->validate([
-            'final_date' => 'required|date_format:Y-m-d H:i:s',
-            'artwork_id' => 'required|exists:artworks,id',
-            'winning_bidder_id' => 'nullable|exists:users,id',
-        ]);
     }
 
     public function hasEnded(): bool
