@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Artwork;
+use App\Models\Auction;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\UniqueConstraintViolationException;
@@ -24,5 +25,7 @@ class DatabaseSeeder extends Seeder
         }
 
         Artwork::factory(5)->create();
+
+        Auction::factory(5)->create(); // This will create more Artworks.
     }
 }
