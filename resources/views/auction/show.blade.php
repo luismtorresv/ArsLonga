@@ -41,25 +41,28 @@
                     @if ($viewData['auction']->getWinningBidder())
                         <div class="winning-bidder mb-4">
                             <h5 class="text-success">{{ __('auction.show.winning_bidder') }}</h5>
-                            <p>{{ __('auction.show.user_name', ['name' => $viewData['auction']->getWinningBidder()->getName()]) }}</p>
+                            <p>{{ __('auction.show.user_name', ['name' => $viewData['auction']->getWinningBidder()->getName()]) }}
+                            </p>
                         </div>
                     @endif
 
                     <!-- Bids Section -->
                     <div class="bids-section mb-4">
-                        <h5 class="text-primary">{{__('auction.show.bids.title')}}</h5>
+                        <h5 class="text-primary">{{ __('auction.show.bids.title') }}</h5>
                         @if ($viewData['auction']->getBids()->isEmpty())
                             <div class="alert alert-info" role="alert">
-                                <p class="mb-0">{{__('auction.show.bids.no_bids')}}</p>
+                                <p class="mb-0">{{ __('auction.show.bids.no_bids') }}</p>
                             </div>
                         @else
                             <div class="bids-list">
                                 @foreach ($viewData['auction']->getBids()->sortByDesc('price_offering') as $bid)
-                                    <div class="bid-item p-3 mb-3 border rounded shadow-sm bg-white">
+                                    <div class="bid-item mb-3 rounded border bg-white p-3 shadow-sm">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
-                                                <h6 class="mb-1 text-success fw-bold">${{ number_format($bid->getPriceOffering()) }}</h6>
-                                                <small class="text-muted">{{__('auction.show.bids.bid_by', ['name' => $bid->getWinningBidder()->getName()])}}</small>
+                                                <h6 class="text-success fw-bold mb-1">
+                                                    ${{ number_format($bid->getPriceOffering()) }}</h6>
+                                                <small
+                                                    class="text-muted">{{ __('auction.show.bids.bid_by', ['name' => $bid->getWinningBidder()->getName()]) }}</small>
                                             </div>
                                             <div class="text-end">
                                                 <small class="text-muted">{{ $bid->getCreatedAt() }}</small>
@@ -76,7 +79,9 @@
                     @guest
                         <div class="bid-action mb-4">
                             <p class="text-muted">
-                                <a href="{{ route('login') }}" class="text-decoration-none">{{__('auction.show.bid_action.login_link')}}</a> {{__('auction.show.bid_action.login_to_bid')}}
+                                <a href="{{ route('login') }}"
+                                    class="text-decoration-none">{{ __('auction.show.bid_action.login_link') }}</a>
+                                {{ __('auction.show.bid_action.login_to_bid') }}
                             </p>
                         </div>
                     @else
@@ -84,7 +89,7 @@
                             <div class="bid-action mb-4">
                                 <a href="{{ route('bid.create', ['auction_id' => $viewData['auction']->getId()]) }}"
                                     class="btn btn-success btn-lg">
-                                    <i class="fas fa-gavel"></i> {{__('auction.show.bid_action.place_bid')}}
+                                    <i class="fas fa-gavel"></i> {{ __('auction.show.bid_action.place_bid') }}
                                 </a>
                             </div>
                         @endif

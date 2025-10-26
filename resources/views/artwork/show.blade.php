@@ -33,7 +33,7 @@
                     </div>
 
                     <!-- Price and Add to Cart Section -->
-                    <div class="purchase-section bg-light p-4 rounded shadow-sm">
+                    <div class="purchase-section bg-light rounded p-4 shadow-sm">
                         <div class="price-display mb-3 text-center">
                             <h2 class="display-5 fw-bold text-success">
                                 ${{ number_format($viewData['artwork']->getPrice(), 2) }}</h2>
@@ -41,7 +41,7 @@
                         <form method="POST" action="{{ route('cart.add', ['id' => $viewData['artwork']->getId()]) }}">
                             @csrf
                             <input type="hidden" name="id" value="{{ $viewData['artwork']->getId() }}">
-                            <button type="submit" class="btn btn-success btn-lg w-100 py-3 fw-bold">
+                            <button type="submit" class="btn btn-success btn-lg w-100 fw-bold py-3">
                                 <i class="fas fa-shopping-cart me-2"></i>{{ __('cart.add') }}
                             </button>
                         </form>
