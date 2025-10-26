@@ -63,6 +63,11 @@ class Auction extends Model
         ]);
     }
 
+    public function hasEnded(): bool
+    {
+        return now() >= $this->getFinalDate();
+    }
+
     public function getId(): int
     {
         return $this->attributes['id'];
