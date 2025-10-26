@@ -17,3 +17,11 @@ pre-commit:
       run: ./vendor/bin/pint {staged_files}
       stage_fixed: true
       interactive: false
+    - name: lint frontend
+      tags:
+        - frontend
+        - linters
+      glob: "resources/views/**/*.blade.php"
+      run: blade-formatter --write {all_files}
+      stage_fixed: true
+      interactive: false
