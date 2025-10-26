@@ -49,4 +49,8 @@ return [
     ],
     'artworkTitle' => 'Título de la obra',
     'artworkAlready' => 'Esta obra ya tiene una subasta asociada.',
+    'form' => [
+        'start_date' => 'Fecha de inicio',
+        'final_date' => 'Fecha de finalización',
+    ],
 ];

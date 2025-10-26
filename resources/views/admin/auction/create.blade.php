@@ -19,10 +19,20 @@
                         @endif
                         <form method="POST" action="{{ route('admin.auction.save') }}" class="row g-3">
                             @csrf
-                            <div class="col-md-6">
-                                <label for="price_limit" class="form-label fw-bold">{{ __('admin.priceLimit') }}</label>
-                                <input type="number" class="form-control bg-dark border-warning text-white"
-                                    id="price_limit" name="price_limit" value="{{ old('price_limit') }}" required>
+                            <div class="row">
+                                <legend>Start and end times</legend>
+                                <div class="col">
+                                    <label for="start_date"
+                                        class="form-label fw-bold">{{ __('admin.form.start_date') }}</label>
+                                    <input type="datetime-local" class="form-control bg-dark border-warning text-white"
+                                        id="start_date" name="start_date" value="{{ old('start_date') }}" required>
+                                </div>
+                                <div class="col">
+                                    <label for="final_date"
+                                        class="form-label fw-bold">{{ __('admin.form.final_date') }}</label>
+                                    <input type="datetime-local" class="form-control bg-dark border-warning text-white"
+                                        id="final_date" name="final_date" value="{{ old('final_date') }}" required>
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <label for="artwork_id" class="form-label fw-bold">{{ __('admin.artwork') }}</label>

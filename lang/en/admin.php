@@ -49,4 +49,8 @@ return [
         'sortPriceDesc' => 'Price: High to Low',
     ],
     'artworkAlready' => 'This artwork already has an auction associated.',
+    'form' => [
+        'start_date' => 'Start date',
+        'final_date' => 'Final date',
+    ],
 ];
