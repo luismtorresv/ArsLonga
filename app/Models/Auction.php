@@ -37,19 +37,18 @@ class Auction extends Model
 
     public function closeAuction(): bool
     {
-        $highest_bidder = $this->determineHighestBidder();
-        $current_time = $this->getUpdatedAt();
-        $auction_final_date = $this->getFinalDate();
-
-        if (! $highest_bidder) {
+        $highestBidder = $this->determineHighestBidder();
+        if (! $highestBidder) {
             return false;
         }
 
-        if ($current_time->lt($auction_final_date)) {
+        $currentTime = now();
+        $finalDate = $this->getFinalDate();
+        if ($currentTime->lt($finalDate)) {
             return false;
         }
 
-        $this->setWinningBidderId($highest_bidder->getUserId());
+        $this->setWinningBidderId($highestBidder->getUserId());
         $this->save();
 
         return true;
