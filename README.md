@@ -52,7 +52,7 @@ DB_USERNAME=root
 DB_PASSWORD=root
 ```
 
-> ![WARNING]
+> [!WARNING]
 > You must create the `DB_DATABASE` yourself. We're not automating that for you.
 
 ### Start up development server
