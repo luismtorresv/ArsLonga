@@ -31,5 +31,11 @@ jobs:
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
+      - name: Copy environment
+        run: cp .env.testing .env
+
+      - name: Set up encryption key
+        run: php artisan key:generate --ansi --env=testing
+
       - name: Run tests
         run: ./vendor/bin/pest --ci
