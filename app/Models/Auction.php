@@ -83,6 +83,16 @@ class Auction extends Model
         return $this->attributes['updated_at'];
     }
 
+    public function getStartDate(): mixed
+    {
+        return $this->attributes['start_date'];
+    }
+
+    public function setStartDate(mixed $start_date): void
+    {
+        $this->attributes['start_date'] = $start_date;
+    }
+
     public function getFinalDate(): mixed
     {
         return $this->attributes['final_date'];
