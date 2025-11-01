@@ -14,6 +14,11 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
             rel="stylesheet">
+        <!-- FontAwesome Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            integrity="sha512-Kc323vGkJpok36K6W6F5SrIpwGP4KWqZet6Na4p6vs5h3xAqyqw21cUQSoJA20VIH7QRkyuNiBl7+ROCbDtlQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
         <title>{{ __('layouts.app.title') }}</title>
     </head>
