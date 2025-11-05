@@ -9,6 +9,7 @@ return [
         'no_auctions' => 'No auctions available at the moment.',
         'auction_number' => 'Auction #:id',
         'price_limit' => 'Price Limit: $:amount',
+        'artwork' => 'Artwork: :title',
     ],
     'show' => [
         'auction_title' => 'Auction #:id',
@@ -19,6 +20,7 @@ return [
         'author' => 'Author: :author',
         'category' => 'Category: :category',
         'winning_bidder' => 'Winning Bidder',
+        'user_id' => 'User ID: :id',
         'user_name' => 'Username: :name',
         'auction_id' => 'Auction ID: :id',
         'created' => 'Created: :date',

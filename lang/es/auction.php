@@ -20,6 +20,7 @@ return [
         'author' => 'Autor: :author',
         'category' => 'Categoría: :category',
         'winning_bidder' => 'Postor Ganador',
+        'user_name' => 'Nombre de Usuario: :name',
         'user_id' => 'ID de Usuario: :id',
         'auction_id' => 'ID de Subasta: :id',
         'created' => 'Creado: :date',
