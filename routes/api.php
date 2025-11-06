@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\ArtworkApiController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/artworks', 'App\Http\Controllers\Api\ArtworkApiController@index')->name('api.artwork.index');
-Route::get('/artworks/paginate', 'App\Http\Controllers\Api\ArtworkApiController@paginate')->name('api.artwork.paginate');
+Route::controller(ArtworkApiController::class)->group(function () {
+    Route::get('/artworks', 'index')->name('api.artwork.index');
+    Route::get('/artworks/paginate', 'paginate')->name('api.artwork.paginate');
+});
