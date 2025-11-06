@@ -12,8 +12,12 @@ class ArtworkCollection extends ResourceCollection
         return [
             'data' => $this->collection,
             'meta' => [
-                'storeName' => 'Ars Longa',
-                'storeProductsLink' => route('artwork.index'),
+                'store' => [
+                    'name' => 'Ars Longa',
+                ],
+                'links' => [
+                    'artworks' => route('artwork.index'),
+                ],
             ],
         ];
     }
