@@ -11,15 +11,15 @@ class ArtworkApiController extends Controller
 {
     public function index(): JsonResponse
     {
-        $products = new ArtworkCollection(Artwork::all());
+        $artworks = new ArtworkCollection(Artwork::all());
 
-        return response()->json($products, 200);
+        return response()->json($artworks, 200);
     }
 
     public function paginate(): JsonResponse
     {
-        $products = new ArtworkCollection(Artwork::paginate(5));
+        $artworks = new ArtworkCollection(Artwork::paginate(5));
 
-        return response()->json($products, 200);
+        return response()->json($artworks, 200);
     }
 }
