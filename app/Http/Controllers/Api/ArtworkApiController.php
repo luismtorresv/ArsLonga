@@ -3,23 +3,22 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ArtworkCollection;
 use App\Models\Artwork;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ArtworkApiController extends Controller
 {
-    public function index(): JsonResponse
+    public function index(): ResourceCollection
     {
-        $artworks = new ArtworkCollection(Artwork::all());
+        $artworks = Artwork::all()->toResourceCollection();
 
-        return response()->json($artworks, 200);
+        return $artworks;
     }
 
-    public function paginate(): JsonResponse
+    public function paginate(): ResourceCollection
     {
-        $artworks = new ArtworkCollection(Artwork::paginate(5));
+        $artworks = Artwork::paginate()->toResourceCollection();
 
-        return response()->json($artworks, 200);
+        return $artworks;
     }
 }
