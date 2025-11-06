@@ -69,6 +69,7 @@ class CartController extends Controller
         }
 
         $userId = Auth::user()->id;
+        $userBalance = Auth::user()->getBalance();
 
         $order = new Order;
         $order->setUserId($userId);
@@ -86,6 +87,10 @@ class CartController extends Controller
 
             $item->save();
             $total += $artwork->getPrice();
+        }
+
+        if ($userBalance < $total) {
+            return redirect()->back()->with('error', 'Your current balance is not enough to purchase this prder');
         }
 
         $order->setTotal($total);
