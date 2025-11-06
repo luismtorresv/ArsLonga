@@ -27,8 +27,11 @@ class CartController extends Controller
             }
         }
 
+        $userBalance = Auth::user()->getBalance();
+
         $viewData['artworks'] = $artworksInCart;
         $viewData['total'] = $total;
+        $viewData['userBalance'] = $userBalance;
 
         return view('cart.index')->with('viewData', $viewData);
     }

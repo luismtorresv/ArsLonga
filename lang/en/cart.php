@@ -17,4 +17,5 @@ return [
     'summary' => 'Cart Summary',
     'title' => 'Shopping Cart',
     'total' => 'Total',
+    'user_balance' => 'User Balance',
 ];

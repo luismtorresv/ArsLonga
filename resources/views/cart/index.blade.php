@@ -61,6 +61,10 @@
                             <span>{{ __('cart.total') }}</span>
                             <h4 id="cart-total">${{ number_format($viewData['total'], 2) }}</h4>
                         </div>
+                        <div class="d-flex justify-content-between">
+                            <span>{{ __('cart.user_balance') }}</span>
+                            <h5 id="cart-userBalance">${{ number_format($viewData['userBalance'], 2) }}</h4>
+                        </div>
                         <hr>
                         <div class="d-grid gap-2">
                             <form method="POST" action="{{ route('cart.purchase') }}">
