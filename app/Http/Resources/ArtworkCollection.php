@@ -13,7 +13,7 @@ class ArtworkCollection extends ResourceCollection
             'data' => $this->collection,
             'meta' => [
                 'storeName' => 'Ars Longa',
-                'storeProductsLink' => 'http://127.0.0.1:8000/artworks',
+                'storeProductsLink' => route('artwork.index'),
             ],
         ];
     }
