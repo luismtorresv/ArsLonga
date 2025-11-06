@@ -11,7 +11,7 @@ class ArtworkCollection extends ResourceCollection
     {
         return [
             'data' => $this->collection,
-            'additionalData' => [
+            'meta' => [
                 'storeName' => 'Ars Longa',
                 'storeProductsLink' => 'http://127.0.0.1:8000/artworks',
             ],
