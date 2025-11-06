@@ -14,9 +14,7 @@ class ArtworkCollection extends ResourceCollection
             'meta' => [
                 'store' => [
                     'name' => 'Ars Longa',
-                ],
-                'links' => [
-                    'artworks' => route('artwork.index'),
+                    'human_readable' => route('artwork.index'),
                 ],
             ],
         ];
