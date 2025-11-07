@@ -68,11 +68,10 @@ class CartController extends Controller
             return redirect()->route('cart.index');
         }
 
-        $userId = Auth::user()->id;
-        $userBalance = Auth::user()->getBalance();
+        $user = Auth::user();
 
         $order = new Order;
-        $order->setUserId($userId);
+        $order->setUserId($user->getId());
         $order->setTotal(0);
         $order->save();
 
@@ -89,7 +88,7 @@ class CartController extends Controller
             $total += $artwork->getPrice();
         }
 
-        if ($userBalance < $total) {
+        if ($user->getBalance() < $total) {
             return redirect()->back()->with('error', 'Insufficient Balance');
         }
 
