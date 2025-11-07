@@ -17,5 +17,5 @@ return [
     'summary' => 'Resumen del carrito',
     'title' => 'Carrito de compras',
     'total' => 'Total',
-    'user_balance' => 'Billetera',
+    'user_balance' => 'Saldo',
 ];
