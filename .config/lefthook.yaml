@@ -25,3 +25,9 @@ pre-commit:
       run: blade-formatter --write {all_files}
       stage_fixed: true
       interactive: false
+    - name: check translations
+      tags:
+        - localization
+      glob: "lang/**"
+      run: php artisan translations:check
+      interactive: false
