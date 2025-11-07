@@ -66,12 +66,11 @@ class User extends Authenticatable
         ];
     }
 
-    public function reduceUserBalance($price): void
+    public function substractFromBalance($amount): void
     {
         $currentAmount = $this->getBalance();
 
-        $this->setBalance($currentAmount - $price);
-        $this->save();
+        $this->setBalance($currentAmount - $amount);
     }
 
     public function getId(): int
