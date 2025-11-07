@@ -18,4 +18,5 @@ return [
     'title' => 'Shopping Cart',
     'total' => 'Total',
     'user_balance' => 'User Balance',
+    'insufficient_balance' => 'Insufficient balance',
 ];
