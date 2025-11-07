@@ -62,11 +62,11 @@
                         <h5 class="mb-0">{{ __('cart.summary') }}</h5>
                     </div>
                     <div class="card-body">
-                        <div class="d-flex justify-content-between">
+                        <div class="card-body justify-content-between">
                             <span>{{ __('cart.total') }}</span>
                             <h4 id="cart-total">${{ number_format($viewData['total'], 2) }}</h4>
                         </div>
-                        <div class="d-flex justify-content-between">
+                        <div class="card-body justify-content-between">
                             <span>{{ __('cart.user_balance') }}</span>
                             <h5 id="cart-userBalance">${{ number_format($viewData['userBalance'], 2) }}</h4>
                         </div>
