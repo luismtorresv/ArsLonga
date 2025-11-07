@@ -7,6 +7,7 @@
         "php": "^8.4",
         "laravel/framework": "^12.23",
         "laravel/sanctum": "^4.2",
+        "laravel/telescope": "^5.15",
         "laravel/tinker": "^2.10.1",
         "laravel/ui": "^4.6"
     },
