@@ -94,6 +94,8 @@ class CartController extends Controller
         $order->setTotal($total);
         $order->save();
 
+        $user->reduceUserBalance($total);
+
         $request->session()->forget('artworks');
 
         $viewData = [];
