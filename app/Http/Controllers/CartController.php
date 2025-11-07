@@ -15,6 +15,7 @@ class CartController extends Controller
     public function index(): View
     {
         $viewData = [];
+        $user = Auth::user();
 
         $total = 0;
         $artworksInCart = [];
@@ -27,11 +28,9 @@ class CartController extends Controller
             }
         }
 
-        $userBalance = Auth::user()->getBalance();
-
         $viewData['artworks'] = $artworksInCart;
         $viewData['total'] = $total;
-        $viewData['userBalance'] = $userBalance;
+        $viewData['userBalance'] = $user->getBalance();
 
         return view('cart.index')->with('viewData', $viewData);
     }
