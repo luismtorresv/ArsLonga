@@ -66,6 +66,14 @@ class User extends Authenticatable
         ];
     }
 
+    public function reduceUserBalance($price): void
+    {
+        $currentAmount = $this->getBalance();
+
+        $this->setBalance($currentAmount - $price);
+        $this->save();
+    }
+
     public function getId(): int
     {
         return $this->attributes['id'];
