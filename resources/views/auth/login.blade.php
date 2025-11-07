@@ -66,7 +66,7 @@
 
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('auth.flow.forgot_password') }}
+                                            {{ __('auth.flow.password.forgot_password') }}
                                         </a>
                                     @endif
                                 </div>
