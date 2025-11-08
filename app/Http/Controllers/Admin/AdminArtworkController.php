@@ -74,21 +74,7 @@ class AdminArtworkController extends Controller
         $artwork->setPrice((int) $request->input('price'));
         $artwork->setDetails($request->input('details'));
 
-        if (! $id) {
-            $artwork->setImage('default.png');
-        }
-
-        $artwork->save();
-
-        if ($request->hasFile('image')) {
-            $imageName = $artwork->getId().'.'.$request->file('image')->extension();
-            Storage::disk('public')->put(
-                $imageName,
-                file_get_contents($request->file('image')->getRealPath())
-            );
-            $artwork->setImage($imageName);
-            $artwork->save();
-        }
+        $artwork->storeImageOnDisk($request, $id);
 
         return $id
             ? redirect()->route('admin.artwork.show', $id)
