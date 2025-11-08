@@ -1,4 +1,22 @@
 services:
+  caddy:
+    # Reverse proxy so we get automatic HTTPS certificates while still using nginx.
+    image: caddy:2-alpine
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/production/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - caddy-data:/data
+      - caddy-config:/config
+    networks:
+      - laravel-production
+    depends_on:
+      - web
+
   web:
     build:
       context: .
@@ -15,13 +33,6 @@ services:
       - laravel-public-assets:/var/www/public/build:ro
     networks:
       - laravel-production
-    ports:
-      # Map port 80 inside the container to the port specified by 'NGINX_PORT' on the host machine.
-      # -----------------------------------------------------------
-      # This allows external access to the Nginx web server running inside the container.
-      # For example, if 'NGINX_PORT' is set to '8080', accessing 'http://localhost:8080' will reach the application.
-      # -----------------------------------------------------------
-      - "${NGINX_PORT:-80}:80"
     depends_on:
       php-fpm:
         condition: service_healthy # Wait for php-fpm health check
@@ -89,6 +100,8 @@ networks:
   laravel-production:
 
 volumes:
+  caddy-data:
+  caddy-config:
   postgres-data-production:
   laravel-storage-production:
   laravel-public-assets:
