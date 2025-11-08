@@ -74,6 +74,7 @@ class AdminArtworkController extends Controller
         $artwork->setDetails($request->input('details'));
 
         $artwork->storeImageOnDisk($request, $id);
+        $artwork->save();
 
         return $id
             ? redirect()->route('admin.artwork.show', $id)
