@@ -20,7 +20,6 @@ class Order extends Model
      * $this->attributes['id'] - int - contains the order's primary key (id)
      * $this->attributes['total'] - int - contains the order's total price
      * $this->attributes['user_id'] - int - contains the referenced user id
-     * $this->attributes['purchase_date'] - timestamp - contains the order's purchase date
      * $this->attributes['created_at'] - timestamp - contains the order creation date
      * $this->attributes['updated_at'] - timestamp - contains the order update date
      *
@@ -29,7 +28,6 @@ class Order extends Model
      */
     protected $fillable = [
         'user_id',
-        'purchase_date',
     ];
 
     public static function validate(Request $request): void
@@ -62,16 +60,6 @@ class Order extends Model
     public function setUserId(int $userId): void
     {
         $this->attributes['user_id'] = $userId;
-    }
-
-    public function getPurchaseDate(): string
-    {
-        return $this->attributes['purchase_date'];
-    }
-
-    public function setPurchaseDate(string $purchase_date): void
-    {
-        $this->attributes['purchase_date'] = $purchase_date;
     }
 
     public function getCreatedAt(): string
