@@ -93,6 +93,7 @@ class AdminArtworkController extends Controller
         $artwork = Artwork::findOrFail($id);
 
         $artwork->deleteImageFromDisk();
+        $artwork->delete();
 
         return redirect()->route('admin.artwork.index');
     }

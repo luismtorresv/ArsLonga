@@ -65,7 +65,6 @@ class Artwork extends Model
         if ($this->getImage() !== 'default.png') {
             Storage::disk('public')->delete($this->getImage());
         }
-        $this->delete();
 
     }
 
