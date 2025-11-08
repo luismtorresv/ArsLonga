@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Artwork;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
@@ -92,10 +91,7 @@ class AdminArtworkController extends Controller
     {
         $artwork = Artwork::findOrFail($id);
 
-        if ($artwork->getImage() !== 'default.png') {
-            Storage::disk('public')->delete($artwork->getImage());
-        }
-        $artwork->delete();
+        $artwork->deleteImageFromDisk();
 
         return redirect()->route('admin.artwork.index');
     }

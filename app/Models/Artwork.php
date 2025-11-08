@@ -60,6 +60,15 @@ class Artwork extends Model
 
     }
 
+    public function deleteImageFromDisk(): void
+    {
+        if ($this->getImage() !== 'default.png') {
+            Storage::disk('public')->delete($this->getImage());
+        }
+        $this->delete();
+
+    }
+
     public function getId(): int
     {
         return $this->attributes['id'];
