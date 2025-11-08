@@ -14,7 +14,7 @@
                             <div class="col-md-6">
                                 <h5 class="mb-1">{{ __('order.order_number') }}: <strong>#{{ $order->getId() }}</strong>
                                 </h5>
-                                <small class="text-muted">{{ __('order.date') }}: {{ $order->getPurchaseDate() }}</small>
+                                <small class="text-muted">{{ __('order.date') }}: {{ $order->getCreatedAt() }}</small>
                             </div>
                             <div class="col-md-6 text-end">
                                 <h5 class="mb-0">{{ __('order.total') }}: <strong
