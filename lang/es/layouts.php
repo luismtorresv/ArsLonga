@@ -13,6 +13,7 @@ return [
         'auctions' => 'Subastas',
         'artworks' => 'Obras de arte',
         'cart' => 'Carrito de compras',
+        'orders' => 'Mis órdenes',
     ],
     'footer' => [
         'copyright' => '© 2025 Ars Longa',
