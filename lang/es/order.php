@@ -15,4 +15,5 @@ return [
     'price' => 'Precio',
     'quantity' => 'Cantidad',
     'view_artwork' => 'Ver obra',
+    'no_orders' => 'Aún no tienes órdenes',
 ];
