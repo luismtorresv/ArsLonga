@@ -8,6 +8,7 @@ use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\BidController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +62,10 @@ Route::middleware(['auth'])->controller(CartController::class)->group(function (
     Route::post('/cart/add/{id}', 'add')->name('cart.add');
     Route::post('/cart/remove/{id}', 'remove')->name('cart.remove');
     Route::post('/cart/purchase', 'purchase')->name('cart.purchase');
+});
+
+Route::middleware(['auth'])->controller(OrderController::class)->group(function () {
+    Route::get('/orders', 'index')->name('order.index');
 });
 
 Route::controller(BidController::class)->group(function () {
