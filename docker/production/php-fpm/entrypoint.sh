@@ -28,5 +28,11 @@ php artisan migrate --force
 php artisan config:cache
 php artisan route:cache
 
+# Link public/storage to storage/app/public.
+# -----------------------------------------------------------
+# Allows accessing public files in the storage directory.
+# -----------------------------------------------------------
+php artisan storage:link --force
+
 # Run the default command
 exec "$@"
