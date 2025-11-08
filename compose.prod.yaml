@@ -28,6 +28,8 @@ services:
 
   php-fpm:
     # For the php-fpm service, we will create a custom image to install the necessary PHP extensions and setup proper permissions.
+    stdin_open: true
+    tty: true
     build:
       context: .
       dockerfile: ./docker/common/php-fpm/Dockerfile
