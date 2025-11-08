@@ -9,6 +9,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class Artwork extends Model
 {
@@ -38,6 +39,25 @@ class Artwork extends Model
             'details' => 'required|max:255',
             'image' => 'required|image',
         ]);
+    }
+
+    public function storeImageOnDisk(Request $request, int $artworkId): void
+    {
+        if (! $artworkId) {
+            $this->setImage('default.png');
+
+            return;
+        }
+
+        if ($request->hasFile('image')) {
+            $imageName = $this->getId().'.'.$request->file('image')->extension();
+            Storage::disk('public')->put(
+                $imageName,
+                file_get_contents($request->file('image')->getRealPath())
+            );
+            $this->setImage($imageName);
+        }
+
     }
 
     public function getId(): int
