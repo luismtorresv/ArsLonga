@@ -15,6 +15,8 @@
                 @auth
                     <li><a href="{{ route('cart.index') }}"
                             class="nav-link px-2 text-white">{{ __('layouts.header.cart') }}</a></li>
+                    <li><a href="{{ route('order.index') }}"
+                            class="nav-link px-2 text-white">{{ __('layouts.header.orders') }}</a></li>
                 @endauth
             </ul>
             <div class="d-flex text-end">

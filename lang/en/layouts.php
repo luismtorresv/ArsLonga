@@ -13,6 +13,7 @@ return [
         'auctions' => 'Auctions',
         'artworks' => 'Artworks',
         'cart' => 'Cart',
+        'orders' => 'My Orders',
     ],
     'footer' => [
         'copyright' => '© 2025 Ars Longa',
