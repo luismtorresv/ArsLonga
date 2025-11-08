@@ -14,6 +14,12 @@ University during the 2025-2 semester.
 [composer]: <https://getcomposer.org/> "Composer: A Dependency Manager for PHP"
 [mysql]: <https://www.mysql.com/> "MySQL: The world's most popular open source database"
 
+## Production environment installation
+
+```shell
+docker compose --file compose.prod.yaml up --build --detach
+```
+
 ## Development environment setup
 
 ### Install dependencies
