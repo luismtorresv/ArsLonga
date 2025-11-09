@@ -94,7 +94,7 @@ class CartController extends Controller
         $order->setTotal($total);
         $order->save();
 
-        $user->substractFromBalance($total);
+        $user->subtractFromBalance($total);
         $user->save();
 
         $request->session()->forget('artworks');
