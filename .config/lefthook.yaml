@@ -9,11 +9,13 @@ pre-commit:
       tags:
         - backend
         - static-analysis
-      run: ./vendor/bin/phpstan
+      glob: "**/*.php"
+      run: ./vendor/bin/phpstan analyse {staged_files}
     - name: lint backend
       tags:
         - backend
         - linters
+      glob: "**/*.php"
       run: ./vendor/bin/pint {staged_files}
       stage_fixed: true
       interactive: false
@@ -22,7 +24,7 @@ pre-commit:
         - frontend
         - linters
       glob: "resources/views/**/*.blade.php"
-      run: blade-formatter --write {all_files}
+      run: blade-formatter --write {staged_files}
       stage_fixed: true
       interactive: false
     - name: check translations
