@@ -37,7 +37,7 @@ class Artwork extends Model
             'category' => 'required|max:30',
             'price' => 'required|gt:0',
             'details' => 'required|max:255',
-            'image' => 'required|image',
+            'image' => 'image',
         ]);
     }
 
