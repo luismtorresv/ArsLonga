@@ -26,6 +26,9 @@ class CreateAdmin extends Command
      */
     public function handle()
     {
+        // Disable mass assignment protection while we create the admin.
+        User::unguard();
+
         User::updateOrCreate(
             ['name' => 'Admin'],
             [
@@ -35,5 +38,8 @@ class CreateAdmin extends Command
                 'role' => 'admin',
                 'balance' => 100_000_000,
             ]);
+
+        // Re-enable mass assignment protection.
+        User::reguard();
     }
 }
