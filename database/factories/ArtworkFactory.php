@@ -13,7 +13,7 @@ class ArtworkFactory extends Factory
     /**
      * Compute a realistic, round number price for the `Artwork`.
      */
-    public function getRandomPrice(): int
+    private function getRandomPrice(): int
     {
         $baseAmount = 100_000;
         $maxPrice = 5_000_000;
