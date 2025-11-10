@@ -44,7 +44,6 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">{{ __('admin.artworkTitle') }}</th>
-                        <th scope="col">{{ __('admin.priceLimit') }}</th>
                         <th scope="col" class="text-center">{{ __('admin.action') }}</th>
                     </tr>
                 </thead>

@@ -35,7 +35,6 @@ return [
     'delete' => 'Delete',
     'auctions' => 'Auctions',
     'totalAuctions' => 'Total Auctions',
-    'priceLimit' => 'Price Limit',
     'price' => 'Price',
     'originalPrice' => 'Original Price',
     'auction' => 'Auction',

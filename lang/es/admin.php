@@ -33,7 +33,6 @@ return [
     'delete' => 'Eliminar',
     'auctions' => 'Subastas',
     'totalAuctions' => 'Total de Subastas',
-    'priceLimit' => 'Límite de Precio',
     'price' => 'Precio',
     'originalPrice' => 'Precio Original',
     'auction' => 'Subasta',
