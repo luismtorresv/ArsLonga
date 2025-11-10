@@ -14,7 +14,7 @@ class ArtworkResource extends JsonResource
             'title' => $this->getTitle(),
             'author' => $this->getAuthor(),
             'price' => $this->getPrice(),
-            'image' => asset($this->getImage()),
+            'image' => asset('/storage/'.$this->getImage()),
             'details' => $this->getDetails(),
             'keyword' => $this->getKeyword(),
             'category' => $this->getCategory(),
