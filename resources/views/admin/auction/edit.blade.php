@@ -21,6 +21,25 @@
                             action="{{ route('admin.auction.save', ['id' => $viewData['auction']->getId()]) }}"
                             class="row g-3">
                             @csrf
+                            <div class="row">
+                                <legend>Start and end times</legend>
+                                <div class="col">
+                                    <label for="start_date"
+                                        class="form-label fw-bold">{{ __('admin.form.start_date') }}</label>
+                                    <input type="datetime-local" step="1"
+                                        class="form-control bg-dark border-warning text-white" id="start_date"
+                                        name="start_date"
+                                        value="{{ old('start_date', $viewData['auction']->getStartDate()) }}" required>
+                                </div>
+                                <div class="col">
+                                    <label for="final_date"
+                                        class="form-label fw-bold">{{ __('admin.form.final_date') }}</label>
+                                    <input type="datetime-local" step="1"
+                                        class="form-control bg-dark border-warning text-white" id="final_date"
+                                        name="final_date"
+                                        value="{{ old('final_date', $viewData['auction']->getFinalDate()) }}" required>
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <label for="artwork_id" class="form-label fw-bold">{{ __('admin.artwork') }}</label>
                                 <select class="form-select bg-dark border-warning text-white" id="artwork_id"
