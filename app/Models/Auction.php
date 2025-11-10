@@ -38,6 +38,11 @@ class Auction extends Model
         'artwork_id',
     ];
 
+    protected $casts = [
+        'start_date' => 'datetime',
+        'final_date' => 'datetime',
+    ];
+
     public static function validate(Request $request): void
     {
         $request->validate([
@@ -95,7 +100,7 @@ class Auction extends Model
 
     public function getStartDate(): mixed
     {
-        return $this->attributes['start_date'];
+        return $this->start_date;
     }
 
     public function setStartDate(mixed $start_date): void
@@ -105,7 +110,7 @@ class Auction extends Model
 
     public function getFinalDate(): mixed
     {
-        return $this->attributes['final_date'];
+        return $this->final_date;
     }
 
     public function setFinalDate(mixed $final_date): void
