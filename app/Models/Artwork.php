@@ -41,7 +41,7 @@ class Artwork extends Model
         ]);
     }
 
-    public function storeImageOnDisk(Request $request, int $artworkId): void
+    public function storeImageOnDisk(Request $request, ?int $artworkId): void
     {
         if (! $artworkId) {
             $this->setImage('default.png');
