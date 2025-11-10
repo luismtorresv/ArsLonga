@@ -14,6 +14,18 @@ class SetLanguage
         $language = LanguageManager::getCurrentLanguage();
         app()->setLocale($language);
 
+        // Share language options with all views
+        $supportedLanguages = LanguageManager::getSupportedLanguages();
+        $languageNames = [];
+
+        foreach ($supportedLanguages as $lang) {
+            $languageNames[$lang] = LanguageManager::getLanguageName($lang);
+        }
+
+        view()->share('supportedLanguages', $supportedLanguages);
+        view()->share('languageNames', $languageNames);
+        view()->share('currentLanguage', $language);
+
         return $next($request);
     }
 }
