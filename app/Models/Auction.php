@@ -22,7 +22,8 @@ class Auction extends Model
      * $this->attributes['id'] - int - contains the auction's primary key (id)
      * $this->attributes['created_at'] - timestamp - contains the time when the auction was created
      * $this->attributes['updated_at'] - timestamp - contains the time when the auction was last updated
-     * $this->attributes['final_date'] - timestamp  - contains the time limit of the auction
+     * $this->attributes['start_date'] - timestamp  - contains the start datetime of the auction.
+     * $this->attributes['final_date'] - timestamp  - contains the final datetime of the auction.
      * $this->attributes['winning_bidder_id'] - bigint  - contains the id of the customer who won the auction
      * $this->attributes['artwork_id'] - bigint  - contains the id of the artwork sold in the auction
      *
