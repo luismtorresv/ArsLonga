@@ -10,6 +10,23 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ArtworkFactory extends Factory
 {
+    /**
+     * Compute a realistic, round number price for the `Artwork`.
+     */
+    public function getRandomPrice(): int
+    {
+        $baseAmount = 100_000;
+        $maxPrice = 5_000_000;
+        $maxMultiplier = $maxPrice / $baseAmount;
+
+        $multiplier = $this->faker->numberBetween(1, $maxMultiplier);
+
+        // Price is a multiple of a round number.
+        $price = $baseAmount * $multiplier;
+
+        return $price;
+    }
+
     public function definition(): array
     {
         return [
@@ -38,7 +55,7 @@ class ArtworkFactory extends Factory
             'category' => $this->faker->randomElement([
                 'Painting', 'Sculpture', 'Photography', 'Digital', 'Drawing',
             ]),
-            'price' => $this->faker->numberBetween(0, 40_000_000),
+            'price' => $this->getRandomPrice(),
             'details' => $this->faker->text(maxNbChars: 200),
             'image' => 'default.png',
             'created_at' => now(),
