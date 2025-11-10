@@ -31,7 +31,6 @@ return [
     ],
     'noArtworks' => 'No artworks yet.',
     'view' => 'View',
-    'edit' => 'Edit',
     'delete' => 'Delete',
     'auctions' => 'Auctions',
     'totalAuctions' => 'Total Auctions',

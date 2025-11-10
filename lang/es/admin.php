@@ -29,7 +29,6 @@ return [
     ],
     'noArtworks' => 'No hay obras disponibles.',
     'view' => 'Ver',
-    'edit' => 'Editar',
     'delete' => 'Eliminar',
     'auctions' => 'Subastas',
     'totalAuctions' => 'Total de Subastas',
