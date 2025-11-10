@@ -44,6 +44,8 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">{{ __('admin.artworkTitle') }}</th>
+                        <th scope="col">{{ __('admin.form.start_date') }}</th>
+                        <th scope="col">{{ __('admin.form.final_date') }}</th>
                         <th scope="col" class="text-center">{{ __('admin.action') }}</th>
                     </tr>
                 </thead>
@@ -52,6 +54,8 @@
                         <tr>
                             <td>{{ $auction->getId() }}</td>
                             <td> {{ $auction->getArtwork()->getTitle() }}</td>
+                            <td>{{ $auction->getStartDate() }}</td>
+                            <td>{{ $auction->getFinalDate() }}</td>
                             <td class="text-center">
                                 <a href="{{ route('admin.auction.show', ['id' => $auction->getId()]) }}"
                                     class="btn btn-sm btn-outline-info me-1" title="{{ __('admin.view') }}">
