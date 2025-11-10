@@ -8,6 +8,11 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ArtworkApiController extends Controller
 {
+    /**
+     * List artworks.
+     *
+     * List all artworks in the store.
+     */
     public function index(): ResourceCollection
     {
         $artworks = Artwork::all()->toResourceCollection();
@@ -15,6 +20,11 @@ class ArtworkApiController extends Controller
         return $artworks;
     }
 
+    /**
+     * List artworks, but paginated.
+     *
+     * List all artworks in the store, but paginated.
+     */
     public function paginate(): ResourceCollection
     {
         $artworks = Artwork::paginate()->toResourceCollection();
