@@ -8,6 +8,7 @@ use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\BidController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Language\LanguageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -71,6 +72,10 @@ Route::middleware(['auth'])->controller(OrderController::class)->group(function 
 Route::controller(BidController::class)->group(function () {
     Route::get('/bid/create/{auction_id}', 'create')->name('bid.create');
     Route::post('/bid/save', 'save')->name('bid.save');
+});
+
+Route::controller(LanguageController::class)->group(function () {
+    Route::get('/language/{language}', 'change')->name('language.switch');
 });
 
 Auth::routes();
