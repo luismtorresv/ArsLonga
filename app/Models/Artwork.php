@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,6 +28,9 @@ class Artwork extends Model
      * $this->attributes['image'] - string - contains the artwork image
      * $this->attributes['created_at'] - timestamp - contains the artwork creation date
      * $this->attributes['updated_at'] - timestamp - contains the artwork update date
+     *
+     * $this->auction - Auction - the associated auction
+     * $this->item - Item - the associated item
      */
     public static function validate(Request $request): void
     {
@@ -151,5 +155,15 @@ class Artwork extends Model
     public function getUpdatedAt(): string
     {
         return $this->attributes['updated_at'];
+    }
+
+    public function auction(): HasOne
+    {
+        return $this->hasOne(Auction::class);
+    }
+
+    public function item(): HasOne
+    {
+        return $this->hasOne(Item::class);
     }
 }
