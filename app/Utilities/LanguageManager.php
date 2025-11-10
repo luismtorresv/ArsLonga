@@ -6,7 +6,7 @@ class LanguageManager
 {
     private const SUPPORTED_LANGUAGES = ['en', 'es'];
 
-    private const COOKIE_NAME = 'app_language';
+    public const COOKIE_NAME = 'app_language';
 
     public static function getCurrentLanguage(): string
     {
