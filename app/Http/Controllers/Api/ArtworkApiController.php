@@ -26,8 +26,6 @@ class ArtworkApiController extends Controller
      */
     public function paginate(): ResourceCollection
     {
-        $artworks = Artwork::paginate()->toResourceCollection();
-
-        return $artworks;
+        return ArtworkResource::collection(Artwork::paginate());
     }
 }
