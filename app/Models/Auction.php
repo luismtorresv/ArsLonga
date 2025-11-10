@@ -31,7 +31,12 @@ class Auction extends Model
      * $this->winning_bidder - User - contains the winning bidder's associated user
      * $this->bids - bids[] - contains the associated bids
      */
-    protected $fillable = ['final_date', 'winning_bidder_id', 'artwork_id'];
+    protected $fillable = [
+        'start_date',
+        'final_date',
+        'winning_bidder_id',
+        'artwork_id',
+    ];
 
     public static function validate(Request $request): void
     {
