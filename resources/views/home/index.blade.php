@@ -1,22 +1,21 @@
 @extends('layouts.app')
 @section('content')
     <div class="fs-4 text-center">
-        {{ __('Welcome!') }}
+        {{ __('home.welcome') }}
     </div>
 
     <div class="container my-5">
         <div class="card bg-light border-0 shadow-sm">
             <div class="card-body p-5">
                 <p class="card-text text-muted mb-0">
-                    Curious on what you need to commit the perfect crime? See the products below... Or just go buy an
-                    artwork or bid on an auction.
+                    {{ __('home.curious_message') }}
                 </p>
             </div>
         </div>
     </div>
 
     <div class="container my-5">
-        <h2 class="mb-4">Featured Products</h2>
+        <h2 class="mb-4">{{ __('home.featured_products') }}</h2>
 
         @if (!empty($viewData['products']))
             <div class="row row-cols-1 row-cols-md-3 g-4">
