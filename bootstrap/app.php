@@ -15,6 +15,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminAuthMiddleware::class,
         ]);
+
+        $middleware->web([
+            \App\Http\Middleware\SetLanguage::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

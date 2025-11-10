@@ -19,6 +19,24 @@
                             class="nav-link px-2 text-white">{{ __('layouts.header.orders') }}</a></li>
                 @endauth
             </ul>
+            <div class="me-3">
+                <div class="dropdown">
+                    <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown">
+                        {{ __('layouts.header.language') }}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        @foreach (App\Utilities\LanguageManager::getSupportedLanguages() as $lang)
+                            <li>
+                                <a class="dropdown-item {{ app()->getLocale() === $lang ? 'active' : '' }}"
+                                    href="{{ route('language.switch', $lang) }}">
+                                    {{ App\Utilities\LanguageManager::getLanguageName($lang) }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
             <div class="d-flex text-end">
                 @guest
                     <a href="{{ route('login') }}" role="button"
