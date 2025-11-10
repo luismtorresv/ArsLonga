@@ -14,22 +14,30 @@
         </div>
     </div>
 
-    <div class="container my-5">
+    <div class="container my-4">
         <h2 class="mb-4">{{ __('home.featured_products') }}</h2>
 
         @if (!empty($viewData['products']))
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @foreach ($viewData['products'] as $product)
                     <div class="col">
-                        <div class="card">
-                            @if (isset($product['image']))
-                                <img src="{{ $product['image'] }}" class="card-img-top" alt="{{ $product['name'] }}">
-                            @endif
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $product['name'] }}</h5>
-                                <p class="card-text">${{ $product['price'] ?? 0 }}</p>
+                        <a href="#" class="text-decoration-none text-dark">
+                            <div class="card h-100 shadow-sm">
+                                @if (isset($product['image']))
+                                    <img src="{{ $product['image'] }}" class="card-img-top card-img-products"
+                                        alt="{{ $product['name'] }}">
+                                @endif
+                                <div class="card-body">
+                                    <h5 class="card-title text-dark fw-semibold">
+                                        {{ $product['name'] }}
+                                    </h5>
+                                    <p class="card-text">
+                                        <span
+                                            class="fw-bold text-primary">${{ number_format($product['price'] ?? 0, 2) }}</span>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
