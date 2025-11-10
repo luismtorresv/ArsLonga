@@ -26,11 +26,11 @@
                         {{ __('layouts.header.language') }}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        @foreach ($supportedLanguages as $lang)
+                        @foreach ($supportedLanguages ?? ['en', 'es'] as $lang)
                             <li>
-                                <a class="dropdown-item {{ $currentLanguage === $lang ? 'active' : '' }}"
+                                <a class="dropdown-item {{ ($currentLanguage ?? app()->getLocale()) === $lang ? 'active' : '' }}"
                                     href="{{ route('language.switch', $lang) }}">
-                                    {{ $languageNames[$lang] }}
+                                    {{ $languageNames[$lang] ??match ($lang) {'en' => 'English','es' => 'Español',default => $lang} }}
                                 </a>
                             </li>
                         @endforeach
