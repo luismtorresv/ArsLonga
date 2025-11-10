@@ -14,6 +14,7 @@ return [
         'artworks' => 'Artworks',
         'cart' => 'Cart',
         'orders' => 'My Orders',
+        'language' => 'Language',
     ],
     'footer' => [
         'copyright' => '© 2025 Ars Longa',

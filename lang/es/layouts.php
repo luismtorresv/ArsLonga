@@ -14,6 +14,7 @@ return [
         'artworks' => 'Obras de arte',
         'cart' => 'Carrito de compras',
         'orders' => 'Mis órdenes',
+        'language' => 'Idioma',
     ],
     'footer' => [
         'copyright' => '© 2025 Ars Longa',
