@@ -10,8 +10,11 @@ parameters:
     # Level 10 is the highest level
     level: 5
 
-#    ignoreErrors:
-#        - '#PHPDoc tag @var#'
-#
+    ignoreErrors:
+        -
+            message: '#Call to an undefined method [a-zA-Z0-9\\_]+::get[a-zA-Z]+\(\)#'
+            identifier: method.notFound
+            path: app/Http/Resources/ArtworkResource.php
+
 #    excludePaths:
 #        - ./*/*/FileToBeExcluded.php
