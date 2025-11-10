@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Cookie;
 
 class LanguageController extends Controller
 {
-    private const COOKIE_NAME = 'app_language';
-
     private const COOKIE_DURATION = 10080; // 1 week in minutes
 
     public function change(string $language): RedirectResponse
@@ -23,7 +21,7 @@ class LanguageController extends Controller
             return back();
         }
 
-        Cookie::queue(self::COOKIE_NAME, $language, self::COOKIE_DURATION);
+        Cookie::queue(LanguageManager::COOKIE_NAME, $language, self::COOKIE_DURATION);
 
         return back();
     }

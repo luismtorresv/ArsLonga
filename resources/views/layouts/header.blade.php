@@ -30,7 +30,7 @@
                             <li>
                                 <a class="dropdown-item {{ ($currentLanguage ?? app()->getLocale()) === $lang ? 'active' : '' }}"
                                     href="{{ route('language.switch', $lang) }}">
-                                    {{ $languageNames[$lang] ??match ($lang) {'en' => 'English','es' => 'Español',default => $lang} }}
+                                    {{ $languageNames[$lang] }}
                                 </a>
                             </li>
                         @endforeach
