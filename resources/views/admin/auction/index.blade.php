@@ -20,11 +20,11 @@
                 <form method="GET" action="{{ route('admin.auction.index') }}" class="d-flex">
                     <select name="sort" class="form-select me-2" onchange="this.form.submit()">
                         <option value="">{{ __('admin.sortOptions.sortDefault') }}</option>
-                        <option value="price_desc" {{ $viewData['sort'] === 'price_desc' ? 'selected' : '' }}>
-                            {{ __('admin.sortOptions.sortPriceDesc') }}
+                        <option value="start_date_desc" {{ $viewData['sort'] === 'start_date_desc' ? 'selected' : '' }}>
+                            {{ __('admin.sortOptions.sortStartDateDesc') }}
                         </option>
-                        <option value="price_asc" {{ $viewData['sort'] === 'price_asc' ? 'selected' : '' }}>
-                            {{ __('admin.sortOptions.sortPriceAsc') }}
+                        <option value="start_date_asc" {{ $viewData['sort'] === 'start_date_asc' ? 'selected' : '' }}>
+                            {{ __('admin.sortOptions.sortStartDateAsc') }}
                         </option>
                     </select>
                     <noscript>

@@ -45,6 +45,8 @@ return [
         'sortDefault' => 'Default',
         'sortPriceAsc' => 'Price: Low to High',
         'sortPriceDesc' => 'Price: High to Low',
+        'sortStartDateAsc' => 'Start Date: Ascending',
+        'sortStartDateDesc' => 'Start Date: Descending',
     ],
     'artworkAlready' => 'This artwork already has an auction associated.',
     'form' => [

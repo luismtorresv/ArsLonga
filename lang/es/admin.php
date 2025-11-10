@@ -44,6 +44,8 @@ return [
         'sortDefault' => 'Predeterminado',
         'sortPriceAsc' => 'Precio: De menor a mayor',
         'sortPriceDesc' => 'Precio: De mayor a menor',
+        'sortStartDateAsc' => 'Fecha de inicio: Ascendente',
+        'sortStartDateDesc' => 'Fecha de inicio: Descendente',
     ],
     'artworkTitle' => 'Título de la obra',
     'artworkAlready' => 'Esta obra ya tiene una subasta asociada.',

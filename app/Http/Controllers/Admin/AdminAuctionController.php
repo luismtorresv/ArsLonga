@@ -21,10 +21,10 @@ class AdminAuctionController extends Controller
         $sort = $request->get('sort', '');
         $query = Auction::query();
 
-        if ($sort === 'price_desc') {
-            $query->orderBy('price_limit', 'desc');
-        } elseif ($sort === 'price_asc') {
-            $query->orderBy('price_limit', 'asc');
+        if ($sort === 'start_date_desc') {
+            $query->orderBy('start_date', 'desc');
+        } elseif ($sort === 'start_date_asc') {
+            $query->orderBy('start_date', 'asc');
         }
 
         $auctions = $query->get();
