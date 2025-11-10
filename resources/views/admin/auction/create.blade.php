@@ -24,14 +24,16 @@
                                 <div class="col">
                                     <label for="start_date"
                                         class="form-label fw-bold">{{ __('admin.form.start_date') }}</label>
-                                    <input type="datetime-local" class="form-control bg-dark border-warning text-white"
-                                        id="start_date" name="start_date" value="{{ old('start_date') }}" required>
+                                    <input type="datetime-local" step="1"
+                                        class="form-control bg-dark border-warning text-white" id="start_date"
+                                        name="start_date" value="{{ old('start_date') }}" required>
                                 </div>
                                 <div class="col">
                                     <label for="final_date"
                                         class="form-label fw-bold">{{ __('admin.form.final_date') }}</label>
-                                    <input type="datetime-local" class="form-control bg-dark border-warning text-white"
-                                        id="final_date" name="final_date" value="{{ old('final_date') }}" required>
+                                    <input type="datetime-local" step="1"
+                                        class="form-control bg-dark border-warning text-white" id="final_date"
+                                        name="final_date" value="{{ old('final_date') }}" required>
                                 </div>
                             </div>
                             <div class="col-md-6">

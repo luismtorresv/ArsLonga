@@ -46,8 +46,8 @@ class Auction extends Model
     public static function validate(Request $request): void
     {
         $request->validate([
-            'start_date' => 'required|date|date_format:Y-m-d\\TH:i',
-            'final_date' => 'required|date|date_format:Y-m-d\\TH:i|after:start_date',
+            'start_date' => 'required|date|date_format:Y-m-d\\TH:i:s',
+            'final_date' => 'required|date|date_format:Y-m-d\\TH:i:s|after:start_date',
             'artwork_id' => 'required|exists:artworks,id',
             'winning_bidder_id' => 'nullable|exists:users,id',
         ]);
