@@ -18,6 +18,7 @@ class ArtworkResource extends JsonResource
             'details' => $this->getDetails(),
             'keyword' => $this->getKeyword(),
             'category' => $this->getCategory(),
+            'link' => route('artwork.show', ['id' => $this->getId()]),
         ];
     }
 }
