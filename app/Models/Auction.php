@@ -40,6 +40,8 @@ class Auction extends Model
     protected $casts = [
         'start_date' => 'datetime',
         'final_date' => 'datetime',
+        'created_at' => 'datetime',
+        'modified_at' => 'datetime',
     ];
 
     public function determineHighestBidder(): ?Bid
@@ -79,12 +81,12 @@ class Auction extends Model
 
     public function getCreatedAt(): mixed
     {
-        return $this->attributes['created_at'];
+        return $this->created_at;
     }
 
     public function getUpdatedAt(): mixed
     {
-        return $this->attributes['updated_at'];
+        return $this->updated_at;
     }
 
     public function getStartDate(): mixed
