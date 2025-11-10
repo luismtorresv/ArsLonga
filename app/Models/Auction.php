@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Http\Request;
 
 class Auction extends Model
 {
@@ -42,16 +41,6 @@ class Auction extends Model
         'start_date' => 'datetime',
         'final_date' => 'datetime',
     ];
-
-    public static function validate(Request $request): void
-    {
-        $request->validate([
-            'start_date' => 'required|date|date_format:Y-m-d\\TH:i:s',
-            'final_date' => 'required|date|date_format:Y-m-d\\TH:i:s|after:start_date',
-            'artwork_id' => 'required|exists:artworks,id',
-            'winning_bidder_id' => 'nullable|exists:users,id',
-        ]);
-    }
 
     public function determineHighestBidder(): ?Bid
     {

@@ -7,11 +7,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\AdminStoreAuctionRequest;
 use App\Models\Artwork;
 use App\Models\Auction;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class AdminAuctionController extends Controller
@@ -56,16 +56,8 @@ class AdminAuctionController extends Controller
         return view('admin.auction.create', compact('artworks'));
     }
 
-    public function save(Request $request, ?int $id = null): RedirectResponse
+    public function save(AdminStoreAuctionRequest $request, ?int $id = null): RedirectResponse
     {
-        try {
-            Auction::validate($request);
-        } catch (ValidationException $e) {
-            return redirect()->back()
-                ->withErrors($e->validator)
-                ->withInput();
-        }
-
         $exists = Auction::where('artwork_id', $request->input('artwork_id'))
             ->when($id, fn ($q) => $q->where('id', '!=', $id))
             ->exists();
