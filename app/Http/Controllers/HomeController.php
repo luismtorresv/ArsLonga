@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ExternalApiService;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
     public function index(): View
     {
-        return view('home.index');
+        $viewData = [];
+        $viewData['products'] = ExternalApiService::getProducts();
+
+        return view('home.index')->with('viewData', $viewData);
     }
 }
