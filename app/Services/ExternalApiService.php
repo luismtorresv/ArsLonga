@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 class ExternalApiService
 {
-    public static function getProducts()
+    public static function getProducts(): array
     {
         try {
             $response = Http::timeout(10)->get('http://insumax.zone.id/api/products');
