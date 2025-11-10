@@ -37,4 +37,14 @@ class LanguageManager
             default => $code,
         };
     }
+
+    public static function getLanguageNames(): array
+    {
+        $names = [];
+        foreach (self::SUPPORTED_LANGUAGES as $lang) {
+            $names[$lang] = self::getLanguageName($lang);
+        }
+
+        return $names;
+    }
 }
