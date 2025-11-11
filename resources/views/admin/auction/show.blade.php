@@ -33,7 +33,7 @@
                                         <div class="col-md-4">
                                             <label class="text-warning small d-block mb-1">{{ __('admin.artwork') }}
                                                 ID</label>
-                                            <span class="badge bg-info">{{ $viewData['auction']->artwork }}</span>
+                                            <span class="badge bg-info">{{ $viewData['auction']->artwork->getId() }}</span>
                                         </div>
                                     </div>
                                     @if (isset($viewData['original_price']))
@@ -81,7 +81,7 @@
                                     <h5 class="text-warning fw-bold mb-3">
                                         <i class="bi bi-trophy"></i> {{ __('admin.winningBidder') }}
                                     </h5>
-                                    @if ($viewData['auction']->winning_bidder->getId())
+                                    @if ($viewData['auction']->winning_bidder)
                                         <div>
                                             <label class="text-warning small d-block mb-1">Bidder ID</label>
                                             <span
