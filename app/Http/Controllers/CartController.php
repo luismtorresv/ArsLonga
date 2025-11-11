@@ -88,7 +88,7 @@ class CartController extends Controller
         }
 
         if ($user->getBalance() < $total) {
-            return redirect()->back()->with('error', __('Insufficient balance'));
+            return redirect()->back()->with('error', __('cart.insufficient_balance'));
         }
 
         $order->setTotal($total);
