@@ -9,30 +9,21 @@ namespace App\Http\Controllers;
 use App\Models\Bid;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class BidController extends Controller
 {
-    public function create(int $auction_id): View
+    public function create(Request $request, int $auction_id): RedirectResponse
     {
-        $viewData = [];
-
-        $viewData['auction_id'] = $auction_id;
-
-        return view('bid.create')->with('viewData', $viewData);
-    }
-
-    public function save(request $request): RedirectResponse
-    {
-        $user_id = auth()->id();
-
         Bid::validate($request);
+
         Bid::create([
-            'price_offering' => $request->input('price_offering'),
-            'user_id' => $user_id,
-            'auction_id' => $request->input('auction_id'),
+            'price_offering' => $request->integer('price_offering'),
+            'user_id' => auth()->id(),
+            'auction_id' => $auction_id,
         ]);
 
-        return back();
+        return redirect()
+            ->route('auction.show', ['id' => $auction_id])
+            ->with('success', __('bid.create.success'));
     }
 }

@@ -11,6 +11,33 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * @property int $id
+ * @property string $title
+ * @property string $author
+ * @property string $keyword
+ * @property string $category
+ * @property string $details
+ * @property string $image
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $price
+ *
+ * @method static \Database\Factories\ArtworkFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork whereAuthor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork whereCategory($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork whereDetails($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork whereKeyword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork whereUpdatedAt($value)
+ */
 class Artwork extends Model
 {
     use HasFactory;

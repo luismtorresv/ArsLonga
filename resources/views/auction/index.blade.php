@@ -17,7 +17,7 @@
                                     {{ __('auction.index.auction_number', ['id' => $auction->getId()]) }}
                                 </h5>
                                 <p class="card-text">
-                                    {{ $auction->getArtwork()->getTitle() }}
+                                    {{ $auction->artwork->getTitle() }}
                                 </p>
                             </div>
                         </div>

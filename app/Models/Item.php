@@ -10,6 +10,25 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
 
+/**
+ * @property int $id
+ * @property int $price
+ * @property int $artwork_id
+ * @property int $order_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Artwork $artwork
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Item newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Item newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Item query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Item whereArtworkId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Item whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Item whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Item whereOrderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Item wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Item whereUpdatedAt($value)
+ */
 class Item extends Model
 {
     /**
@@ -65,16 +84,6 @@ class Item extends Model
         $this->attributes['order_id'] = $orderId;
     }
 
-    public function getArtworkId(): int
-    {
-        return $this->attributes['artwork_id'];
-    }
-
-    public function setArtworkId(int $artworkId): void
-    {
-        $this->attributes['artwork_id'] = $artworkId;
-    }
-
     public function getCreatedAt(): string
     {
         return $this->attributes['created_at'];
@@ -88,11 +97,5 @@ class Item extends Model
     public function artwork(): BelongsTo
     {
         return $this->belongsTo(Artwork::class);
-    }
-
-    public function getArtwork(): Artwork
-    {
-        // @phpstan-ignore-next-line
-        return $this->artwork;
     }
 }

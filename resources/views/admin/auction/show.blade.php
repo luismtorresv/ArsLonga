@@ -28,12 +28,12 @@
                                             <label
                                                 class="text-warning small d-block mb-1">{{ __('admin.artworkTitle') }}</label>
                                             <h6 class="fw-bold mb-0 text-white">
-                                                {{ $viewData['auction']->getArtwork()->getTitle() }}</h6>
+                                                {{ $viewData['auction']->artwork->getTitle() }}</h6>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="text-warning small d-block mb-1">{{ __('admin.artwork') }}
                                                 ID</label>
-                                            <span class="badge bg-info">{{ $viewData['auction']->getArtworkId() }}</span>
+                                            <span class="badge bg-info">{{ $viewData['auction']->artwork }}</span>
                                         </div>
                                     </div>
                                     @if (isset($viewData['original_price']))
@@ -81,11 +81,11 @@
                                     <h5 class="text-warning fw-bold mb-3">
                                         <i class="bi bi-trophy"></i> {{ __('admin.winningBidder') }}
                                     </h5>
-                                    @if ($viewData['auction']->getWinningBidderId())
+                                    @if ($viewData['auction']->winning_bidder->getId())
                                         <div>
                                             <label class="text-warning small d-block mb-1">Bidder ID</label>
                                             <span
-                                                class="badge bg-warning text-dark fs-6">{{ $viewData['auction']->getWinningBidderId() }}</span>
+                                                class="badge bg-warning text-dark fs-6">{{ $viewData['auction']->winning_bidder->getId() }}</span>
                                         </div>
                                     @else
                                         <p class="text-white-50 mb-0">

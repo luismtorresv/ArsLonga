@@ -38,14 +38,14 @@
                                         <tr>
                                             <td>#{{ $item->getId() }}</td>
                                             <td>
-                                                <a href="{{ route('artwork.show', ['id' => $item->getArtwork()->getId()]) }}"
+                                                <a href="{{ route('artwork.show', ['id' => $item->artwork->getId()]) }}"
                                                     class="text-decoration-none">
-                                                    {{ $item->getArtwork()->getTitle() }}
+                                                    {{ $item->artwork->getTitle() }}
                                                 </a>
                                             </td>
                                             <td>${{ number_format($item->getPrice(), 2) }}</td>
                                             <td class="text-end">
-                                                <a href="{{ route('artwork.show', ['id' => $item->getArtwork()->getId()]) }}"
+                                                <a href="{{ route('artwork.show', ['id' => $item->artwork->getId()]) }}"
                                                     class="btn btn-sm btn-outline-primary">{{ __('order.view_artwork') }}</a>
                                             </td>
                                         </tr>

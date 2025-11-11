@@ -25,7 +25,7 @@ class AuctionController extends Controller
     {
         $viewData = [];
         $auction = Auction::findOrFail($id);
-        $artwork = $auction->getArtwork();
+        $artwork = $auction->artwork;
 
         $viewData['auction'] = $auction;
         $viewData['original_price'] = $artwork->getPrice();

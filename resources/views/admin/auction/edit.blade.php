@@ -46,7 +46,7 @@
                                     name="artwork_id" required>
                                     @foreach ($viewData['artworks'] as $artwork)
                                         <option value="{{ $artwork->getId() }}"
-                                            {{ old('artwork_id', $viewData['auction']->getArtworkId()) == $artwork->getId() ? 'selected' : '' }}>
+                                            {{ old('artwork_id', $viewData['auction']->artwork->getId()) == $artwork->getId() ? 'selected' : '' }}>
                                             {{ $artwork->getTitle() }}
                                         </option>
                                     @endforeach

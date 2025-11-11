@@ -53,7 +53,7 @@
                     @forelse ($viewData['auctions'] as $auction)
                         <tr>
                             <td>{{ $auction->getId() }}</td>
-                            <td> {{ $auction->getArtwork()->getTitle() }}</td>
+                            <td> {{ $auction->artwork->getTitle() }}</td>
                             <td>{{ $auction->getStartDate() }}</td>
                             <td>{{ $auction->getFinalDate() }}</td>
                             <td class="text-center">

@@ -12,6 +12,31 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $winning_bidder_id
+ * @property int $artwork_id
+ * @property \Illuminate\Support\Carbon|null $start_date
+ * @property \Illuminate\Support\Carbon|null $final_date
+ * @property-read \App\Models\Artwork $artwork
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Bid> $bids
+ * @property-read int|null $bids_count
+ * @property-read \App\Models\User|null $winning_bidder
+ *
+ * @method static \Database\Factories\AuctionFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Auction newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Auction newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Auction query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Auction whereArtworkId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Auction whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Auction whereFinalDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Auction whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Auction whereStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Auction whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Auction whereWinningBidderId($value)
+ */
 class Auction extends Model
 {
     use HasFactory;
@@ -21,8 +46,7 @@ class Auction extends Model
      * $this->attributes['id'] - int - contains the auction's primary key (id)
      * $this->attributes['created_at'] - timestamp - contains the time when the auction was created
      * $this->attributes['updated_at'] - timestamp - contains the time when the auction was last updated
-     * $this->attributes['start_date'] - timestamp  - contains the start datetime of the auction.
-     * $this->attributes['final_date'] - timestamp  - contains the final datetime of the auction.
+     * $this->attributes['final_date'] - timestamp  - contains the time limit of the auction
      * $this->attributes['winning_bidder_id'] - bigint  - contains the id of the customer who won the auction
      * $this->attributes['artwork_id'] - bigint  - contains the id of the artwork sold in the auction
      *
@@ -44,15 +68,14 @@ class Auction extends Model
         'modified_at' => 'datetime',
     ];
 
-    public function determineHighestBidder(): ?Bid
+    public function findTopBidder(): ?Bid
     {
-        // @phpstan-ignore-next-line
         return $this->bids->sortByDesc('price_offering')->first();
     }
 
     public function closeAuction(): bool
     {
-        $highestBidder = $this->determineHighestBidder();
+        $highestBidder = $this->findTopBidder();
         if (! $highestBidder) {
             return false;
         }
@@ -63,10 +86,25 @@ class Auction extends Model
             return false;
         }
 
-        $this->setWinningBidderId($highestBidder->getUserId());
+        $this->winning_bidder()->associate($highestBidder);
         $this->save();
 
         return true;
+    }
+
+    public function hasAWinner(): bool
+    {
+        return ! $this->isActive() && $this->findTopBidder();
+    }
+
+    public function isActive(): bool
+    {
+        return ($this->getStartDate() <= now()) && (now() <= $this->getFinalDate());
+    }
+
+    public function hasStarted(): bool
+    {
+        return now() >= $this->getStartDate();
     }
 
     public function hasEnded(): bool
@@ -114,41 +152,9 @@ class Auction extends Model
         return $this->belongsTo(User::class, 'winning_bidder_id');
     }
 
-    public function getWinningBidder(): ?User
-    {
-        // @phpstan-ignore-next-line
-        return $this->winning_bidder;
-    }
-
-    public function getWinningBidderId(): ?int
-    {
-        return $this->attributes['winning_bidder_id'];
-    }
-
-    public function setWinningBidderId(int $winningBiddingId): void
-    {
-        $this->attributes['winning_bidder_id'] = $winningBiddingId;
-    }
-
     public function artwork(): BelongsTo
     {
         return $this->belongsTo(Artwork::class);
-    }
-
-    public function getArtwork(): Artwork
-    {
-        // @phpstan-ignore-next-line
-        return $this->artwork;
-    }
-
-    public function getArtworkId(): int
-    {
-        return $this->attributes['artwork_id'];
-    }
-
-    public function setArtworkId(int $artwork_id): void
-    {
-        $this->attributes['artwork_id'] = $artwork_id;
     }
 
     public function bids(): HasMany

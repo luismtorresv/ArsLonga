@@ -79,8 +79,8 @@ class CartController extends Controller
 
         foreach ($artworksInCart as $artwork) {
             $item = new Item;
+            $item->artwork()->associate($artwork);
             $item->setPrice($artwork->getPrice());
-            $item->setArtworkId($artwork->getId());
             $item->setOrderId($order->getId());
 
             $item->save();

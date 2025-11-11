@@ -69,9 +69,8 @@ Route::middleware(['auth'])->controller(OrderController::class)->group(function 
     Route::get('/orders', 'index')->name('order.index');
 });
 
-Route::controller(BidController::class)->group(function () {
-    Route::get('/bid/create/{auction_id}', 'create')->name('bid.create');
-    Route::post('/bid/save', 'save')->name('bid.save');
+Route::middleware(['auth'])->controller(BidController::class)->group(function () {
+    Route::post('/bid/create/{auction_id}', 'create')->name('bid.create');
 });
 
 Route::controller(LanguageController::class)->group(function () {

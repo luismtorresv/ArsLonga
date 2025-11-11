@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminStoreAuctionRequest;
 use App\Models\Artwork;
 use App\Models\Auction;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -41,9 +42,9 @@ class AdminAuctionController extends Controller
     {
         $viewData = [];
         $auction = Auction::findOrFail($id);
+        $artwork = $auction->artwork;
 
         $viewData['auction'] = $auction;
-        $artwork = $auction->getArtwork();
         $viewData['original_price'] = $artwork->getPrice();
 
         return view('admin.auction.show')->with('viewData', $viewData);
@@ -69,13 +70,15 @@ class AdminAuctionController extends Controller
         }
 
         $auction = $id ? Auction::findOrFail($id) : new Auction;
+        $artwork = Artwork::find($request->integer('artwork_id'));
 
-        $auction->setArtworkId($request->integer('artwork_id'));
+        $auction->artwork()->associate($artwork);
         $auction->setStartDate($request->date('start_date'));
         $auction->setFinalDate($request->date('final_date'));
 
         if ($request->filled('winning_bidder_id')) {
-            $auction->setWinningBidderId($request->integer('winning_bidder_id'));
+            $user = User::find($request->integer('winning_bidder_id'));
+            $auction->winning_bidder()->associate($user);
         }
 
         $auction->save();
