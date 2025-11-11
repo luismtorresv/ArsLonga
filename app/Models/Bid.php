@@ -10,20 +10,28 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
 
+/**
+ * @property int $id
+ * @property int $price_offering
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $user_id
+ * @property int $auction_id
+ * @property-read \App\Models\Auction $auction
+ * @property-read \App\Models\User $user
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Bid newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Bid newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Bid query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Bid whereAuctionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Bid whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Bid whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Bid wherePriceOffering($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Bid whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Bid whereUserId($value)
+ */
 class Bid extends Model
 {
-    /**
-     * BID ATTRIBUTES
-     * $this->attributes['id'] - int - contains the bid's primary key (id)
-     * $this->attributes['created_at'] - timestamp - contains the time when the bid was created
-     * $this->attributes['updated_at'] - timestamp - contains the time when the bid was last updated
-     * $this->attributes['price_offering'] - int - contains the price offering of the bid made by the user
-     * $this->attributes['user_id'] - int - contains the referenced user id
-     * $this->attributes['auction_id'] - int - contains the referenced auction id
-     *
-     * $this->user - User - contains the associated User
-     * $this->auction - Auction - contains the associated Auction
-     */
     protected $fillable = ['price_offering', 'user_id', 'auction_id'];
 
     public static function validate(request $request): void

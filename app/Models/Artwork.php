@@ -42,19 +42,6 @@ class Artwork extends Model
 {
     use HasFactory;
 
-    /**
-     * ARTWORK ATTRIBUTES
-     * $this->attributes['id'] - int - contains the artwork primary key (id)
-     * $this->attributes['title'] - string - contains the artwork name
-     * $this->attributes['author'] - string - contains the author name
-     * $this->attributes['keyword'] - string - contains the keyword
-     * $this->attributes['category'] - string - contains the category
-     * $this->attributes['price'] - int - contains the artwork's price
-     * $this->attributes['details'] - string - contains the artwork details
-     * $this->attributes['image'] - string - contains the artwork image
-     * $this->attributes['created_at'] - timestamp - contains the artwork creation date
-     * $this->attributes['updated_at'] - timestamp - contains the artwork update date
-     */
     public static function validate(Request $request): void
     {
         $request->validate([

@@ -32,18 +32,6 @@ use Illuminate\Http\Request;
  */
 class Order extends Model
 {
-    /**
-     * ORDER ATTRIBUTES
-     *
-     * $this->attributes['id'] - int - contains the order's primary key (id)
-     * $this->attributes['total'] - int - contains the order's total price
-     * $this->attributes['user_id'] - int - contains the referenced user id
-     * $this->attributes['created_at'] - timestamp - contains the order creation date
-     * $this->attributes['updated_at'] - timestamp - contains the order update date
-     *
-     * $this->user - User - contains the associated User
-     * $this->item - Item - contains the associated Items
-     */
     protected $fillable = [
         'user_id',
     ];

@@ -31,19 +31,6 @@ use Illuminate\Http\Request;
  */
 class Item extends Model
 {
-    /**
-     * ITEM ATTRIBUTES
-     *
-     * $this->attributes['id'] - int - contains the item's primary key (id)
-     * $this->attributes['price'] - int - contains the item's price
-     * $this->attributes['order_id'] - int - contains the referenced order id
-     * $this->attributes['artwork_id'] - int - contains the referenced artwork id
-     * $this->attributes['created_at'] - timestamp - contains the item creation date
-     * $this->attributes['updated_at'] - timestamp - contains the item update date
-     *
-     * $this->artwork - Artwork - contains the associated Artwork
-     * $this->order - Order - contains the associated Order
-     */
     protected $fillable = [
         'price',
         'order_id',
