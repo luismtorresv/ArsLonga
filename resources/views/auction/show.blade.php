@@ -24,14 +24,68 @@
                 <h4 class="text-muted mb-4">{{ $artwork->getTitle() }}</h4>
 
                 <div class="auction-details">
-                    <div class="category-badge mb-4">
-                        <span
-                            class="badge bg-secondary">{{ __('auction.show.original_price', ['amount' => number_format($viewData['original_price'])]) }}</span>
-                        @if ($winningBidder)
-                            <span class="badge bg-success">{{ __('auction.show.status.won') }}</span>
-                        @else
-                            <span class="badge bg-warning">{{ __('auction.show.status.active') }}</span>
-                        @endif
+                    <!-- Auction Timeline and Status -->
+                    <div class="card border-primary mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary mb-3">
+                                <i class="fas fa-clock"></i> {{ __('auction.show.timeline.title') }}
+                            </h5>
+
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <small class="text-muted">{{ __('auction.show.timeline.starts') }}</small>
+                                    <div class="fw-bold">{{ $auction->getStartDate()->format('M d, Y H:i') }}</div>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">{{ __('auction.show.timeline.ends') }}</small>
+                                    <div class="fw-bold">{{ $auction->getFinalDate()->format('M d, Y H:i') }}</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                @if (!$auction->hasStarted())
+                                    <div class="alert alert-info mb-2">
+                                        <i class="fas fa-hourglass-start"></i>
+                                        {{ __('auction.show.status.not_started') }}
+                                    </div>
+                                    <div class="text-center">
+                                        <strong>{{ __('auction.show.countdown.starts_in') }}</strong>
+                                        <div class="h4 text-primary">{{ $auction->getStartDate()->diffForHumans() }}</div>
+                                    </div>
+                                @elseif ($auction->hasEnded())
+                                    <div class="alert alert-secondary mb-2">
+                                        <i class="fas fa-flag-checkered"></i>
+                                        {{ __('auction.show.status.ended') }}
+                                    </div>
+                                    <div class="text-muted text-center">
+                                        {{ __('auction.show.countdown.ended') }}
+                                        {{ $auction->getFinalDate()->diffForHumans() }}
+                                    </div>
+                                @else
+                                    <div class="alert alert-success mb-2">
+                                        <i class="fas fa-fire"></i>
+                                        {{ __('auction.show.status.active') }}
+                                    </div>
+                                    <div class="text-center">
+                                        <strong>{{ __('auction.show.countdown.ends_in') }}</strong>
+                                        <div class="h4 text-danger">
+                                            {{ now()->diffForHumans($auction->getFinalDate(), true) }}
+                                            {{ __('auction.show.countdown.remaining') }}</div>
+                                    </div>
+                                @endif
+                            </div>
+
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-secondary">
+                                    {{ __('auction.show.original_price', ['amount' => number_format($viewData['original_price'])]) }}
+                                </span>
+                                @if ($winningBidder)
+                                    <span class="badge bg-success">
+                                        <i class="fas fa-trophy"></i> {{ __('auction.show.status.won') }}
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                     </div>
 
                     <div class="description mb-4">
@@ -87,16 +141,17 @@
 
                     @guest
                         <div class="bid-action mb-4">
-                            <p class="text-muted">
+                            <div class="alert alert-warning">
+                                <i class="fas fa-sign-in-alt"></i>
                                 <a href="{{ route('login') }}"
-                                    class="text-decoration-none">{{ __('auction.show.bid_action.login_link') }}</a>
+                                    class="text-decoration-none fw-bold">{{ __('auction.show.bid_action.login_link') }}</a>
                                 {{ __('auction.show.bid_action.login_to_bid') }}
-                            </p>
+                            </div>
                         </div>
                     @else
-                        @if (!$winningBidder)
+                        @if ($auction->hasStarted() && !$auction->hasEnded() && !$winningBidder)
                             <div class="bid-action mb-4">
-                                <div class="card shadow-sm">
+                                <div class="card border-success shadow-sm">
                                     <div class="card-body">
                                         <h5 class="card-title text-success mb-3">
                                             <i class="fas fa-gavel"></i> {{ __('auction.show.bid_action.place_bid') }}
@@ -137,6 +192,14 @@
                                         </form>
                                     </div>
                                 </div>
+                            </div>
+                        @elseif (!$auction->hasStarted())
+                            <div class="alert alert-info">
+                                <i class="fas fa-clock"></i> {{ __('auction.show.bid_action.not_started') }}
+                            </div>
+                        @elseif ($auction->hasEnded() && !$winningBidder)
+                            <div class="alert alert-secondary">
+                                <i class="fas fa-hourglass-end"></i> {{ __('auction.show.bid_action.ended') }}
                             </div>
                         @endif
                     @endguest

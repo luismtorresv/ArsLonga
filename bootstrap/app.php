@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -19,6 +20,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web([
             \App\Http\Middleware\SetLanguage::class,
         ]);
+    })
+    ->withSchedule(function (Schedule $schedule): void {
+        // Close expired auctions every minute
+        $schedule->command('auctions:close-expired')->everyMinute();
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

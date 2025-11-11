@@ -61,8 +61,8 @@ class Auction extends Model
 
     public function closeAuction(): bool
     {
-        $highestBidder = $this->findTopBidder();
-        if (! $highestBidder) {
+        $highestBid = $this->findTopBidder();
+        if (! $highestBid) {
             return false;
         }
 
@@ -72,7 +72,7 @@ class Auction extends Model
             return false;
         }
 
-        $this->winning_bidder()->associate($highestBidder);
+        $this->winning_bidder()->associate($highestBid->user);
         $this->save();
 
         return true;

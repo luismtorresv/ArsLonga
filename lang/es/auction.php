@@ -22,9 +22,22 @@ return [
         'user_id' => 'ID de Usuario: :id',
         'auction_id' => 'ID de Subasta: :id',
         'created' => 'Creado: :date',
+        'timeline' => [
+            'title' => 'Línea de Tiempo de la Subasta',
+            'starts' => 'Comienza',
+            'ends' => 'Termina',
+        ],
         'status' => [
             'won' => 'Ganada',
-            'active' => 'Activa',
+            'active' => 'Subasta en Vivo',
+            'not_started' => 'La subasta aún no ha comenzado',
+            'ended' => 'La subasta ha terminado',
+        ],
+        'countdown' => [
+            'starts_in' => 'Comienza en',
+            'ends_in' => 'Termina en',
+            'ended' => 'Terminó',
+            'remaining' => 'restantes',
         ],
         'bids' => [
             'title' => 'Ofertas Disponibles',
@@ -35,6 +48,8 @@ return [
             'place_bid' => 'Hacer Tu Oferta',
             'login_to_bid' => 'para hacer una oferta en esta subasta.',
             'login_link' => 'Iniciar Sesión',
+            'not_started' => 'Las ofertas se abrirán cuando comience la subasta.',
+            'ended' => 'Esta subasta ha terminado. Las ofertas están cerradas.',
         ],
     ],
 ];
