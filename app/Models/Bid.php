@@ -65,12 +65,6 @@ class Bid extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getUser(): ?User
-    {
-        // @phpstan-ignore-next-line
-        return $this->user;
-    }
-
     public function getUserId(): ?int
     {
         return $this->attributes['user_id'];
@@ -84,21 +78,5 @@ class Bid extends Model
     public function auction(): BelongsTo
     {
         return $this->belongsTo(Auction::class);
-    }
-
-    public function getAuction(): Auction
-    {
-        // @phpstan-ignore-next-line
-        return $this->auction;
-    }
-
-    public function getAuctionId(): int
-    {
-        return $this->attributes['auction_id'];
-    }
-
-    public function setAuctionId(int $auction_id): void
-    {
-        $this->attributes['auction_id'] = $auction_id;
     }
 }
