@@ -70,16 +70,6 @@ class Order extends Model
         $this->attributes['total'] = $total;
     }
 
-    public function getUserId(): int
-    {
-        return $this->attributes['user_id'];
-    }
-
-    public function setUserId(int $userId): void
-    {
-        $this->attributes['user_id'] = $userId;
-    }
-
     public function getCreatedAt(): string
     {
         return $this->attributes['created_at'];

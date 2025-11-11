@@ -70,7 +70,7 @@ class CartController extends Controller
         $user = Auth::user();
 
         $order = new Order;
-        $order->setUserId($user->getId());
+        $order->user()->associate($user);
         $order->setTotal(0);
         $order->save();
 
@@ -81,7 +81,7 @@ class CartController extends Controller
             $item = new Item;
             $item->artwork()->associate($artwork);
             $item->setPrice($artwork->getPrice());
-            $item->setOrderId($order->getId());
+            $item->order()->associate($order);
 
             $item->save();
             $total += $artwork->getPrice();

@@ -74,16 +74,6 @@ class Item extends Model
         $this->attributes['price'] = $price;
     }
 
-    public function getOrderId(): int
-    {
-        return $this->attributes['order_id'];
-    }
-
-    public function setOrderId(int $orderId): void
-    {
-        $this->attributes['order_id'] = $orderId;
-    }
-
     public function getCreatedAt(): string
     {
         return $this->attributes['created_at'];
@@ -97,5 +87,10 @@ class Item extends Model
     public function artwork(): BelongsTo
     {
         return $this->belongsTo(Artwork::class);
+    }
+
+    public function order(): BelongsTo
+    {
+        return $this->belongsTo(Order::class);
     }
 }

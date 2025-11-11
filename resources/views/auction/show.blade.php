@@ -55,13 +55,13 @@
                     <!-- Bids Section -->
                     <div class="bids-section mb-4">
                         <h5 class="text-primary">{{ __('auction.show.bids.title') }}</h5>
-                        @if ($auction->getBids()->isEmpty())
+                        @if ($auction->bids->isEmpty())
                             <div class="alert alert-info" role="alert">
                                 <p class="mb-0">{{ __('auction.show.bids.no_bids') }}</p>
                             </div>
                         @else
                             <div class="bids-list">
-                                @foreach ($auction->getBids()->sortByDesc('price_offering') as $bid)
+                                @foreach ($auction->bids->sortByDesc('price_offering') as $bid)
                                     <div class="bid-item mb-3 rounded border bg-white p-3 shadow-sm">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
