@@ -11,6 +11,7 @@ return [
     'header' => [
         'home' => 'Página principal',
         'auctions' => 'Subastas',
+        'phrases' => 'Frases',
         'artworks' => 'Obras de arte',
         'cart' => 'Carrito de compras',
         'orders' => 'Mis órdenes',

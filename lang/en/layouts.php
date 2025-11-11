@@ -11,6 +11,7 @@ return [
     'header' => [
         'home' => 'Home',
         'auctions' => 'Auctions',
+        'phrases' => 'Phrases',
         'artworks' => 'Artworks',
         'cart' => 'Cart',
         'orders' => 'My Orders',

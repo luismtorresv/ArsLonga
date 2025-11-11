@@ -12,6 +12,8 @@
                         class="nav-link px-2 text-white">{{ __('layouts.header.artworks') }}</a></li>
                 <li><a href="{{ route('auction.index') }}"
                         class="nav-link px-2 text-white">{{ __('layouts.header.auctions') }}</a></li>
+                <li><a href="{{ route('phrase.index') }}"
+                        class="nav-link px-2 text-white">{{ __('layouts.header.phrases') }}</a></li>
                 @auth
                     <li><a href="{{ route('cart.index') }}"
                             class="nav-link px-2 text-white">{{ __('layouts.header.cart') }}</a></li>
