@@ -72,8 +72,35 @@ class Auction extends Model
             return false;
         }
 
-        $this->winning_bidder()->associate($highestBid->user);
+        $winner = $highestBid->user;
+        $winningPrice = $highestBid->getPriceOffering();
+
+        // Check if winner has sufficient balance
+        if ($winner->getBalance() < $winningPrice) {
+            // Winner doesn't have enough balance, auction cannot close
+            return false;
+        }
+
+        // Assign the winner
+        $this->winning_bidder()->associate($winner);
         $this->save();
+
+        // Create order for the winner
+        $order = new Order;
+        $order->user()->associate($winner);
+        $order->setTotal($winningPrice);
+        $order->save();
+
+        // Create item with the artwork and winning bid price
+        $item = new Item;
+        $item->artwork()->associate($this->artwork);
+        $item->order()->associate($order);
+        $item->setPrice($winningPrice);
+        $item->save();
+
+        // Deduct amount from winner's balance
+        $winner->subtractFromBalance($winningPrice);
+        $winner->save();
 
         return true;
     }

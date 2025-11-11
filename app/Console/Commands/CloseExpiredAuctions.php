@@ -46,11 +46,18 @@ class CloseExpiredAuctions extends Command
             $this->line("Processing Auction #{$auction->getId()}...");
 
             if ($auction->closeAuction()) {
+                $auction->refresh(); // Reload to get the winner
+                $winner = $auction->winning_bidder;
+                $latestOrder = $winner->orders()->latest()->first();
+
                 $this->info("  ✓ Auction #{$auction->getId()} closed successfully.");
-                $this->line("    Winner: User #{$auction->winning_bidder->getId()}");
+                $this->line("    Winner: User #{$winner->getId()} ({$winner->getName()})");
+                if ($latestOrder) {
+                    $this->line("    Order #{$latestOrder->getId()} created with total: \${$latestOrder->getTotal()}"); // @phpstan-ignore-line
+                }
                 $closedCount++;
             } else {
-                $this->warn("  ✗ Auction #{$auction->getId()} could not be closed (no bids).");
+                $this->warn("  ✗ Auction #{$auction->getId()} could not be closed (no bids or insufficient balance).");
                 $failedCount++;
             }
         }
