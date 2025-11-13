@@ -41,8 +41,6 @@ class Bid extends Model
         ]);
     }
 
-    public static function determineAuctionWinner(): void {}
-
     public function getId(): int
     {
         return $this->attributes['id'];
