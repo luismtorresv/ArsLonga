@@ -23,13 +23,11 @@ class PhraseChuckNorrisDisplay implements PhraseDisplay
                 return 'Could not fetch Chuck Norris joke at this time.';
             }
 
-            $data = json_decode($response, true);
-            if (isset($data['value'])) {
-                return $data['value'];
-            }
+            $quote = $response->json(key: 'value',
+                default: 'Chuck Norris is so powerful, even his jokes are classified.'
+            );
 
-            return 'Chuck Norris is so powerful, even his jokes are classified.';
-
+            return $quote;
         } catch (Exception $e) {
             return 'Error: Could not retrieve API data.';
         }
