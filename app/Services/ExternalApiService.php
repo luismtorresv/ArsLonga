@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Exception;
 use Illuminate\Support\Facades\Http;
 
 class ExternalApiService
@@ -16,7 +17,7 @@ class ExternalApiService
             }
 
             return [];
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return [];
         }
     }
