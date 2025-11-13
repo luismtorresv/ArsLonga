@@ -8,15 +8,18 @@ namespace App\Utilities;
 
 use App\Interfaces\PhraseDisplay;
 use Exception;
+use Illuminate\Support\Facades\Http;
 
 class PhraseChuckNorrisDisplay implements PhraseDisplay
 {
     public function getPhrase(): string
     {
         try {
-            $response = file_get_contents('https://api.chucknorris.io/jokes/random');
+            $response = Http::connectTimeout(5)
+                ->timeout(10)
+                ->get('https://api.chucknorris.io/jokes/random');
 
-            if (! $response) {
+            if ($response->failed()) {
                 return 'Could not fetch Chuck Norris joke at this time.';
             }
 
