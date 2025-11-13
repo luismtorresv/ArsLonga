@@ -10,7 +10,7 @@ class ExternalApiService
     public static function getProducts(): array
     {
         try {
-            $response = Http::timeout(10)->get('http://insumax.zone.id/api/products');
+            $response = Http::timeout(10)->get(config('api.external_team_api_url'));
 
             if ($response->successful()) {
                 return $response->json()['data'] ?? $response->json();
