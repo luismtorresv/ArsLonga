@@ -32,7 +32,11 @@ use Illuminate\Http\Request;
  */
 class Bid extends Model
 {
-    protected $fillable = ['price_offering', 'user_id', 'auction_id'];
+    protected $fillable = [
+        'price_offering',
+        'user_id',
+        'auction_id',
+    ];
 
     public static function validate(request $request): void
     {
