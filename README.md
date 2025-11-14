@@ -93,6 +93,29 @@ Or, if you don't want to rely on npm, or use pail, etc:
 php artisan serve
 ```
 
+## Git hooks
+
+We use the [lefthook Git hooks manager][lefthook] to run pre-commit hooks that:
+
+1. Automatically format and stage PHP code using [Laravel Pint][pint]
+
+2. Perform static analysis on the PHP code using [Larastan][larastan]
+
+3. Format Blade templates using the [shufo/blade-formatter][blade-formatter]
+
+4. Checks for missing translation files or strings using the
+   [Laravel translations checker][translations-checker]
+
+[lefthook]: <https://lefthook.dev/> "evilmartians/lefthook: Fast and powerful Git hooks manager for any type of projects."
+[pint]: <https://github.com/laravel/pint> "laravel/pint: Laravel Pint is an opinionated PHP code style fixer for minimalists."
+[larastan]: <https://github.com/larastan/larastan> "larastan/larastan: Adds code analysis to Laravel improving developer productivity and code quality"
+[blade-formatter]: <https://github.com/shufo/blade-formatter> "shufo/blade-formatter: An opinionated blade template formatter for Laravel that respects readability"
+[translations-checker]: <https://github.com/LarsWiegers/laravel-translations-checker> "LarsWiegers/laravel-translations-checker: Never worry about missing translations again! Use the translations checker."
+
+> [!TIP]
+>
+> Take a look at the [config/lefthook.yaml](config/lefthook.yaml) file.
+
 ## API
 
 The API route is `/api/`.
