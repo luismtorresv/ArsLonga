@@ -84,7 +84,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function subtractFromBalance($amount): void
+    public function subtractFromBalance(int $amount): void
     {
         $currentAmount = $this->getBalance();
 
