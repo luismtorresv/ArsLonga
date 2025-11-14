@@ -1,58 +1,53 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container-fluid d-flex justify-content-center align-items-center min-vh-50">
-        <div class="row w-100 justify-content-center align-items-center mx-auto"
-            style="max-width: 1200px; min-height: 600px;">
-            <div class="col-lg-8 d-flex justify-content-center align-items-center">
-                <div class="card bg-dark rounded-4 w-100 mx-auto p-5 text-white shadow-lg"
-                    style="max-width: 480px; min-height: 600px;">
-                    <div class="d-flex flex-column align-items-center">
-                        <h2 class="mb-4">{{ __('user.profile') }}</h2>
-                        <form method="POST" action="{{ route('user.update') }}" class="w-100 mb-2">
-                            @csrf
-                            <div
-                                class="w-100 bg-secondary rounded-2 mb-2 border border-2 border-white px-3 py-3 text-start">
-                                <label for="name"
-                                    class="form-label mb-1 text-white"><strong>{{ __('user.name') }}:</strong></label>
-                                <input type="text" class="form-control bg-dark border-0 text-white" id="name"
-                                    name="name" value="{{ $viewData['user']->getName() }}" required>
-                            </div>
-                            <div
-                                class="w-100 bg-secondary rounded-2 mb-2 border border-2 border-white px-3 py-3 text-start">
-                                <label for="address"
-                                    class="form-label mb-1 text-white"><strong>{{ __('user.address') }}:</strong></label>
-                                <input type="text" class="form-control bg-dark border-0 text-white" id="address"
-                                    name="address" value="{{ $viewData['user']->getAddress() }}">
-                            </div>
-                            <button type="submit" class="btn btn-warning w-100 fw-bold mt-3">{{ __('user.save') }}</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 d-flex align-items-center justify-content-end" style="min-height: 600px;">
-                <div class="card bg-dark rounded-4 d-flex flex-column align-items-center w-100 ms-auto p-3 text-white shadow-lg"
-                    style="max-width: 300px; min-height: 220px;">
-                    <h4 class="mb-4">{{ __('auth.flow.password.change_password') }}</h4>
-                    <form method="POST" action="{{ route('user.changePassword') }}" class="w-100">
-                        @csrf
-                        <div class="w-100 bg-secondary rounded-2 mb-2 border border-2 border-white px-3 py-3 text-start">
-                            <label for="password"
-                                class="form-label mb-1 text-white"><strong>{{ __('auth.flow.password.new_password') }}</strong></label>
-                            <input type="password" class="form-control bg-dark border-0 text-white" id="password"
-                                name="password" required minlength="8" placeholder="********">
-                        </div>
-                        <div class="w-100 bg-secondary rounded-2 mb-2 border border-2 border-white px-3 py-3 text-start">
-                            <label for="password_confirmation"
-                                class="form-label mb-1 text-white"><strong>{{ __('auth.flow.password.confirm_password') }}</strong></label>
-                            <input type="password" class="form-control bg-dark border-0 text-white"
-                                id="password_confirmation" name="password_confirmation" required minlength="8"
-                                placeholder="********">
-                        </div>
-                        <button type="submit"
-                            class="btn btn-warning w-100 fw-bold mt-3">{{ __('auth.flow.password.change_password') }}</button>
-                    </form>
-                </div>
-            </div>
+  <div class="container-fluid d-flex justify-content-center align-items-center min-vh-50">
+    <div class="row w-100 justify-content-center align-items-center mx-auto" style="max-width: 1200px; min-height: 600px;">
+      <div class="col-lg-8 d-flex justify-content-center align-items-center">
+        <div class="card bg-dark rounded-4 w-100 mx-auto p-5 text-white shadow-lg"
+          style="max-width: 480px; min-height: 600px;">
+          <div class="d-flex flex-column align-items-center">
+            <h2 class="mb-4">{{ __('user.profile') }}</h2>
+            <form method="POST" action="{{ route('user.update') }}" class="w-100 mb-2">
+              @csrf
+              <div class="w-100 bg-secondary rounded-2 mb-2 border border-2 border-white px-3 py-3 text-start">
+                <label for="name" class="form-label mb-1 text-white"><strong>{{ __('user.name') }}:</strong></label>
+                <input type="text" class="form-control bg-dark border-0 text-white" id="name" name="name"
+                  value="{{ $viewData['user']->getName() }}" required>
+              </div>
+              <div class="w-100 bg-secondary rounded-2 mb-2 border border-2 border-white px-3 py-3 text-start">
+                <label for="address"
+                  class="form-label mb-1 text-white"><strong>{{ __('user.address') }}:</strong></label>
+                <input type="text" class="form-control bg-dark border-0 text-white" id="address" name="address"
+                  value="{{ $viewData['user']->getAddress() }}">
+              </div>
+              <button type="submit" class="btn btn-warning w-100 fw-bold mt-3">{{ __('user.save') }}</button>
+            </form>
+          </div>
         </div>
+      </div>
+      <div class="col-lg-4 d-flex align-items-center justify-content-end" style="min-height: 600px;">
+        <div class="card bg-dark rounded-4 d-flex flex-column align-items-center w-100 ms-auto p-3 text-white shadow-lg"
+          style="max-width: 300px; min-height: 220px;">
+          <h4 class="mb-4">{{ __('auth.flow.password.change_password') }}</h4>
+          <form method="POST" action="{{ route('user.changePassword') }}" class="w-100">
+            @csrf
+            <div class="w-100 bg-secondary rounded-2 mb-2 border border-2 border-white px-3 py-3 text-start">
+              <label for="password"
+                class="form-label mb-1 text-white"><strong>{{ __('auth.flow.password.new_password') }}</strong></label>
+              <input type="password" class="form-control bg-dark border-0 text-white" id="password" name="password"
+                required minlength="8" placeholder="********">
+            </div>
+            <div class="w-100 bg-secondary rounded-2 mb-2 border border-2 border-white px-3 py-3 text-start">
+              <label for="password_confirmation"
+                class="form-label mb-1 text-white"><strong>{{ __('auth.flow.password.confirm_password') }}</strong></label>
+              <input type="password" class="form-control bg-dark border-0 text-white" id="password_confirmation"
+                name="password_confirmation" required minlength="8" placeholder="********">
+            </div>
+            <button type="submit"
+              class="btn btn-warning w-100 fw-bold mt-3">{{ __('auth.flow.password.change_password') }}</button>
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
 @endsection
