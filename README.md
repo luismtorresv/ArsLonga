@@ -8,6 +8,20 @@ Online art store using the Laravel PHP framework. Project for the course
 “Software Architecture” (SI3001) taught by professor Daniel Correa at EAFIT
 University during the 2025-2 semester.
 
+## Screenshots
+
+![Artworks list.](.docs/screenshots/ArsLonga-screenshot-artworks.png)
+
+![Auction view.](.docs/screenshots/ArsLonga-screenshot-auction.png)
+
+![Admin panel.](.docs/screenshots/ArsLonga-screenshot-admin_panel.png)
+
+> [!TIP]
+>
+> Framed screenshots created using the [open-source web app Pika][pika].
+
+[pika]: <https://github.com/rishimohan/pika#setting-up-the-app> "rishimohan/pika: Quickly design beautiful screenshots and open graph images."
+
 ## Requirements
 
 - [PHP][php8.4] >= 8.4
