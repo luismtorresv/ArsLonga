@@ -52,7 +52,6 @@ composer install
 ### Setup environment
 
 ```shell
-
 composer setup
 ```
 
