@@ -1,5 +1,9 @@
 # Ars Longa
 
+<div align="center">
+    <img src="public/ArsLonga-logo-480x480.png" width="150px" alt="Ars Longa's logo.">
+</div>
+
 Online art store using the Laravel PHP framework. Project for the course
 “Software Architecture” (SI3001) taught by professor Daniel Correa at EAFIT
 University during the 2025-2 semester.
