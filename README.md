@@ -16,7 +16,8 @@ University during the 2025-2 semester.
 
 ## Production environment installation
 
-Create a `.env.production` file and run Docker Compose:
+Create a `.env.production` file (see the final section of the
+[`.env.example`](.env.example)) and run Docker Compose:
 
 ```shell
 docker compose --file compose.prod.yaml up --build --detach
