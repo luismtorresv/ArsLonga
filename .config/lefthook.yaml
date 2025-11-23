@@ -11,14 +11,6 @@ pre-commit:
         - static-analysis
       glob: "**/*.php"
       run: ./vendor/bin/phpstan analyse {staged_files}
-    - name: lint backend
-      tags:
-        - backend
-        - linters
-      glob: "**/*.php"
-      run: ./vendor/bin/pint {staged_files}
-      stage_fixed: true
-      interactive: false
     - name: lint frontend
       tags:
         - frontend
@@ -32,4 +24,19 @@ pre-commit:
         - localization
       glob: "lang/**"
       run: php artisan translations:check
+      interactive: false
+    - name: generate autocompletion for models
+      tags:
+       - helpers
+      glob: "app/Models/*.php"
+      run: php artisan ide-helper:models --write
+      stage_fixed: true
+      interactive: false
+    - name: lint backend
+      tags:
+        - backend
+        - linters
+      glob: "**/*.php"
+      run: ./vendor/bin/pint {staged_files}
+      stage_fixed: true
       interactive: false

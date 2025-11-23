@@ -106,11 +106,14 @@ We use the [lefthook Git hooks manager][lefthook] to run pre-commit hooks that:
 4. Checks for missing translation files or strings using the
    [Laravel translations checker][translations-checker]
 
+5. Generate autocompletion for models with [laravel-ide-helper][laravel-ide-helper]
+
 [lefthook]: <https://lefthook.dev/> "evilmartians/lefthook: Fast and powerful Git hooks manager for any type of projects."
 [pint]: <https://github.com/laravel/pint> "laravel/pint: Laravel Pint is an opinionated PHP code style fixer for minimalists."
 [larastan]: <https://github.com/larastan/larastan> "larastan/larastan: Adds code analysis to Laravel improving developer productivity and code quality"
 [blade-formatter]: <https://github.com/shufo/blade-formatter> "shufo/blade-formatter: An opinionated blade template formatter for Laravel that respects readability"
 [translations-checker]: <https://github.com/LarsWiegers/laravel-translations-checker> "LarsWiegers/laravel-translations-checker: Never worry about missing translations again! Use the translations checker."
+[laravel-ide-helper]: <https://github.com/barryvdh/laravel-ide-helper> "barryvdh/laravel-ide-helper: This package generates helper files that enable your IDE to provide accurate autocompletion."
 
 > [!TIP]
 >
