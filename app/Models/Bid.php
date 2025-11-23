@@ -38,7 +38,7 @@ class Bid extends Model
         'auction_id',
     ];
 
-    public static function validate(request $request): void
+    public static function validate(Request $request): void
     {
         $request->validate([
             'price_offering' => 'required|gt:0',
