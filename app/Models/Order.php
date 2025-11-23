@@ -29,6 +29,8 @@ use Illuminate\Http\Request;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereTotal($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Order whereUserId($value)
+ *
+ * @mixin \Eloquent
  */
 class Order extends Model
 {

@@ -29,6 +29,8 @@ use Illuminate\Http\Request;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Item whereOrderId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Item wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Item whereUpdatedAt($value)
+ *
+ * @mixin \Eloquent
  */
 class Item extends Model
 {

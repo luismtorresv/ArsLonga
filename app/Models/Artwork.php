@@ -38,6 +38,16 @@ use Illuminate\Support\Facades\Storage;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork whereUpdatedAt($value)
+ *
+ * @property-read \App\Models\Auction|null $auction
+ * @property-read \App\Models\Item|null $item
+ * @property int|null $auction_id
+ * @property int|null $item_id
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork whereAuctionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Artwork whereItemId($value)
+ *
+ * @mixin \Eloquent
  */
 class Artwork extends Model
 {

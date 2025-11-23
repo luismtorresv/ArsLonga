@@ -29,6 +29,8 @@ use Illuminate\Http\Request;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Bid wherePriceOffering($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Bid whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Bid whereUserId($value)
+ *
+ * @mixin \Eloquent
  */
 class Bid extends Model
 {

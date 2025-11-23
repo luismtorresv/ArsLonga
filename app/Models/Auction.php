@@ -35,6 +35,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Auction whereStartDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Auction whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Auction whereWinningBidderId($value)
+ *
+ * @mixin \Eloquent
  */
 class Auction extends Model
 {
